@@ -24,7 +24,7 @@ const container = {
 
 export default function AboutSection() {
   return (
-    <section id="about" className="py-24 sm:py-32 bg-gray-50 dark:bg-gray-900/40">
+    <section id="about" className="py-24 sm:py-32 bg-gradient-to-b from-amber-900/90 to-yellow-900/80 dark:from-amber-900/90 dark:to-yellow-900/80">
       <div className="mx-auto max-w-7xl px-6 lg:px-8">
         <motion.div 
           className="mx-auto max-w-2xl lg:text-center"
@@ -34,19 +34,19 @@ export default function AboutSection() {
           variants={container}
         >
           <motion.h2 
-            className="text-base font-semibold leading-7 text-primary-600 dark:text-yellow-400"
+            className="text-base font-semibold leading-7 text-yellow-300 dark:text-yellow-300"
             variants={fadeIn}
           >
             About TeaMo
           </motion.h2>
           <motion.p 
-            className="mt-2 text-3xl font-bold tracking-tight text-gray-900 dark:text-white sm:text-4xl"
+            className="mt-2 text-3xl font-bold tracking-tight text-white dark:text-white sm:text-4xl"
             variants={fadeIn}
           >
             A Family of Tech Experts
           </motion.p>
           <motion.p 
-            className="mt-6 text-lg leading-8 text-gray-600 dark:text-gray-300"
+            className="mt-6 text-lg leading-8 text-yellow-100 dark:text-yellow-100"
             variants={fadeIn}
           >
             Founded in Lagos with a passion for technology and a commitment to excellent service,
@@ -64,11 +64,11 @@ export default function AboutSection() {
             variants={container}
           >
             <motion.div 
-              className="relative overflow-hidden rounded-2xl bg-white dark:bg-black shadow-xl"
+              className="relative overflow-hidden rounded-2xl bg-white dark:bg-black shadow-xl ring-2 ring-yellow-400/50 dark:ring-yellow-400/50 shadow-yellow-400/20 dark:shadow-yellow-400/20"
               variants={fadeIn}
               whileHover={{ 
                 scale: 1.02,
-                boxShadow: "0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04)"
+                boxShadow: "0 0 25px 5px rgba(250, 204, 21, 0.3)"
               }}
               transition={{ type: "spring", stiffness: 300, damping: 20 }}
             >
@@ -104,9 +104,12 @@ export default function AboutSection() {
               variants={container}
             >
               <motion.div 
-                className="bg-white dark:bg-black shadow-md rounded-xl p-6 border border-gray-100 dark:border-gray-800"
+                className="bg-white dark:bg-black shadow-lg rounded-xl p-6 border border-gray-100 dark:border-yellow-500/30 ring-1 ring-yellow-300/30 dark:ring-yellow-400/50 shadow-yellow-300/10 dark:shadow-yellow-400/20"
                 variants={fadeIn}
-                whileHover={{ y: -5, boxShadow: "0 10px 15px -3px rgba(0, 0, 0, 0.1)" }}
+                whileHover={{ 
+                  y: -5, 
+                  boxShadow: "0 0 20px 5px rgba(250, 204, 21, 0.25)"
+                }}
                 transition={{ type: "spring", stiffness: 300, damping: 20 }}
               >
                 <Check className="h-10 w-10 text-primary-600 dark:text-yellow-400" />
@@ -117,9 +120,12 @@ export default function AboutSection() {
               </motion.div>
 
               <motion.div 
-                className="bg-white dark:bg-black shadow-md rounded-xl p-6 border border-gray-100 dark:border-gray-800"
+                className="bg-white dark:bg-black shadow-lg rounded-xl p-6 border border-gray-100 dark:border-yellow-500/30 ring-1 ring-yellow-300/30 dark:ring-yellow-400/50 shadow-yellow-300/10 dark:shadow-yellow-400/20"
                 variants={fadeIn}
-                whileHover={{ y: -5, boxShadow: "0 10px 15px -3px rgba(0, 0, 0, 0.1)" }}
+                whileHover={{ 
+                  y: -5, 
+                  boxShadow: "0 0 20px 5px rgba(250, 204, 21, 0.25)"
+                }}
                 transition={{ type: "spring", stiffness: 300, damping: 20 }}
               >
                 <Trophy className="h-10 w-10 text-primary-600 dark:text-yellow-400" />
@@ -130,9 +136,12 @@ export default function AboutSection() {
               </motion.div>
 
               <motion.div 
-                className="bg-white dark:bg-black shadow-md rounded-xl p-6 border border-gray-100 dark:border-gray-800"
+                className="bg-white dark:bg-black shadow-lg rounded-xl p-6 border border-gray-100 dark:border-yellow-500/30 ring-1 ring-yellow-300/30 dark:ring-yellow-400/50 shadow-yellow-300/10 dark:shadow-yellow-400/20"
                 variants={fadeIn}
-                whileHover={{ y: -5, boxShadow: "0 10px 15px -3px rgba(0, 0, 0, 0.1)" }}
+                whileHover={{ 
+                  y: -5, 
+                  boxShadow: "0 0 20px 5px rgba(250, 204, 21, 0.25)"
+                }}
                 transition={{ type: "spring", stiffness: 300, damping: 20 }}
               >
                 <Clock className="h-10 w-10 text-primary-600 dark:text-yellow-400" />
@@ -143,9 +152,12 @@ export default function AboutSection() {
               </motion.div>
 
               <motion.div 
-                className="bg-primary-50 dark:bg-yellow-900/20 shadow-md rounded-xl p-6 border border-primary-100 dark:border-yellow-900/50"
+                className="bg-primary-50 dark:bg-yellow-900/30 shadow-lg rounded-xl p-6 border border-primary-100 dark:border-yellow-500/40 ring-1 ring-yellow-300/30 dark:ring-yellow-400/50 shadow-yellow-300/10 dark:shadow-yellow-400/20"
                 variants={fadeIn}
-                whileHover={{ y: -5, boxShadow: "0 10px 15px -3px rgba(0, 0, 0, 0.1)" }}
+                whileHover={{ 
+                  y: -5, 
+                  boxShadow: "0 0 20px 5px rgba(250, 204, 21, 0.25)"
+                }}
                 transition={{ type: "spring", stiffness: 300, damping: 20 }}
               >
                 <motion.div

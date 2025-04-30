@@ -58,7 +58,7 @@ const staggerContainer = {
 
 export default function BlogPreviewSection() {
   return (
-    <section id="blog" className="py-24 sm:py-32 bg-gray-50 dark:bg-gray-900/40">
+    <section id="blog" className="py-24 sm:py-32 bg-gradient-to-b from-amber-900/90 to-yellow-900/80 dark:from-amber-900/90 dark:to-yellow-900/80">
       <div className="mx-auto max-w-7xl px-6 lg:px-8">
         <motion.div 
           className="mx-auto max-w-2xl text-center"
@@ -68,19 +68,19 @@ export default function BlogPreviewSection() {
           variants={staggerContainer}
         >
           <motion.h2 
-            className="text-base font-semibold leading-7 text-primary-600 dark:text-yellow-400"
+            className="text-base font-semibold leading-7 text-yellow-300 dark:text-yellow-300"
             variants={fadeIn}
           >
             Our Blog
           </motion.h2>
           <motion.p 
-            className="mt-2 text-3xl font-bold tracking-tight text-gray-900 dark:text-white sm:text-4xl"
+            className="mt-2 text-3xl font-bold tracking-tight text-white dark:text-white sm:text-4xl"
             variants={fadeIn}
           >
             Latest Tech Insights
           </motion.p>
           <motion.p 
-            className="mt-6 text-lg leading-8 text-gray-600 dark:text-gray-300"
+            className="mt-6 text-lg leading-8 text-yellow-100 dark:text-yellow-100"
             variants={fadeIn}
           >
             Stay updated with the latest technology trends, security tips, and IT best practices
@@ -101,10 +101,10 @@ export default function BlogPreviewSection() {
               variants={fadeIn}
               whileHover={{ 
                 y: -10, 
-                boxShadow: "0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04)" 
+                boxShadow: "0 0 20px 5px rgba(250, 204, 21, 0.25)"
               }}
               transition={{ type: "spring", stiffness: 300, damping: 15 }}
-              className="flex flex-col items-start justify-between rounded-2xl bg-white p-6 dark:bg-gray-800 shadow-md ring-1 ring-gray-200 dark:ring-gray-700 overflow-hidden"
+              className="flex flex-col items-start justify-between rounded-2xl bg-white p-6 dark:bg-gray-800 shadow-lg ring-1 ring-yellow-300/30 dark:ring-yellow-400/50 shadow-yellow-300/10 dark:shadow-yellow-400/20 overflow-hidden"
             >
               <div className="w-full">
                 <div className="relative w-full mb-6 overflow-hidden rounded-lg">
@@ -159,7 +159,7 @@ export default function BlogPreviewSection() {
           viewport={{ once: true }}
           transition={{ duration: 0.6, delay: 0.2 }}
         >
-          <Link href="/blog" className="text-primary-600 dark:text-yellow-400 font-medium hover:text-primary-500 dark:hover:text-yellow-300 inline-flex items-center">
+          <Link href="/blog" className="text-yellow-300 dark:text-yellow-300 font-medium hover:text-yellow-200 dark:hover:text-yellow-200 inline-flex items-center">
             View all articles
             <ChevronRight className="ml-1 h-4 w-4" />
           </Link>

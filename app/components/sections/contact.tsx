@@ -25,9 +25,9 @@ const staggerContainer = {
 
 export default function ContactSection() {
   return (
-    <section id="contact" className="py-24 sm:py-32 relative">
+    <section id="contact" className="py-24 sm:py-32 relative bg-gradient-to-b from-amber-900/90 to-yellow-900/80 dark:from-amber-900/90 dark:to-yellow-900/80">
       {/* Background pattern */}
-      <div className="absolute inset-0 -z-10 bg-[radial-gradient(#e5e7eb_1px,transparent_1px)] dark:bg-[radial-gradient(#333333_1px,transparent_1px)] [background-size:16px_16px] opacity-20"></div>
+      <div className="absolute inset-0 -z-10 bg-[radial-gradient(#e5e7eb_1px,transparent_1px)] dark:bg-[radial-gradient(#333333_1px,transparent_1px)] [background-size:16px_16px] opacity-10"></div>
       
       <div className="mx-auto max-w-7xl px-6 lg:px-8">
         <motion.div 
@@ -38,19 +38,19 @@ export default function ContactSection() {
           variants={staggerContainer}
         >
           <motion.h2 
-            className="text-base font-semibold leading-7 text-primary-600 dark:text-yellow-400"
+            className="text-base font-semibold leading-7 text-yellow-300 dark:text-yellow-300"
             variants={fadeIn}
           >
             Get in Touch
           </motion.h2>
           <motion.p 
-            className="mt-2 text-3xl font-bold tracking-tight text-gray-900 dark:text-white sm:text-4xl"
+            className="mt-2 text-3xl font-bold tracking-tight text-white dark:text-white sm:text-4xl"
             variants={fadeIn}
           >
             Contact TeaMo
           </motion.p>
           <motion.p 
-            className="mt-6 text-lg leading-8 text-gray-600 dark:text-gray-300"
+            className="mt-6 text-lg leading-8 text-yellow-100 dark:text-yellow-100"
             variants={fadeIn}
           >
             Have a tech issue or need a new website? We're here to help. 
@@ -66,10 +66,10 @@ export default function ContactSection() {
             transition={{ duration: 0.6 }}
             className="px-6 lg:px-0"
           >
-            <h3 className="text-2xl font-bold tracking-tight text-gray-900 dark:text-white">
+            <h3 className="text-2xl font-bold tracking-tight text-white dark:text-white">
               Contact Information
             </h3>
-            <p className="mt-4 text-base leading-7 text-gray-600 dark:text-gray-300">
+            <p className="mt-4 text-base leading-7 text-yellow-100 dark:text-yellow-100">
               Reach out to us through any of these channels. We typically respond within 2 hours during business hours.
             </p>
             
@@ -79,12 +79,12 @@ export default function ContactSection() {
                 whileHover={{ x: 5 }}
                 transition={{ type: "spring", stiffness: 300, damping: 20 }}
               >
-                <div className="flex h-12 w-12 items-center justify-center rounded-full bg-primary-100 dark:bg-yellow-900/30">
-                  <Phone className="h-6 w-6 text-primary-600 dark:text-yellow-400" />
+                <div className="flex h-12 w-12 items-center justify-center rounded-full bg-yellow-800/50 dark:bg-yellow-800/50 ring-1 ring-yellow-300/30 dark:ring-yellow-400/50 shadow-yellow-300/10 dark:shadow-yellow-400/20">
+                  <Phone className="h-6 w-6 text-yellow-300 dark:text-yellow-300" />
                 </div>
                 <div>
-                  <h4 className="text-base font-semibold text-gray-900 dark:text-white">Phone</h4>
-                  <p className="mt-1 text-gray-600 dark:text-gray-300">+234 801 234 5678</p>
+                  <h4 className="text-base font-semibold text-white dark:text-white">Phone</h4>
+                  <p className="mt-1 text-yellow-100 dark:text-yellow-100">+234 801 234 5678</p>
                 </div>
               </motion.div>
               
@@ -146,8 +146,8 @@ export default function ContactSection() {
             </div>
 
             <div className="mt-10">
-              <h4 className="text-base font-semibold text-gray-900 dark:text-white">Business Hours</h4>
-              <div className="mt-3 space-y-1 text-sm text-gray-600 dark:text-gray-300">
+              <h4 className="text-base font-semibold text-white dark:text-white">Business Hours</h4>
+              <div className="mt-3 space-y-1 text-sm text-yellow-100 dark:text-yellow-100">
                 <p>Monday - Friday: 8:00 AM - 6:00 PM</p>
                 <p>Saturday: 9:00 AM - 3:00 PM</p>
                 <p>Sunday: Closed (Emergency Support Available)</p>
@@ -160,9 +160,12 @@ export default function ContactSection() {
             whileInView={{ opacity: 1, x: 0 }}
             viewport={{ once: true }}
             transition={{ duration: 0.6 }}
-            className="rounded-2xl bg-white p-8 shadow-lg ring-1 ring-gray-200 dark:bg-gray-900/50 dark:ring-gray-800"
+            className="rounded-2xl bg-black p-8 shadow-lg ring-2 ring-yellow-400/50 dark:ring-yellow-400/50 shadow-yellow-400/20 dark:shadow-yellow-400/20"
+            whileHover={{ 
+              boxShadow: "0 0 25px 5px rgba(250, 204, 21, 0.2)"
+            }}
           >
-            <h3 className="text-lg font-semibold text-gray-900 dark:text-white">Send us a message</h3>
+            <h3 className="text-lg font-semibold text-yellow-300 dark:text-yellow-300">Send us a message</h3>
             <form className="mt-6 space-y-6">
               <div>
                 <label htmlFor="name" className="block text-sm font-medium leading-6 text-gray-900 dark:text-gray-200">
@@ -254,10 +257,10 @@ export default function ContactSection() {
                   type="submit"
                   whileHover={{ 
                     scale: 1.02,
-                    boxShadow: "0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05)"
+                    boxShadow: "0 0 20px 5px rgba(250, 204, 21, 0.25)"
                   }}
                   whileTap={{ scale: 0.98 }}
-                  className="flex w-full items-center justify-center rounded-md bg-primary-600 dark:bg-yellow-500 px-3.5 py-2.5 text-center text-sm font-semibold text-white dark:text-gray-900 shadow-sm hover:bg-primary-500 dark:hover:bg-yellow-400 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-primary-600 dark:focus-visible:outline-yellow-500"
+                  className="flex w-full items-center justify-center rounded-md bg-amber-800 dark:bg-amber-800 px-3.5 py-2.5 text-center text-sm font-semibold text-yellow-300 dark:text-yellow-300 shadow-lg ring-1 ring-yellow-300/30 dark:ring-yellow-400/50 shadow-yellow-300/10 dark:shadow-yellow-400/20 hover:bg-amber-700 dark:hover:bg-amber-700"
                 >
                   Send Message
                   <Send className="ml-2 h-4 w-4" />

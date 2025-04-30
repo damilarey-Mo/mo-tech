@@ -76,7 +76,7 @@ const item = {
 
 export default function ServicesSection() {
   return (
-    <section id="services" className="py-24 sm:py-32">
+    <section id="services" className="py-24 sm:py-32 bg-gradient-to-b from-amber-900/90 to-yellow-900/80 dark:from-amber-900/90 dark:to-yellow-900/80">
       <div className="mx-auto max-w-7xl px-6 lg:px-8">
         <motion.div 
           className="mx-auto max-w-2xl text-center"
@@ -86,19 +86,19 @@ export default function ServicesSection() {
           variants={container}
         >
           <motion.h2 
-            className="text-base font-semibold leading-7 text-primary-600 dark:text-yellow-400"
+            className="text-base font-semibold leading-7 text-yellow-300 dark:text-yellow-300"
             variants={item}
           >
             Our Services
           </motion.h2>
           <motion.p 
-            className="mt-2 text-3xl font-bold tracking-tight text-gray-900 dark:text-white sm:text-4xl"
+            className="mt-2 text-3xl font-bold tracking-tight text-white dark:text-white sm:text-4xl"
             variants={item}
           >
             Comprehensive IT & Tech Solutions
           </motion.p>
           <motion.p 
-            className="mt-6 text-lg leading-8 text-gray-600 dark:text-gray-300"
+            className="mt-6 text-lg leading-8 text-yellow-100 dark:text-yellow-100"
             variants={item}
           >
             From web development to tech support, we provide end-to-end solutions
@@ -119,10 +119,10 @@ export default function ServicesSection() {
               variants={item}
               whileHover={{ 
                 y: -10, 
-                boxShadow: "0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04)" 
+                boxShadow: "0 0 20px 5px rgba(250, 204, 21, 0.25)"
               }}
               transition={{ type: "spring", stiffness: 300, damping: 15 }}
-              className="flex flex-col overflow-hidden rounded-2xl bg-white dark:bg-gray-900 shadow-lg border border-gray-100 dark:border-gray-800"
+              className="flex flex-col overflow-hidden rounded-2xl bg-white dark:bg-gray-900 shadow-lg border border-gray-100 dark:border-gray-800 ring-1 ring-yellow-300/30 dark:ring-yellow-400/50 shadow-yellow-300/10 dark:shadow-yellow-400/20"
             >
               <div className="flex-1 p-8 sm:p-10">
                 <div className="flex items-center">
@@ -159,10 +159,10 @@ export default function ServicesSection() {
             <motion.button
               whileHover={{ 
                 scale: 1.05,
-                boxShadow: "0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05)"
+                boxShadow: "0 0 20px 5px rgba(250, 204, 21, 0.25)"
               }}
               whileTap={{ scale: 0.95 }}
-              className="rounded-full bg-primary-600 dark:bg-yellow-500 px-5 py-3 text-base font-semibold text-white dark:text-gray-900 shadow-sm hover:bg-primary-500 dark:hover:bg-yellow-400 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-primary-600 dark:focus-visible:outline-yellow-500"
+              className="rounded-full bg-black px-5 py-3 text-base font-semibold text-yellow-300 shadow-lg ring-1 ring-yellow-300/30 shadow-yellow-300/10 hover:bg-gray-900 dark:bg-black dark:text-yellow-300 dark:ring-yellow-400/50 dark:shadow-yellow-400/20 dark:hover:bg-gray-900"
             >
               Request a Service Consultation
             </motion.button>
