@@ -1,17 +1,31 @@
+import React from 'react';
 import HeroSection from "@/app/components/sections/hero";
-import FeaturesSection from "@/app/components/sections/features";
+import AboutSection from "@/app/components/sections/about";
+import ServicesSection from "@/app/components/sections/services";
+import FeaturedProjectsSection from "@/app/components/sections/featured-projects";
 import TestimonialsSection from "@/app/components/sections/testimonials";
-import PricingSection from "@/app/components/sections/pricing";
 import CTASection from "@/app/components/sections/cta";
+import BlogPreviewSection from "@/app/components/sections/blog-preview";
+import ContactSection from "@/app/components/sections/contact";
+
+// These sections will be created
+// import AboutSection from "@/app/components/sections/about";
+// import ServicesSection from "@/app/components/sections/services";
+// import FeaturedProjectsSection from "@/app/components/sections/featured-projects";
+// import BlogPreviewSection from "@/app/components/sections/blog-preview";
+// import ContactSection from "@/app/components/sections/contact";
 
 export default function Home() {
   return (
-    <>
+    <React.Fragment>
       <HeroSection />
-      <FeaturesSection />
+      <AboutSection />
+      <ServicesSection />
+      <FeaturedProjectsSection />
       <TestimonialsSection />
-      <PricingSection />
       <CTASection />
-    </>
+      <BlogPreviewSection />
+      <ContactSection />
+    </React.Fragment>
   );
 }

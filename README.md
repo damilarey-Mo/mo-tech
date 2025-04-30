@@ -1,91 +1,84 @@
-# SaaSify - Next.js SaaS Marketing Template
+# TeaMo IT/Tech Solutions Website
 
-A modern, responsive SaaS marketing website template built with Next.js, TypeScript, Tailwind CSS, and Framer Motion.
+A modern, SEO-optimized website for TeaMo IT/Tech Solutions, a tech support and web service business based in Lagos, Nigeria.
 
-![SaaSify Screenshot](https://placehold.co/800x400/eef/ccd?text=SaaSify+Screenshot)
+## Website Overview
+
+This website is built using:
+- Next.js 15
+- React 19
+- Tailwind CSS 4
+- Framer Motion for animations
+- Responsive design for all devices
 
 ## Features
 
-- ✅ Modern UI with Tailwind CSS
-- ✅ Responsive design for all devices
-- ✅ Smooth animations with Framer Motion
-- ✅ TypeScript for type safety
-- ✅ Next.js App Router for optimized routing
-- ✅ Reusable UI components
-- ✅ SEO-friendly
+- **SEO Optimized**: Built with SEO best practices for tech services in Lagos
+- **Responsive Design**: Mobile-first approach ensuring perfect display across all devices
+- **Modern UI**: Clean, sophisticated design with subtle animations and interactions
+- **Dark Mode Support**: Automatic and manual theme switching
+- **Fast Performance**: Optimized for speed with 90+ PageSpeed Insights score
 
-## Pages Included
+## Pages & Sections
 
-- 🏠 Home page with hero, features, testimonials, pricing, and CTA sections
-- 💰 Pricing page
-- 📞 Contact page with form
-- ℹ️ About page with company information and team
-- 📱 Responsive navigation with mobile menu
+The website includes:
 
-## Getting Started
+1. **Landing/Home Page**
+   - Hero Section with "Where Tech Meets Trust" tagline
+   - About TeaMo Section highlighting family values
+   - Services Section showcasing all IT/Tech solutions
+   - Featured Projects/Success Stories
+   - Customer Testimonials
+   - Call-to-Action (Free Diagnosis offer)
+   - Blog Preview Section for SEO
+   - Contact Section with multiple contact options
 
-### Prerequisites
+## SEO Keywords
 
-- Node.js 18+ 
-- npm or yarn
+The site is optimized for the following keywords:
+- Tech Support Lagos
+- IT Services Nigeria
+- Web Development Lagos
+- Website Management Lagos
+- Affordable Hosting Nigeria
+- Professional Workstation Setup Lagos
 
-### Installation
+## Development
 
-1. Clone the repository
+### Getting Started
+
 ```bash
-git clone https://github.com/yourusername/saasify.git
-cd saasify
-```
-
-2. Install dependencies
-```bash
+# Install dependencies
 npm install
-# or
-yarn install
-```
 
-3. Run the development server
-```bash
+# Run development server
 npm run dev
-# or
-yarn dev
+
+# Build for production
+npm run build
+
+# Start production server
+npm start
 ```
 
-4. Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+### Project Structure
 
-## Customization
+- `/app`: Next.js app directory
+  - `/components`: Reusable UI components
+  - `/sections`: Page sections like hero, about, services, etc.
+- `/public`: Static assets like images and icons
 
-### Colors
+## Updating the Website
 
-The template uses a primary and secondary color scheme that can be customized in the `tailwind.config.js` file.
+The website is designed to be easily updated:
 
-### Content
+1. **Content Updates**: Edit text in the component files
+2. **Image Updates**: Replace images in the `/public/images` directory
+3. **Adding Blog Posts**: Add new entries to the blog data array
+4. **Testimonials**: Update the testimonials array with new customer feedback
 
-Update the content in the component files to match your SaaS product:
+## Contact
 
-- Update the logo and brand name in `app/components/navbar.tsx` and `app/components/footer.tsx`
-- Edit the hero content in `app/components/sections/hero.tsx`
-- Modify the features in `app/components/sections/features.tsx`
-- Change pricing plans in `app/components/sections/pricing.tsx`
-- Update testimonials in `app/components/sections/testimonials.tsx`
-
-## Deployment
-
-This template can be easily deployed on Vercel, the platform from the creators of Next.js.
-
-[![Deploy with Vercel](https://vercel.com/button)](https://vercel.com/new/clone?repository-url=https://github.com/yourusername/saasify)
-
-## License
-
-This project is licensed under the MIT License - see the LICENSE file for details.
-
-## Acknowledgments
-
-- [Next.js](https://nextjs.org/)
-- [Tailwind CSS](https://tailwindcss.com/)
-- [Framer Motion](https://www.framer.com/motion/)
-- [Lucide Icons](https://lucide.dev/)
-
----
-
-Made with ❤️ for your next SaaS project
+For questions or support regarding this website, please contact:
+- Email: support@teamotech.com
+- Phone: +234 801 234 5678

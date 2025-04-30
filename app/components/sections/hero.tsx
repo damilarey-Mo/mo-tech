@@ -31,9 +31,9 @@ const hoverButtonEffect = {
 };
 
 const testimonials = [
-  { name: "Sarah K.", role: "Product Manager", rating: 5 },
-  { name: "Michael T.", role: "Founder", rating: 5 },
-  { name: "Emily R.", role: "Team Lead", rating: 4 },
+  { name: "Adebayo K.", role: "Business Owner", rating: 5 },
+  { name: "Chioma N.", role: "Startup Founder", rating: 5 },
+  { name: "Oluwaseun J.", role: "Office Manager", rating: 5 },
 ];
 
 export default function HeroSection() {
@@ -82,7 +82,7 @@ export default function HeroSection() {
             variants={fadeIn}
           >
             <motion.a 
-              href="#" 
+              href="#services" 
               className="inline-flex items-center space-x-6"
               whileHover={{ scale: 1.02 }}
               whileTap={{ scale: 0.98 }}
@@ -92,10 +92,10 @@ export default function HeroSection() {
                 whileHover={{ y: -2 }}
                 transition={{ type: "spring", stiffness: 400, damping: 10 }}
               >
-                What's new
+                IT & Tech Solutions
               </motion.span>
               <span className="inline-flex items-center space-x-2 text-sm font-medium leading-6 text-gray-600 dark:text-yellow-400/80">
-                <span>Just shipped v2.0</span>
+                <span>Based in Lagos, Nigeria</span>
                 <motion.span
                   animate={{ x: [0, 3, 0] }}
                   transition={{ repeat: Infinity, duration: 1.5, repeatType: "mirror" }}
@@ -110,7 +110,7 @@ export default function HeroSection() {
             variants={fadeIn}
           >
             <span className="block dark:text-yellow-400">
-              Streamline your workflow 
+              Where Tech Meets 
             </span>
             <motion.span 
               className="bg-gradient-to-r from-primary-600 to-secondary-600 dark:from-yellow-400 dark:to-yellow-600 bg-clip-text text-transparent"
@@ -126,28 +126,28 @@ export default function HeroSection() {
                 backgroundSize: "200% auto"
               }}
             >
-              boost productivity
+              Trust
             </motion.span>
           </motion.h1>
           <motion.p
             className="mt-6 text-lg leading-8 text-gray-600 dark:text-yellow-400/80"
             variants={fadeIn}
           >
-            Join thousands of teams using our platform to improve efficiency, 
-            collaborate seamlessly, and achieve better results.
+            Your trusted partner for comprehensive IT support, web development, 
+            and tech solutions in Lagos and beyond.
           </motion.p>
           
           <motion.div 
             className="mt-8 flex gap-4 flex-col sm:flex-row"
             variants={fadeIn}
           >
-            <Link href="/auth/signup">
+            <Link href="#services">
               <motion.div whileHover={hoverButtonEffect} whileTap={{ scale: 0.95 }}>
                 <Button 
                   size="lg" 
                   className="w-full sm:w-auto bg-gradient-to-r from-primary-600 to-secondary-600 hover:from-primary-700 hover:to-secondary-700 dark:from-yellow-500 dark:to-yellow-600 dark:text-gray-900 dark:hover:from-yellow-400 dark:hover:to-yellow-500 shadow-md hover:shadow-lg transition-all duration-300"
                 >
-                  Get started for free
+                  Book a Service
                   <motion.span
                     animate={{ x: [0, 3, 0] }}
                     transition={{ repeat: Infinity, duration: 1.5, repeatType: "mirror" }}
@@ -157,14 +157,14 @@ export default function HeroSection() {
                 </Button>
               </motion.div>
             </Link>
-            <Link href="/auth/login">
+            <Link href="#contact">
               <motion.div whileHover={hoverButtonEffect} whileTap={{ scale: 0.95 }}>
                 <Button 
                   variant="outline" 
                   size="lg"
                   className="w-full sm:w-auto dark:text-yellow-400 dark:border-yellow-500 dark:hover:bg-black/70"
                 >
-                  Sign in
+                  Contact Us
                 </Button>
               </motion.div>
             </Link>
@@ -197,15 +197,13 @@ export default function HeroSection() {
                       transition={{ delay: i * 0.1, duration: 0.3 }}
                     >
                       <Star
-                        className={`h-4 w-4 ${
-                          i < 4.7 ? "text-yellow-400" : "text-gray-300 dark:text-gray-600"
-                        }`}
-                        fill={i < 4.7 ? "currentColor" : "none"}
+                        className="h-4 w-4 text-yellow-400"
+                        fill="currentColor"
                       />
                     </motion.div>
                   ))}
                   <span className="ml-2 text-sm text-gray-500 dark:text-yellow-400/80">
-                    4.7/5 from over 2,500+ reviews
+                    5/5 from over 500+ satisfied clients
                   </span>
                 </div>
               </div>
@@ -222,7 +220,7 @@ export default function HeroSection() {
               transition={{ type: "spring", stiffness: 400, damping: 10 }}
             >
               <ShieldCheck className="h-5 w-5 text-primary-500 dark:text-yellow-500 mr-2" />
-              <span className="text-sm text-gray-500 dark:text-yellow-400/80">Enterprise-grade security</span>
+              <span className="text-sm text-gray-500 dark:text-yellow-400/80">Family-run business you can trust</span>
             </motion.div>
             <motion.div 
               className="flex items-center"
@@ -230,7 +228,7 @@ export default function HeroSection() {
               transition={{ type: "spring", stiffness: 400, damping: 10 }}
             >
               <Clock className="h-5 w-5 text-primary-500 dark:text-yellow-500 mr-2" />
-              <span className="text-sm text-gray-500 dark:text-yellow-400/80">Setup in minutes, not hours</span>
+              <span className="text-sm text-gray-500 dark:text-yellow-400/80">Fast response & same-day service</span>
             </motion.div>
           </motion.div>
         </motion.div>
@@ -243,82 +241,15 @@ export default function HeroSection() {
         >
           <div className="max-w-3xl flex-none sm:max-w-5xl lg:max-w-none">
             <motion.div 
-              className="relative rounded-xl bg-gray-900/5 dark:bg-gray-100/5 ring-1 ring-inset ring-gray-900/10 dark:ring-gray-100/10 lg:-m-4 lg:rounded-2xl lg:p-4"
+              className="relative rounded-xl overflow-hidden"
               whileHover={{ scale: 1.02 }}
               transition={{ type: "spring", stiffness: 100, damping: 15 }}
             >
-              <motion.div 
-                className="absolute -top-2 -right-2 h-20 w-20 rounded-full bg-primary-600/10 blur-3xl"
-                animate={{ 
-                  scale: [1, 1.2, 1],
-                  opacity: [0.5, 0.8, 0.5]
-                }}
-                transition={{ 
-                  repeat: Infinity,
-                  duration: 4
-                }}
-              ></motion.div>
-              <motion.div 
-                className="absolute -bottom-4 -left-4 h-20 w-20 rounded-full bg-secondary-600/10 blur-3xl"
-                animate={{ 
-                  scale: [1, 1.2, 1],
-                  opacity: [0.5, 0.8, 0.5]
-                }}
-                transition={{ 
-                  repeat: Infinity,
-                  duration: 4,
-                  delay: 2
-                }}
-              ></motion.div>
               <img
-                src="https://www.slideteam.net/media/catalog/product/cache/1280x720/t/e/technical_operation_support_services_kpi_dashboard_slide01.jpg"
-                alt="Dashboard KPI screenshot"
-                width={2432}
-                height={1442}
-                className="w-[76rem] rounded-md shadow-2xl ring-1 ring-gray-900/10 dark:ring-gray-100/10"
+                src="/images/hero-teamo.jpg"
+                alt="TeaMo IT/Tech Solutions team helping a client"
+                className="w-full h-auto rounded-xl shadow-xl"
               />
-              
-              <motion.div 
-                className="absolute -bottom-6 -right-6 sm:-bottom-16 sm:-right-16 z-0"
-                initial={{ y: 20, opacity: 0 }}
-                animate={{ y: 0, opacity: 1 }}
-                transition={{ delay: 0.5, duration: 0.5 }}
-              >
-                <motion.div 
-                  className="overflow-hidden rounded-lg bg-white dark:bg-black shadow-lg ring-1 ring-black ring-opacity-5 dark:ring-yellow-500/30"
-                  whileHover={{ 
-                    scale: 1.05, 
-                    boxShadow: "0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04)" 
-                  }}
-                  transition={{ type: "spring", stiffness: 400, damping: 10 }}
-                >
-                  <div className="p-4">
-                    <div className="flex items-center gap-x-4">
-                      <motion.div 
-                        className="h-10 w-10 flex-none rounded-full bg-primary-100 dark:bg-yellow-900/50 flex items-center justify-center"
-                        whileHover={{ scale: 1.1, rotate: 10 }}
-                        transition={{ type: "spring", stiffness: 400, damping: 10 }}
-                      >
-                        <ArrowRight className="h-6 w-6 text-primary-600 dark:text-yellow-400" />
-                      </motion.div>
-                      <div className="text-sm">
-                        <p className="font-medium text-gray-900 dark:text-yellow-400">Monthly visits</p>
-                        <p className="text-xs text-gray-500 dark:text-yellow-400/70">+38.9% increase</p>
-                      </div>
-                    </div>
-                    <div className="mt-2 text-center">
-                      <motion.div 
-                        className="text-3xl font-semibold text-gray-900 dark:text-yellow-400"
-                        initial={{ scale: 0.8, opacity: 0 }}
-                        animate={{ scale: 1, opacity: 1 }}
-                        transition={{ delay: 0.7, duration: 0.5, type: "spring" }}
-                      >
-                        +1.2M
-                      </motion.div>
-                    </div>
-                  </div>
-                </motion.div>
-              </motion.div>
             </motion.div>
           </div>
         </motion.div>
