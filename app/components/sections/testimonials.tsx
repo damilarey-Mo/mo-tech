@@ -3,6 +3,7 @@
 import React, { useEffect, useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { Quote, MapPin, Star, ChevronLeft, ChevronRight } from 'lucide-react';
+import Image from 'next/image';
 
 const testimonials = [
   {
@@ -106,6 +107,16 @@ export default function TestimonialsSection() {
     }
   };
 
+  const goToRandom = () => {
+    let newIndex;
+    do {
+      newIndex = Math.floor(Math.random() * testimonials.length);
+    } while (newIndex === currentIndex);
+    
+    setDirection(newIndex > currentIndex ? 1 : -1);
+    setCurrentIndex(newIndex);
+  };
+
   useEffect(() => {
     if (!isPaused) {
       const timer = setInterval(() => {
@@ -188,9 +199,10 @@ export default function TestimonialsSection() {
               className="absolute w-full"
             >
               <motion.div 
-                className="bg-white/10 backdrop-blur-sm rounded-2xl p-8 shadow-xl max-w-3xl mx-auto"
+                className="bg-white/10 backdrop-blur-sm rounded-2xl p-8 shadow-xl max-w-3xl mx-auto cursor-pointer"
                 whileHover={{ scale: 1.02 }}
                 transition={{ type: "spring", stiffness: 300, damping: 20 }}
+                onClick={goToRandom}
               >
                 <div className="flex flex-col items-center text-center">
                   <motion.div
@@ -208,11 +220,15 @@ export default function TestimonialsSection() {
                     transition={{ delay: 0.3, type: "spring", stiffness: 200 }}
                   >
                     <div className="absolute inset-0 bg-gradient-to-br from-yellow-400/20 to-amber-600/20 rounded-full transform rotate-6" />
-                    <img
-                      className="relative w-24 h-24 rounded-full object-cover ring-4 ring-yellow-400/20"
-                      src={testimonials[currentIndex].image}
-                      alt={testimonials[currentIndex].name}
-                    />
+                    <div className="relative w-24 h-24">
+                      <Image
+                        className="rounded-full object-cover ring-4 ring-yellow-400/20"
+                        src={testimonials[currentIndex].image}
+                        alt={testimonials[currentIndex].name}
+                        fill
+                        sizes="(max-width: 96px) 100vw, 96px"
+                      />
+                    </div>
                   </motion.div>
 
                   <motion.blockquote 
@@ -221,7 +237,7 @@ export default function TestimonialsSection() {
                     animate={{ opacity: 1, y: 0 }}
                     transition={{ delay: 0.4, duration: 0.5 }}
                   >
-                    "{testimonials[currentIndex].content}"
+                    &ldquo;{testimonials[currentIndex].content}&rdquo;
                   </motion.blockquote>
 
                   <motion.div 
@@ -268,7 +284,7 @@ export default function TestimonialsSection() {
           </AnimatePresence>
 
           {/* Navigation Dots */}
-          <div className="absolute -bottom-4 left-0 right-0 flex justify-center space-x-2">
+          <div className="absolute -bottom-4 left-0 right-0 flex justify-center space-x-2 z-10">
             {testimonials.map((_, index) => (
               <motion.button
                 key={index}
@@ -292,7 +308,7 @@ export default function TestimonialsSection() {
           {/* Side Navigation Arrows */}
           <motion.button
             onClick={goToPrevious}
-            className={`absolute left-4 top-1/2 -translate-y-1/2 p-3 rounded-full bg-white/10 backdrop-blur-sm text-yellow-400 hover:bg-white/20 transition-all duration-200 ${
+            className={`absolute left-4 top-1/2 -translate-y-1/2 p-3 rounded-full bg-white/10 backdrop-blur-sm text-yellow-400 hover:bg-white/20 transition-all duration-200 z-10 ${
               currentIndex === 0 ? 'opacity-50 cursor-not-allowed translate-x-2' : 'hover:translate-x-0'
             }`}
             whileHover={currentIndex > 0 ? { scale: 1.1, x: -4 } : {}}
@@ -304,7 +320,7 @@ export default function TestimonialsSection() {
           
           <motion.button
             onClick={goToNext}
-            className={`absolute right-4 top-1/2 -translate-y-1/2 p-3 rounded-full bg-white/10 backdrop-blur-sm text-yellow-400 hover:bg-white/20 transition-all duration-200 ${
+            className={`absolute right-4 top-1/2 -translate-y-1/2 p-3 rounded-full bg-white/10 backdrop-blur-sm text-yellow-400 hover:bg-white/20 transition-all duration-200 z-10 ${
               currentIndex === testimonials.length - 1 ? 'opacity-50 cursor-not-allowed -translate-x-2' : 'hover:translate-x-0'
             }`}
             whileHover={currentIndex < testimonials.length - 1 ? { scale: 1.1, x: 4 } : {}}
