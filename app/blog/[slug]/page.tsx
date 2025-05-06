@@ -5,18 +5,27 @@ import BlogPostContent from '@/app/components/BlogPostContent';
 import NewsletterSignup from '@/app/components/NewsletterSignup';
 import { Metadata } from 'next';
 
-interface PageProps {
-  params: { slug: string };
-  searchParams?: { [key: string]: string | string[] | undefined };
-}
+type BlogParams = {
+  slug: string;
+};
 
-export async function generateMetadata({ params }: PageProps): Promise<Metadata> {
+export async function generateMetadata({ 
+  params 
+}: { 
+  params: BlogParams 
+}): Promise<Metadata> {
   return {
     title: `Blog Post - ${params.slug}`,
   };
 }
 
-export default async function BlogPost({ params, searchParams }: PageProps) {
+export default async function BlogPost({ 
+  params,
+  searchParams,
+}: {
+  params: BlogParams;
+  searchParams?: { [key: string]: string | string[] | undefined };
+}) {
   const post = blogPosts.find((post) => post.slug === params.slug);
 
   if (!post) {
