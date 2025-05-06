@@ -12,7 +12,8 @@ import {
   HardDrive,
   Users,
   Headphones,
-  BarChart
+  BarChart,
+  ChevronRight
 } from 'lucide-react';
 
 const services = [

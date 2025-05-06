@@ -3,14 +3,22 @@ import Link from 'next/link';
 import { blogPosts } from '@/app/data/blogPosts';
 import BlogPostContent from '@/app/components/BlogPostContent';
 import NewsletterSignup from '@/app/components/NewsletterSignup';
+import { Metadata } from 'next';
 
-interface Props {
+type Props = {
   params: {
     slug: string;
   };
+  searchParams: { [key: string]: string | string[] | undefined };
+};
+
+export async function generateMetadata({ params }: Props): Promise<Metadata> {
+  return {
+    title: `Blog Post - ${params.slug}`,
+  };
 }
 
-export default function BlogPostPage({ params }: Props) {
+export default function BlogPost({ params, searchParams }: Props) {
   const post = blogPosts.find((post) => post.slug === params.slug);
 
   if (!post) {
