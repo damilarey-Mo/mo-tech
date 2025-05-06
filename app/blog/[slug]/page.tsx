@@ -10,24 +10,26 @@ type BlogParams = {
 };
 
 type Props = {
-  params: BlogParams;
-  searchParams: { [key: string]: string | string[] | undefined };
+  params: Promise<BlogParams>;
+  searchParams?: Promise<{ [key: string]: string | string[] | undefined }>;
 };
 
 export async function generateMetadata({ 
   params 
 }: Props): Promise<Metadata> {
+  const resolvedParams = await params;
   return {
-    title: `Blog Post - ${params.slug}`,
-    description: `Read our blog post about ${params.slug}`,
+    title: `Blog Post - ${resolvedParams.slug}`,
+    description: `Read our blog post about ${resolvedParams.slug}`,
   };
 }
 
-export default function BlogPost({ 
+export default async function BlogPost({ 
   params,
   searchParams,
 }: Props) {
-  const post = blogPosts.find((post) => post.slug === params.slug);
+  const resolvedParams = await params;
+  const post = blogPosts.find((post) => post.slug === resolvedParams.slug);
 
   if (!post) {
     return (
