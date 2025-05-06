@@ -5,28 +5,26 @@ import BlogPostContent from '@/app/components/BlogPostContent';
 import NewsletterSignup from '@/app/components/NewsletterSignup';
 import { Metadata } from 'next';
 
-type BlogParams = {
-  slug: string;
-};
+interface Props {
+  params: Promise<{ slug: string }>;
+  searchParams?: { [key: string]: string | string[] | undefined };
+}
 
 export async function generateMetadata({ 
   params 
-}: { 
-  params: BlogParams 
-}): Promise<Metadata> {
+}: Props): Promise<Metadata> {
+  const resolvedParams = await params;
   return {
-    title: `Blog Post - ${params.slug}`,
+    title: `Blog Post - ${resolvedParams.slug}`,
   };
 }
 
 export default async function BlogPost({ 
   params,
   searchParams,
-}: {
-  params: BlogParams;
-  searchParams?: { [key: string]: string | string[] | undefined };
-}) {
-  const post = blogPosts.find((post) => post.slug === params.slug);
+}: Props) {
+  const resolvedParams = await params;
+  const post = blogPosts.find((post) => post.slug === resolvedParams.slug);
 
   if (!post) {
     return (
