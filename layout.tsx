@@ -15,13 +15,13 @@ export const metadata: Metadata = {
     title: "TeaMo | Tech Support & Web Services in Lagos",
     description: "Comprehensive IT support, web development, and tech solutions for businesses in Lagos, Nigeria.",
     url: "https://teamotech.com",
-    siteName: "TeaMo IT/Tech Solutions",
+    siteName: "TeaMo ",
     images: [
       {
         url: "/images/teamo-og-image.jpg",
         width: 1200,
         height: 630,
-        alt: "TeaMo IT/Tech Solutions",
+        alt: "TeaMo ",
       },
     ],
     locale: "en_NG",
@@ -29,7 +29,7 @@ export const metadata: Metadata = {
   },
   twitter: {
     card: "summary_large_image",
-    title: "TeaMo IT/Tech Solutions | Tech Support & Web Services in Lagos",
+    title: "TeaMo  | Tech Support & Web Services in Lagos",
     description: "Comprehensive IT support, web development, and tech solutions for businesses in Lagos, Nigeria.",
     images: ["/images/teamo-twitter-image.jpg"],
   },

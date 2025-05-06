@@ -84,7 +84,7 @@ export default function ContactSection() {
                 </div>
                 <div>
                   <h4 className="text-base font-semibold text-white dark:text-white">Phone</h4>
-                  <p className="mt-1 text-yellow-100 dark:text-yellow-100">+234 801 234 5678</p>
+                  <p className="mt-1 text-yellow-100 dark:text-yellow-100">+234 814 019 5323</p>
                 </div>
               </motion.div>
               

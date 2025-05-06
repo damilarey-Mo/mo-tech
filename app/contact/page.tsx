@@ -61,9 +61,9 @@ export default function ContactPage() {
               <div>
                 <h3 className="font-semibold text-gray-900">Our Location</h3>
                 <address className="mt-1 not-italic text-gray-600">
-                  123 SaaS Street<br />
-                  San Francisco, CA 94103<br />
-                  United States
+                    Victoria Island<br />
+                    Lagos, Nigeria<br />
+                  Nigeria
                 </address>
               </div>
             </div>
@@ -72,7 +72,8 @@ export default function ContactPage() {
               <Phone className="h-6 w-6 flex-none text-primary-600" />
               <div>
                 <h3 className="font-semibold text-gray-900">Phone</h3>
-                <p className="mt-1 text-gray-600">+1 (555) 123-4567</p>
+                <p className="mt-1 text-gray-600">+234 (814) 019 5323</p>
+                <p className="mt-1 text-gray-600">+1 (615) 669 7260</p>
               </div>
             </div>
             
@@ -80,7 +81,7 @@ export default function ContactPage() {
               <Mail className="h-6 w-6 flex-none text-primary-600" />
               <div>
                 <h3 className="font-semibold text-gray-900">Email</h3>
-                <p className="mt-1 text-gray-600">support@saasify.com</p>
+                <p className="mt-1 text-gray-600">support@teamo.com</p>
               </div>
             </div>
             
@@ -90,7 +91,7 @@ export default function ContactPage() {
                 <h3 className="font-semibold text-gray-900">Working Hours</h3>
                 <p className="mt-1 text-gray-600">
                   Monday - Friday: 9am - 5pm PST<br />
-                  Weekend: Closed
+                  Weekend: Closed (except for emergencies)
                 </p>
               </div>
             </div>

@@ -119,7 +119,7 @@ export default function DashboardPage() {
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-4 flex items-center justify-between">
           <div className="flex items-center">
             <Link href="/" className="text-xl font-bold text-primary-600 dark:text-yellow-400">
-              SaaSify
+              Teamo
             </Link>
           </div>
           <div className="flex items-center space-x-4">

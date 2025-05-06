@@ -2,15 +2,15 @@ import Image from "next/image";
 import CTASection from "@/app/components/sections/cta";
 
 export const metadata = {
-  title: "About Us - SaaSify",
-  description: "Learn about our mission and the team behind SaaSify",
+  title: "About Us - Teamo",
+  description: "Learn about our mission and the team behind Teamo",
 };
 
 const team = [
   {
-    name: "Michael Johnson",
+    name: "Damilarey Moshood",
     role: "Founder & CEO",
-    bio: "Michael has over 15 years of experience in SaaS development and product management.",
+    bio: "Damilarey has over 15 years of experience in Web development and IT/Tech Support.",
     image: "https://randomuser.me/api/portraits/men/32.jpg",
   },
   {
@@ -28,7 +28,7 @@ const team = [
   {
     name: "Emily Taylor",
     role: "Head of Marketing",
-    bio: "Emily has helped scale multiple SaaS companies through creative marketing strategies.",
+    bio: "Emily has helped scale multiple companies through creative marketing strategies.",
     image: "https://randomuser.me/api/portraits/women/17.jpg",
   },
 ];
@@ -42,7 +42,7 @@ export default function AboutPage() {
           <div className="mx-auto max-w-7xl px-6 lg:px-8">
             <div className="mx-auto max-w-2xl text-center">
               <h1 className="text-4xl font-bold tracking-tight text-gray-900 sm:text-6xl">
-                About SaaSify
+                About Teamo
               </h1>
               <p className="mt-6 text-lg leading-8 text-gray-600">
                 We're building the ultimate productivity platform to help businesses work smarter, not harder.
@@ -63,7 +63,7 @@ export default function AboutPage() {
                   Empowering teams to achieve more
                 </p>
                 <p className="mt-6 text-lg leading-8 text-gray-600">
-                  At SaaSify, we believe that great software should make complex tasks simple. Our mission is to create tools that empower teams to work efficiently, collaborate seamlessly, and achieve their goals.
+                  At Teamo, we believe that great software should make complex tasks simple. Our mission is to create tools that empower teams to work efficiently, collaborate seamlessly, and achieve their goals.
                 </p>
                 <p className="mt-6 text-lg leading-8 text-gray-600">
                   Founded in 2020, we've grown from a small team with a big idea to a thriving company serving thousands of businesses worldwide. Our platform continues to evolve based on customer feedback and changing market needs.

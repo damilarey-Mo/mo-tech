@@ -2,26 +2,47 @@
 
 import React from 'react';
 import Link from 'next/link';
-import { blogPosts } from '@/app/data/blogPosts';
+import { Calendar, Clock, ChevronLeft } from 'lucide-react';
+import { blogPosts } from '../data/blogPosts';
 
-export default function BlogPreviewSection() {
-  // Get the latest 3 blog posts
-  const latestPosts = blogPosts.slice(0, 3);
+export interface BlogPost {
+  id: number;
+  title: string;
+  description: string;
+  content: string;
+  category: string;
+  date: string;
+  readTime: string;
+  author: string;
+  authorRole: string;
+  imageSrc: string;
+  slug: string;
+}
 
+export default function BlogPage() {
   return (
-    <section className="py-24 bg-gray-50 dark:bg-gray-900">
+    <div className="bg-gradient-to-b from-amber-900/90 to-yellow-900/80 dark:from-amber-900/90 dark:to-yellow-900/80 min-h-screen py-24">
       <div className="mx-auto max-w-7xl px-6 lg:px-8">
+        {/* Header */}
         <div className="mx-auto max-w-2xl text-center mb-16">
-          <h2 className="text-3xl font-bold tracking-tight text-gray-900 dark:text-white sm:text-4xl">
-            Latest Insights
-          </h2>
-          <p className="mt-4 text-lg text-gray-600 dark:text-gray-300">
-            Stay updated with our latest tech insights and industry best practices
+          <Link 
+            href="/"
+            className="inline-flex items-center text-yellow-300 hover:text-yellow-200 mb-8"
+          >
+            <ChevronLeft className="h-4 w-4 mr-1" />
+            Back to Home
+          </Link>
+          <h1 className="text-3xl font-bold tracking-tight text-white sm:text-4xl">
+            TeaMo Tech Blog
+          </h1>
+          <p className="mt-4 text-lg text-yellow-100">
+            Insights, tips, and guides from our tech experts to help your business thrive in the digital age.
           </p>
         </div>
 
+        {/* Blog Grid */}
         <div className="mx-auto grid max-w-7xl grid-cols-1 gap-8 md:grid-cols-2 lg:grid-cols-3">
-          {latestPosts.map((post) => (
+          {blogPosts.map((post) => (
             <article
               key={post.id}
               className="flex flex-col overflow-hidden rounded-2xl bg-white dark:bg-gray-800 shadow-lg transition-all duration-300 hover:-translate-y-2 hover:shadow-xl"
@@ -70,16 +91,7 @@ export default function BlogPreviewSection() {
             </article>
           ))}
         </div>
-
-        <div className="mt-12 text-center">
-          <Link
-            href="/blog"
-            className="inline-flex items-center px-6 py-3 border border-transparent text-base font-medium rounded-md shadow-sm text-white bg-yellow-600 hover:bg-yellow-700"
-          >
-            View All Posts
-          </Link>
-        </div>
       </div>
-    </section>
+    </div>
   );
 } 

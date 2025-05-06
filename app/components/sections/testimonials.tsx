@@ -1,80 +1,318 @@
 "use client";
 
-import { motion } from "framer-motion";
-import Image from "next/image";
+import React, { useEffect, useState } from 'react';
+import { motion, AnimatePresence } from 'framer-motion';
+import { Quote, MapPin, Star, ChevronLeft, ChevronRight } from 'lucide-react';
 
 const testimonials = [
   {
-    content:
-      "This platform has completely transformed our workflow. The intuitive interface and powerful features have boosted our team's productivity by over 40%.",
-    author: {
-      name: "Sarah Johnson",
-      role: "CTO at TechDynamics",
-      image: "https://randomuser.me/api/portraits/women/32.jpg",
-    },
+    name: "Oluwaseun Adebayo",
+    role: "CEO, TechForge Nigeria Ltd",
+    country: "Nigeria",
+    image: "/images/testimonials/oluwaseun.jpg",
+    content: "I was skeptical about managed IT services at first, but TeaMo has completely transformed how our business operates. Their 24/7 support has saved us countless times, especially during critical business hours. The team's response time is incredible - they're often fixing issues before we even notice them!",
+    service: "Managed IT Services"
   },
   {
-    content:
-      "After trying several different solutions, we finally found this SaaS platform. The customization options and responsive support team have made it an invaluable tool for our business.",
-    author: {
-      name: "Michael Chen",
-      role: "Operations Director at Innovate Inc",
-      image: "https://randomuser.me/api/portraits/men/46.jpg",
-    },
+    name: "Sarah Thompson",
+    role: "Small Business Owner",
+    country: "United Kingdom",
+    image: "/images/testimonials/sarah.jpg",
+    content: "After a ransomware scare, we knew we needed serious cybersecurity help. TeaMo didn't just set up our security systems; they trained our staff and created easy-to-follow protocols. It's been 18 months now, and we feel so much more confident about our digital security. Worth every penny!",
+    service: "Cybersecurity"
   },
   {
-    content:
-      "The analytics feature alone has helped us identify key opportunities that we were missing. Within three months, we've seen a 25% increase in conversion rates.",
-    author: {
-      name: "Emily Rodriguez",
-      role: "Marketing Manager at GrowthFocus",
-      image: "https://randomuser.me/api/portraits/women/65.jpg",
-    },
+    name: "Michael Chen",
+    role: "Operations Director, Pacific Trade Solutions",
+    country: "Australia",
+    image: "/images/testimonials/michael.jpg",
+    content: "The infrastructure assessment TeaMo conducted opened our eyes to so many inefficiencies we hadn't noticed. They helped us optimize our entire network, and our system performance has improved dramatically. Our employees actually cheered when the new systems went live!",
+    service: "IT Infrastructure Optimization"
   },
+  {
+    name: "Dr. Lisa Mueller",
+    role: "Chief of Medicine, SwissCare Clinic",
+    country: "Switzerland",
+    image: "/images/testimonials/lisa.jpg",
+    content: "TeaMo's cloud migration service was exactly what our medical practice needed. They handled all our compliance requirements and made sure our patient data remained secure throughout the transition. The whole process was smoother than I could have imagined.",
+    service: "Cloud Services"
+  },
+  {
+    name: "James Wilson",
+    role: "Founder, EduTech Innovations",
+    country: "United States",
+    image: "/images/testimonials/james.jpg",
+    content: "I reached out to TeaMo when our remote work setup was a mess. They revamped our entire system, set up proper VPNs, and created a secure but user-friendly environment. Now our team of 50+ can work from anywhere without any hiccups. Game changer!",
+    service: "Remote Work Solutions"
+  },
+  {
+    name: "Aisha Mohammed",
+    role: "Financial Controller, Lagos Investment Group",
+    country: "Nigeria",
+    image: "/images/testimonials/aisha.jpg",
+    content: "TeaMo's IT consulting helped us make smart technology investments that aligned with our growth plans. They didn't just throw solutions at us - they took time to understand our business and suggested practical, cost-effective options. Our ROI has been fantastic!",
+    service: "IT Consulting"
+  },
+  {
+    name: "Marcus Svensson",
+    role: "IT Director, Nordic Retail Solutions",
+    country: "Sweden",
+    image: "/images/testimonials/marcus.jpg",
+    content: "The disaster recovery plan TeaMo developed for us was put to the test during a major power outage. Their system worked flawlessly - we were back up and running in minutes, not hours. Our board was incredibly impressed with the minimal downtime.",
+    service: "Disaster Recovery"
+  },
+  {
+    name: "Yuki Tanaka",
+    role: "Startup Founder",
+    country: "Japan",
+    image: "/images/testimonials/yuki.jpg",
+    content: "As a startup, we needed flexible IT solutions that could grow with us. TeaMo provided exactly that. Their scalable infrastructure and support have been crucial in our expansion from 5 to 50 employees. They truly understand the unique challenges of growing businesses.",
+    service: "Scalable IT Solutions"
+  },
+  {
+    name: "Maria Rodriguez",
+    role: "COO, Digital Marketing Agency",
+    country: "Spain",
+    image: "/images/testimonials/maria.jpg",
+    content: "TeaMo's network security implementation was thorough and professional. They found vulnerabilities we didn't even know existed and fixed them all. Now I sleep better knowing our client data is properly protected.",
+    service: "Network Security"
+  },
+  {
+    name: "Ahmed Hassan",
+    role: "Managing Director, Tech Distribution Ltd",
+    country: "UAE",
+    image: "/images/testimonials/ahmed.jpg",
+    content: "The hardware procurement and management service from TeaMo has been exceptional. They handled everything from selection to installation and maintenance. Their team's knowledge of both local and international markets is impressive.",
+    service: "Hardware Management"
+  }
 ];
 
 export default function TestimonialsSection() {
+  const [currentIndex, setCurrentIndex] = useState(0);
+  const [direction, setDirection] = useState(1);
+  const [isPaused, setIsPaused] = useState(false);
+
+  const goToNext = () => {
+    if (currentIndex < testimonials.length - 1) {
+      setDirection(1);
+      setCurrentIndex(currentIndex + 1);
+    }
+  };
+
+  const goToPrevious = () => {
+    if (currentIndex > 0) {
+      setDirection(-1);
+      setCurrentIndex(currentIndex - 1);
+    }
+  };
+
+  useEffect(() => {
+    if (!isPaused) {
+      const timer = setInterval(() => {
+        if (currentIndex === testimonials.length - 1) {
+          setDirection(-1);
+          setCurrentIndex(currentIndex - 1);
+        } else if (currentIndex === 0) {
+          setDirection(1);
+          setCurrentIndex(currentIndex + 1);
+        } else {
+          setCurrentIndex(currentIndex + direction);
+        }
+      }, 8000);
+
+      return () => clearInterval(timer);
+    }
+  }, [currentIndex, direction, isPaused]);
+
+  const slideVariants = {
+    enter: (direction: number) => ({
+      x: direction > 0 ? 1000 : -1000,
+      opacity: 0,
+      scale: 0.85,
+      rotateY: direction > 0 ? 45 : -45
+    }),
+    center: {
+      zIndex: 1,
+      x: 0,
+      opacity: 1,
+      scale: 1,
+      rotateY: 0
+    },
+    exit: (direction: number) => ({
+      zIndex: 0,
+      x: direction < 0 ? 1000 : -1000,
+      opacity: 0,
+      scale: 0.85,
+      rotateY: direction < 0 ? 45 : -45
+    })
+  };
+
   return (
-    <section className="bg-gray-50 py-24 sm:py-32">
-      <div className="mx-auto max-w-7xl px-6 lg:px-8">
-        <div className="mx-auto max-w-xl text-center">
-          <h2 className="text-lg font-semibold leading-8 tracking-tight text-primary-600">
-            Testimonials
-          </h2>
-          <p className="mt-2 text-3xl font-bold tracking-tight text-gray-900 sm:text-4xl">
-            Trusted by businesses worldwide
-          </p>
+    <section className="py-24 bg-black">
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div className="text-center mb-16">
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.8, ease: "easeOut" }}
+            viewport={{ once: true, margin: "-50px" }}
+          >
+            <h2 className="text-3xl font-bold text-white sm:text-4xl lg:text-5xl">
+              What Our Clients Say
+            </h2>
+            <p className="mt-4 text-lg text-yellow-100">
+              Trusted by businesses worldwide for reliable and innovative IT solutions
+            </p>
+          </motion.div>
         </div>
-        <div className="mx-auto mt-16 flow-root max-w-2xl sm:mt-20 lg:mx-0 lg:max-w-none">
-          <div className="-mt-8 sm:-mx-4 sm:columns-2 sm:text-[0] lg:columns-3">
-            {testimonials.map((testimonial, testimonialIdx) => (
-              <motion.div
-                key={testimonialIdx}
-                className="pt-8 sm:inline-block sm:w-full sm:px-4"
-                initial={{ opacity: 0, y: 20 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.5, delay: testimonialIdx * 0.1 }}
-                viewport={{ once: true, margin: "-100px" }}
+
+        <div 
+          className="relative h-[500px] overflow-hidden perspective"
+          onMouseEnter={() => setIsPaused(true)}
+          onMouseLeave={() => setIsPaused(false)}
+        >
+          <AnimatePresence initial={false} custom={direction} mode="wait">
+            <motion.div
+              key={currentIndex}
+              custom={direction}
+              variants={slideVariants}
+              initial="enter"
+              animate="center"
+              exit="exit"
+              transition={{
+                x: { type: "spring", stiffness: 200, damping: 25 },
+                opacity: { duration: 0.5 },
+                scale: { duration: 0.5 },
+                rotateY: { duration: 0.5 }
+              }}
+              className="absolute w-full"
+            >
+              <motion.div 
+                className="bg-white/10 backdrop-blur-sm rounded-2xl p-8 shadow-xl max-w-3xl mx-auto"
+                whileHover={{ scale: 1.02 }}
+                transition={{ type: "spring", stiffness: 300, damping: 20 }}
               >
-                <figure className="rounded-2xl bg-white p-8 text-sm leading-6 shadow-lg ring-1 ring-gray-900/5">
-                  <blockquote className="text-gray-900">
-                    <p>{`"${testimonial.content}"`}</p>
-                  </blockquote>
-                  <figcaption className="mt-6 flex items-center gap-x-4">
+                <div className="flex flex-col items-center text-center">
+                  <motion.div
+                    initial={{ scale: 0 }}
+                    animate={{ scale: 1 }}
+                    transition={{ delay: 0.2, type: "spring", stiffness: 200 }}
+                  >
+                    <Quote className="w-12 h-12 text-yellow-400 mb-6" />
+                  </motion.div>
+                  
+                  <motion.div 
+                    className="relative mb-8"
+                    initial={{ scale: 0, rotate: -180 }}
+                    animate={{ scale: 1, rotate: 0 }}
+                    transition={{ delay: 0.3, type: "spring", stiffness: 200 }}
+                  >
+                    <div className="absolute inset-0 bg-gradient-to-br from-yellow-400/20 to-amber-600/20 rounded-full transform rotate-6" />
                     <img
-                      className="h-10 w-10 rounded-full bg-gray-50 object-cover"
-                      src={testimonial.author.image}
-                      alt=""
+                      className="relative w-24 h-24 rounded-full object-cover ring-4 ring-yellow-400/20"
+                      src={testimonials[currentIndex].image}
+                      alt={testimonials[currentIndex].name}
                     />
-                    <div>
-                      <div className="font-semibold text-gray-900">{testimonial.author.name}</div>
-                      <div className="text-gray-600">{`${testimonial.author.role}`}</div>
+                  </motion.div>
+
+                  <motion.blockquote 
+                    className="text-xl text-yellow-100 mb-8 italic"
+                    initial={{ opacity: 0, y: 20 }}
+                    animate={{ opacity: 1, y: 0 }}
+                    transition={{ delay: 0.4, duration: 0.5 }}
+                  >
+                    "{testimonials[currentIndex].content}"
+                  </motion.blockquote>
+
+                  <motion.div 
+                    className="space-y-2"
+                    initial={{ opacity: 0, y: 20 }}
+                    animate={{ opacity: 1, y: 0 }}
+                    transition={{ delay: 0.5, duration: 0.5 }}
+                  >
+                    <div className="text-white font-semibold text-lg">
+                      {testimonials[currentIndex].name}
                     </div>
-                  </figcaption>
-                </figure>
+                    <div className="text-yellow-200">
+                      {testimonials[currentIndex].role}
+                    </div>
+                    <div className="flex items-center justify-center text-yellow-300 text-sm">
+                      <MapPin className="w-4 h-4 mr-1" />
+                      {testimonials[currentIndex].country}
+                    </div>
+                    <div className="flex items-center justify-center space-x-1 mt-2">
+                      {[...Array(5)].map((_, i) => (
+                        <motion.div
+                          key={i}
+                          initial={{ scale: 0 }}
+                          animate={{ scale: 1 }}
+                          transition={{ delay: 0.6 + i * 0.1 }}
+                        >
+                          <Star className="w-5 h-5 fill-yellow-400 text-yellow-400" />
+                        </motion.div>
+                      ))}
+                    </div>
+                  </motion.div>
+
+                  <motion.div 
+                    className="mt-6 inline-flex items-center rounded-full bg-yellow-400/10 px-4 py-2 text-sm font-medium text-yellow-400 ring-1 ring-inset ring-yellow-400/20"
+                    initial={{ scale: 0 }}
+                    animate={{ scale: 1 }}
+                    transition={{ delay: 0.8, type: "spring", stiffness: 200 }}
+                  >
+                    {testimonials[currentIndex].service}
+                  </motion.div>
+                </div>
               </motion.div>
+            </motion.div>
+          </AnimatePresence>
+
+          {/* Navigation Dots */}
+          <div className="absolute -bottom-4 left-0 right-0 flex justify-center space-x-2">
+            {testimonials.map((_, index) => (
+              <motion.button
+                key={index}
+                onClick={() => {
+                  const newDirection = index > currentIndex ? 1 : -1;
+                  setDirection(newDirection);
+                  setCurrentIndex(index);
+                }}
+                className={`w-3 h-3 rounded-full transition-all duration-300 transform ${
+                  index === currentIndex 
+                    ? 'bg-yellow-400 scale-110' 
+                    : 'bg-yellow-400/30 hover:bg-yellow-400/50'
+                }`}
+                whileHover={{ scale: 1.2 }}
+                whileTap={{ scale: 0.9 }}
+                aria-label={`Go to testimonial ${index + 1}`}
+              />
             ))}
           </div>
+
+          {/* Side Navigation Arrows */}
+          <motion.button
+            onClick={goToPrevious}
+            className={`absolute left-4 top-1/2 -translate-y-1/2 p-3 rounded-full bg-white/10 backdrop-blur-sm text-yellow-400 hover:bg-white/20 transition-all duration-200 ${
+              currentIndex === 0 ? 'opacity-50 cursor-not-allowed translate-x-2' : 'hover:translate-x-0'
+            }`}
+            whileHover={currentIndex > 0 ? { scale: 1.1, x: -4 } : {}}
+            whileTap={currentIndex > 0 ? { scale: 0.9 } : {}}
+            disabled={currentIndex === 0}
+          >
+            <ChevronLeft className="w-6 h-6" />
+          </motion.button>
+          
+          <motion.button
+            onClick={goToNext}
+            className={`absolute right-4 top-1/2 -translate-y-1/2 p-3 rounded-full bg-white/10 backdrop-blur-sm text-yellow-400 hover:bg-white/20 transition-all duration-200 ${
+              currentIndex === testimonials.length - 1 ? 'opacity-50 cursor-not-allowed -translate-x-2' : 'hover:translate-x-0'
+            }`}
+            whileHover={currentIndex < testimonials.length - 1 ? { scale: 1.1, x: 4 } : {}}
+            whileTap={currentIndex < testimonials.length - 1 ? { scale: 0.9 } : {}}
+            disabled={currentIndex === testimonials.length - 1}
+          >
+            <ChevronRight className="w-6 h-6" />
+          </motion.button>
         </div>
       </div>
     </section>

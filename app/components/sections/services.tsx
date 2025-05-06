@@ -2,7 +2,7 @@
 
 import { motion } from "framer-motion";
 import Link from "next/link";
-import { Globe, Server, Shield, Cpu, Monitor, ShoppingBag, ChevronRight } from "lucide-react";
+import { Globe, Server, Shield, Cpu, Monitor, ShoppingBag, ChevronRight, Phone, Smartphone } from "lucide-react";
 
 const services = [
   {
@@ -22,9 +22,9 @@ const services = [
     link: "#contact"
   },
   {
-    name: "Hosting & Security Solutions",
-    description: "Reliable web hosting, domain management, SSL certificates, and website security to protect your digital assets.",
-    icon: Shield,
+    name: "Mobile App Development Service",
+    description: "Custom mobile app design and development for iOS and Android, tailored to your business goals with performance and user experience in mind.",
+    icon: Smartphone,
     color: "from-green-400 to-green-600",
     textColor: "text-green-600 dark:text-green-400",
     link: "#contact"
@@ -46,7 +46,7 @@ const services = [
     link: "#contact"
   },
   {
-    name: "Gadget Sales and Procurement",
+    name: "Gadget Sales and Repairs",
     description: "Sourcing and supply of quality computers, accessories, and tech equipment at competitive prices.",
     icon: ShoppingBag,
     color: "from-cyan-400 to-cyan-600",
@@ -76,8 +76,8 @@ const item = {
 
 export default function ServicesSection() {
   return (
-    <section id="services" className="py-24 sm:py-32 bg-gradient-to-b from-amber-900/90 to-yellow-900/80 dark:from-amber-900/90 dark:to-yellow-900/80">
-      <div className="mx-auto max-w-7xl px-6 lg:px-8">
+    <section className="py-24 bg-black">
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <motion.div 
           className="mx-auto max-w-2xl text-center"
           initial="hidden"

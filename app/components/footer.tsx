@@ -18,21 +18,14 @@ const navigation = {
   product: [
     { name: "Features", href: "/#features" },
     { name: "Pricing", href: "/pricing" },
-    { name: "Integrations", href: "#" },
-    { name: "Updates", href: "#" },
-    { name: "FAQ", href: "#" },
   ],
   company: [
     { name: "About", href: "/about" },
     { name: "Blog", href: "#" },
     { name: "Careers", href: "#" },
-    { name: "Press", href: "#" },
     { name: "Partners", href: "#" },
   ],
   resources: [
-    { name: "Documentation", href: "#" },
-    { name: "Guides", href: "#" },
-    { name: "API Reference", href: "#" },
     { name: "Community", href: "#" },
     { name: "Support", href: "/contact" },
   ],
@@ -40,7 +33,6 @@ const navigation = {
     { name: "Privacy Policy", href: "#" },
     { name: "Terms of Service", href: "#" },
     { name: "Cookie Policy", href: "#" },
-    { name: "GDPR", href: "#" },
   ],
   social: [
     {
@@ -94,7 +86,7 @@ export default function Footer() {
         <div className="mb-12 grid grid-cols-1 gap-8 lg:grid-cols-2">
           <div>
             <Link href="/" className="inline-block">
-              <span className="text-2xl font-bold text-primary-600 dark:text-yellow-400">SaaSify</span>
+              <span className="text-2xl font-bold text-primary-600 dark:text-yellow-400">Teamo</span>
             </Link>
             <p className="mt-4 text-sm text-gray-600 dark:text-yellow-400/80 max-w-md">
               Streamline your workflow and boost productivity with our comprehensive 
@@ -203,18 +195,17 @@ export default function Footer() {
           <div className="col-span-2 md:col-span-1">
             <h3 className="text-sm font-semibold text-gray-900 dark:text-yellow-400">Headquarters</h3>
             <address className="mt-4 not-italic text-sm text-gray-600 dark:text-yellow-400/80">
-              123 Market Street<br />
-              Suite 456<br />
-              San Francisco, CA 94103<br />
-              United States
+              Victoria Island<br />
+              Lagos, Nigeria<br />
+            
             </address>
             <p className="mt-4 text-sm text-gray-600 dark:text-yellow-400/80">
               <strong className="dark:text-yellow-400">Contact:</strong><br />
-              <a href="mailto:info@saasify.com" className="hover:text-primary-600 dark:hover:text-yellow-400 transition-colors">
-                info@saasify.com
+              <a href="mailto:info@teamo.com" className="hover:text-primary-600 dark:hover:text-yellow-400 transition-colors">
+                info@teamo.com
               </a><br />
-              <a href="tel:+15551234567" className="hover:text-primary-600 dark:hover:text-yellow-400 transition-colors">
-                +1 (555) 123-4567
+              <a href="tel:+2348140195323" className="hover:text-primary-600 dark:hover:text-yellow-400 transition-colors">
+                +234 (814) 019 5323
               </a>
             </p>
           </div>
@@ -241,7 +232,7 @@ export default function Footer() {
               ))}
             </div>
             <p className="mt-8 text-center text-xs leading-5 text-gray-500 dark:text-yellow-400/60 md:order-1 md:mt-0 md:text-left">
-              &copy; {new Date().getFullYear()} SaaSify, Inc. All rights reserved.
+              &copy; {new Date().getFullYear()} Teamo, Inc. All rights reserved.
             </p>
           </div>
         </div>

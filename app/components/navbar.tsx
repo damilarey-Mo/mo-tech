@@ -67,7 +67,7 @@ export default function Navbar() {
               whileHover={{ scale: 1.05 }}
               whileTap={{ scale: 0.95 }}
             >
-              <span className="text-xl font-bold text-primary-600 dark:text-yellow-400">TeaMo IT/Tech Solutions</span>
+              <span className="text-xl font-bold text-primary-600 dark:text-yellow-400">TeaMo</span>
             </motion.div>
           </Link>
         </motion.div>

@@ -2,7 +2,7 @@ import PricingSection from "@/app/components/sections/pricing";
 import CTASection from "@/app/components/sections/cta";
 
 export const metadata = {
-  title: "Pricing - SaaSify",
+  title: "Pricing - Teamo",
   description: "Flexible pricing plans for teams of all sizes",
 };
 

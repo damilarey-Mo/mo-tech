@@ -43,14 +43,14 @@ export default function AboutSection() {
             className="mt-2 text-3xl font-bold tracking-tight text-white dark:text-white sm:text-4xl"
             variants={fadeIn}
           >
-            A Family of Tech Experts
+            A Community of Tech and IT Professionals
           </motion.p>
           <motion.p 
             className="mt-6 text-lg leading-8 text-yellow-100 dark:text-yellow-100"
             variants={fadeIn}
           >
             Founded in Lagos with a passion for technology and a commitment to excellent service,
-            TeaMo IT/Tech Solutions brings together family values and technical expertise to serve
+            TeaMo IT/Tech Solutions brings together a Community of experienced Tech and IT Professionals to serve
             businesses and individuals across Nigeria.
           </motion.p>
         </motion.div>
@@ -78,7 +78,7 @@ export default function AboutSection() {
                 </h3>
                 <p className="mt-6 text-base leading-7 text-gray-600 dark:text-gray-300">
                   TeaMo was born from a simple idea: to provide honest, reliable tech support with a personal touch. 
-                  Starting as a family business, we've grown to serve hundreds of clients across Lagos and beyond, 
+                  Starting as a small Team, we've grown to serve hundreds of clients across Lagos and beyond, 
                   maintaining our core values of trust, excellence, and community service.
                 </p>
                 <p className="mt-4 text-base leading-7 text-gray-600 dark:text-gray-300">
@@ -93,7 +93,7 @@ export default function AboutSection() {
                 >
                   <Users className="h-8 w-8 flex-none text-primary-600 dark:text-yellow-400" />
                   <h4 className="flex-auto text-base font-semibold text-gray-900 dark:text-white">
-                    Family-owned & operated since 2015
+                    Community-driven & operated since 2015
                   </h4>
                 </motion.div>
               </div>
