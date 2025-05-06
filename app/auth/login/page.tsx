@@ -2,15 +2,21 @@
 
 import React from 'react';
 import Link from 'next/link';
-import { motion } from 'framer-motion';
+import { motion, AnimatePresence } from 'framer-motion';
 import { useState, useEffect } from "react";
 import { useRouter } from "next/navigation";
 import { Button } from "@/app/components/ui/button";
 import { Github, Mail, Lock, ArrowRight, Loader2 } from "lucide-react";
 import ThemeSwitcher from "@/app/components/theme-switcher";
 
+interface DemoUser {
+  email: string;
+  password: string;
+  name: string;
+}
+
 // Mock users for demo purposes
-const DEMO_USERS = [
+const DEMO_USERS: DemoUser[] = [
   { email: "admin@example.com", password: "admin123", name: "Admin User" },
   { email: "user@example.com", password: "user123", name: "Regular User" },
   { email: "demo@example.com", password: "demo123", name: "Demo User" },
@@ -24,7 +30,7 @@ export default function LoginPage() {
   const [error, setError] = useState("");
   const [rememberMe, setRememberMe] = useState(false);
 
-  const handleSubmit = async (event: React.FormEvent) => {
+  const handleSubmit = async (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
     setIsLoading(true);
     setError("");
@@ -55,8 +61,8 @@ export default function LoginPage() {
       } else {
         setError("Invalid email or password");
       }
-    } catch (error) {
-      console.error('Login error:', error);
+    } catch (err) {
+      console.error('Login error:', err);
       setError("An error occurred during login. Please try again.");
     } finally {
       setIsLoading(false);
