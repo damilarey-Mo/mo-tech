@@ -7,7 +7,7 @@ import { Metadata } from 'next';
 
 interface Props {
   params: Promise<{ slug: string }>;
-  searchParams?: { [key: string]: string | string[] | undefined };
+  searchParams?: Promise<{ [key: string]: string | string[] | undefined }>;
 }
 
 export async function generateMetadata({ 
@@ -24,6 +24,7 @@ export default async function BlogPost({
   searchParams,
 }: Props) {
   const resolvedParams = await params;
+  const resolvedSearchParams = searchParams ? await searchParams : undefined;
   const post = blogPosts.find((post) => post.slug === resolvedParams.slug);
 
   if (!post) {
