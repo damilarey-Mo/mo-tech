@@ -1,11 +1,13 @@
 "use client";
 
+import React from 'react';
+import Link from 'next/link';
+import { motion } from 'framer-motion';
+import { Mail, Lock, User, ArrowRight } from 'lucide-react';
 import { useState } from "react";
-import Link from "next/link";
 import { useRouter } from "next/navigation";
 import { Button } from "@/app/components/ui/button";
-import { Github, Mail, Lock, User, ArrowRight, Check, Loader2 } from "lucide-react";
-import { motion, AnimatePresence } from "framer-motion";
+import { Github, Check, Loader2 } from "lucide-react";
 import ThemeSwitcher from "@/app/components/theme-switcher";
 
 export default function SignupPage() {
@@ -17,19 +19,15 @@ export default function SignupPage() {
     confirmPassword: "",
   });
   const [isLoading, setIsLoading] = useState(false);
-  const [errors, setErrors] = useState<{ [key: string]: string }>({});
+  const [errorMessage, setErrorMessage] = useState('');
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const { name, value } = e.target;
     setFormState((prev) => ({ ...prev, [name]: value }));
     
     // Clear error for this field when user starts typing
-    if (errors[name]) {
-      setErrors((prev) => {
-        const newErrors = { ...prev };
-        delete newErrors[name];
-        return newErrors;
-      });
+    if (errorMessage.startsWith(name)) {
+      setErrorMessage(errorMessage.replace(name, ''));
     }
   };
 
@@ -56,27 +54,26 @@ export default function SignupPage() {
       newErrors.confirmPassword = "Passwords do not match";
     }
     
-    setErrors(newErrors);
+    setErrorMessage(Object.keys(newErrors).map(key => newErrors[key]).join('\n'));
     return Object.keys(newErrors).length === 0;
   };
 
-  const handleSubmit = async (e: React.FormEvent) => {
-    e.preventDefault();
-    
-    if (!validateForm()) {
-      return;
-    }
-    
+  const handleSubmit = async (event: React.FormEvent) => {
+    event.preventDefault();
     setIsLoading(true);
-
     try {
-      // In a real app, you would make an API call to your auth endpoint
+      if (!validateForm()) {
+        return;
+      }
+      
+      // Handle signup logic
       await new Promise(resolve => setTimeout(resolve, 1000));
       
       // Navigate to dashboard on success
       router.push("/dashboard");
     } catch (error) {
-      setErrors({ form: "An error occurred during signup. Please try again." });
+      console.error('Signup error:', error);
+      setErrorMessage('An error occurred during signup. Please try again.');
     } finally {
       setIsLoading(false);
     }
@@ -143,19 +140,17 @@ export default function SignupPage() {
           </p>
         </motion.div>
 
-        <AnimatePresence>
-          {errors.form && (
-            <motion.div 
-              className="bg-red-50 dark:bg-red-900/20 text-red-800 dark:text-red-400 p-4 rounded-md text-sm border border-red-200 dark:border-red-800"
-              initial={{ opacity: 0, height: 0 }}
-              animate={{ opacity: 1, height: "auto" }}
-              exit={{ opacity: 0, height: 0 }}
-              transition={{ duration: 0.3 }}
-            >
-              {errors.form}
-            </motion.div>
-          )}
-        </AnimatePresence>
+        {errorMessage && (
+          <motion.div 
+            className="bg-red-50 dark:bg-red-900/20 text-red-800 dark:text-red-400 p-4 rounded-md text-sm border border-red-200 dark:border-red-800"
+            initial={{ opacity: 0, height: 0 }}
+            animate={{ opacity: 1, height: "auto" }}
+            exit={{ opacity: 0, height: 0 }}
+            transition={{ duration: 0.3 }}
+          >
+            {errorMessage}
+          </motion.div>
+        )}
 
         <motion.form 
           className="mt-8 space-y-6" 
@@ -181,24 +176,16 @@ export default function SignupPage() {
                   value={formState.name}
                   onChange={handleChange}
                   className={`block w-full pl-10 pr-3 py-2 border ${
-                    errors.name ? "border-red-300 ring-red-500 focus:border-red-500" : "border-gray-300 focus:ring-primary-500 focus:border-primary-500 dark:focus:ring-primary-400 dark:focus:border-primary-400"
+                    errorMessage.startsWith('name') ? "border-red-300 ring-red-500 focus:border-red-500" : "border-gray-300 focus:ring-primary-500 focus:border-primary-500 dark:focus:ring-primary-400 dark:focus:border-primary-400"
                   } rounded-md leading-5 bg-white dark:bg-gray-700 placeholder-gray-500 dark:placeholder-gray-400 dark:text-white focus:outline-none focus:ring-2 transition-all duration-200 sm:text-sm`}
                   placeholder="John Doe"
                 />
               </div>
-              <AnimatePresence>
-                {errors.name && (
-                  <motion.p 
-                    className="mt-1 text-sm text-red-600 dark:text-red-400"
-                    initial={{ opacity: 0, y: -10 }}
-                    animate={{ opacity: 1, y: 0 }}
-                    exit={{ opacity: 0, y: -10 }}
-                    transition={{ duration: 0.2 }}
-                  >
-                    {errors.name}
-                  </motion.p>
-                )}
-              </AnimatePresence>
+              {errorMessage.startsWith('name') && (
+                <p className="mt-1 text-sm text-red-600 dark:text-red-400">
+                  {errorMessage.split('\n').find(line => line.startsWith('name'))?.replace('name: ', '')}
+                </p>
+              )}
             </motion.div>
 
             <motion.div variants={itemAnimation}>
@@ -217,24 +204,16 @@ export default function SignupPage() {
                   value={formState.email}
                   onChange={handleChange}
                   className={`block w-full pl-10 pr-3 py-2 border ${
-                    errors.email ? "border-red-300 ring-red-500 focus:border-red-500" : "border-gray-300 focus:ring-primary-500 focus:border-primary-500 dark:focus:ring-primary-400 dark:focus:border-primary-400"
+                    errorMessage.startsWith('email') ? "border-red-300 ring-red-500 focus:border-red-500" : "border-gray-300 focus:ring-primary-500 focus:border-primary-500 dark:focus:ring-primary-400 dark:focus:border-primary-400"
                   } rounded-md leading-5 bg-white dark:bg-gray-700 placeholder-gray-500 dark:placeholder-gray-400 dark:text-white focus:outline-none focus:ring-2 transition-all duration-200 sm:text-sm`}
                   placeholder="you@example.com"
                 />
               </div>
-              <AnimatePresence>
-                {errors.email && (
-                  <motion.p 
-                    className="mt-1 text-sm text-red-600 dark:text-red-400"
-                    initial={{ opacity: 0, y: -10 }}
-                    animate={{ opacity: 1, y: 0 }}
-                    exit={{ opacity: 0, y: -10 }}
-                    transition={{ duration: 0.2 }}
-                  >
-                    {errors.email}
-                  </motion.p>
-                )}
-              </AnimatePresence>
+              {errorMessage.startsWith('email') && (
+                <p className="mt-1 text-sm text-red-600 dark:text-red-400">
+                  {errorMessage.split('\n').find(line => line.startsWith('email'))?.replace('email: ', '')}
+                </p>
+              )}
             </motion.div>
 
             <motion.div variants={itemAnimation}>
@@ -253,24 +232,16 @@ export default function SignupPage() {
                   value={formState.password}
                   onChange={handleChange}
                   className={`block w-full pl-10 pr-3 py-2 border ${
-                    errors.password ? "border-red-300 ring-red-500 focus:border-red-500" : "border-gray-300 focus:ring-primary-500 focus:border-primary-500 dark:focus:ring-primary-400 dark:focus:border-primary-400"
+                    errorMessage.startsWith('password') ? "border-red-300 ring-red-500 focus:border-red-500" : "border-gray-300 focus:ring-primary-500 focus:border-primary-500 dark:focus:ring-primary-400 dark:focus:border-primary-400"
                   } rounded-md leading-5 bg-white dark:bg-gray-700 placeholder-gray-500 dark:placeholder-gray-400 dark:text-white focus:outline-none focus:ring-2 transition-all duration-200 sm:text-sm`}
                   placeholder="••••••••"
                 />
               </div>
-              <AnimatePresence>
-                {errors.password && (
-                  <motion.p 
-                    className="mt-1 text-sm text-red-600 dark:text-red-400"
-                    initial={{ opacity: 0, y: -10 }}
-                    animate={{ opacity: 1, y: 0 }}
-                    exit={{ opacity: 0, y: -10 }}
-                    transition={{ duration: 0.2 }}
-                  >
-                    {errors.password}
-                  </motion.p>
-                )}
-              </AnimatePresence>
+              {errorMessage.startsWith('password') && (
+                <p className="mt-1 text-sm text-red-600 dark:text-red-400">
+                  {errorMessage.split('\n').find(line => line.startsWith('password'))?.replace('password: ', '')}
+                </p>
+              )}
               
               <AnimatePresence>
                 {formState.password && (
@@ -317,24 +288,16 @@ export default function SignupPage() {
                   value={formState.confirmPassword}
                   onChange={handleChange}
                   className={`block w-full pl-10 pr-3 py-2 border ${
-                    errors.confirmPassword ? "border-red-300 ring-red-500 focus:border-red-500" : "border-gray-300 focus:ring-primary-500 focus:border-primary-500 dark:focus:ring-primary-400 dark:focus:border-primary-400"
+                    errorMessage.startsWith('confirmPassword') ? "border-red-300 ring-red-500 focus:border-red-500" : "border-gray-300 focus:ring-primary-500 focus:border-primary-500 dark:focus:ring-primary-400 dark:focus:border-primary-400"
                   } rounded-md leading-5 bg-white dark:bg-gray-700 placeholder-gray-500 dark:placeholder-gray-400 dark:text-white focus:outline-none focus:ring-2 transition-all duration-200 sm:text-sm`}
                   placeholder="••••••••"
                 />
               </div>
-              <AnimatePresence>
-                {errors.confirmPassword && (
-                  <motion.p 
-                    className="mt-1 text-sm text-red-600 dark:text-red-400"
-                    initial={{ opacity: 0, y: -10 }}
-                    animate={{ opacity: 1, y: 0 }}
-                    exit={{ opacity: 0, y: -10 }}
-                    transition={{ duration: 0.2 }}
-                  >
-                    {errors.confirmPassword}
-                  </motion.p>
-                )}
-              </AnimatePresence>
+              {errorMessage.startsWith('confirmPassword') && (
+                <p className="mt-1 text-sm text-red-600 dark:text-red-400">
+                  {errorMessage.split('\n').find(line => line.startsWith('confirmPassword'))?.replace('confirmPassword: ', '')}
+                </p>
+              )}
             </motion.div>
           </div>
 

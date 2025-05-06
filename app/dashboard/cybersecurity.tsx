@@ -1,5 +1,6 @@
 "use client";
 
+import React from 'react';
 import { useState, useEffect } from "react";
 import { 
   Shield, 
@@ -12,7 +13,8 @@ import {
   UserX,
   Clock,
   BarChart2,
-  ArrowUpRight
+  ArrowUpRight,
+  Activity
 } from "lucide-react";
 import { motion } from "framer-motion";
 import { Button } from "@/app/components/ui/button";

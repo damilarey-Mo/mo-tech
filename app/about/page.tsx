@@ -1,3 +1,4 @@
+import React from 'react';
 import Image from "next/image";
 import CTASection from "@/app/components/sections/cta";
 
@@ -100,7 +101,7 @@ export default function AboutPage() {
               </div>
             </div>
             <div className="relative">
-              <img
+              <Image
                 src="https://placehold.co/800x600/eef/ccd?text=About+Us"
                 alt="Product screenshot"
                 className="w-full rounded-xl shadow-xl ring-1 ring-gray-400/10"
@@ -129,7 +130,7 @@ export default function AboutPage() {
           >
             {team.map((person) => (
               <li key={person.name} className="flex flex-col gap-6 xl:flex-row">
-                <img
+                <Image
                   className="aspect-[4/5] w-52 flex-none rounded-2xl object-cover"
                   src={person.image}
                   alt=""

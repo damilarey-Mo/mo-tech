@@ -1,11 +1,12 @@
 "use client";
 
+import React from 'react';
+import Link from 'next/link';
+import { motion } from 'framer-motion';
 import { useState, useEffect } from "react";
-import Link from "next/link";
 import { useRouter } from "next/navigation";
 import { Button } from "@/app/components/ui/button";
 import { Github, Mail, Lock, ArrowRight, Loader2 } from "lucide-react";
-import { motion, AnimatePresence } from "framer-motion";
 import ThemeSwitcher from "@/app/components/theme-switcher";
 
 // Mock users for demo purposes
@@ -23,8 +24,8 @@ export default function LoginPage() {
   const [error, setError] = useState("");
   const [rememberMe, setRememberMe] = useState(false);
 
-  const handleSubmit = async (e: React.FormEvent) => {
-    e.preventDefault();
+  const handleSubmit = async (event: React.FormEvent) => {
+    event.preventDefault();
     setIsLoading(true);
     setError("");
 
@@ -54,7 +55,8 @@ export default function LoginPage() {
       } else {
         setError("Invalid email or password");
       }
-    } catch (err) {
+    } catch (error) {
+      console.error('Login error:', error);
       setError("An error occurred during login. Please try again.");
     } finally {
       setIsLoading(false);

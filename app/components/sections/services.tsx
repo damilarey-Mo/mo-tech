@@ -1,14 +1,25 @@
 "use client";
 
+import React from 'react';
 import { motion } from "framer-motion";
 import Link from "next/link";
-import { Globe, Server, Shield, Cpu, Monitor, ShoppingBag, ChevronRight, Phone, Smartphone } from "lucide-react";
+import { 
+  Server, 
+  Shield, 
+  Cloud, 
+  Laptop, 
+  Network, 
+  HardDrive,
+  Users,
+  Headphones,
+  BarChart
+} from 'lucide-react';
 
 const services = [
   {
     name: "Web Development Services",
     description: "Custom website design, e-commerce solutions, and web application development tailored to your business needs.",
-    icon: Globe,
+    icon: Cloud,
     color: "from-blue-400 to-blue-600",
     textColor: "text-blue-600 dark:text-blue-400",
     link: "#contact"
@@ -24,7 +35,7 @@ const services = [
   {
     name: "Mobile App Development Service",
     description: "Custom mobile app design and development for iOS and Android, tailored to your business goals with performance and user experience in mind.",
-    icon: Smartphone,
+    icon: Laptop,
     color: "from-green-400 to-green-600",
     textColor: "text-green-600 dark:text-green-400",
     link: "#contact"
@@ -32,7 +43,7 @@ const services = [
   {
     name: "IT & Tech Support Services",
     description: "Comprehensive technical support for businesses and individuals, including troubleshooting, repairs, and network setup.",
-    icon: Cpu,
+    icon: Network,
     color: "from-red-400 to-red-600",
     textColor: "text-red-600 dark:text-red-400",
     link: "#contact"
@@ -40,7 +51,7 @@ const services = [
   {
     name: "Workstation Design and Setup",
     description: "Custom workstation configurations, office network installation, and optimization for productivity and ergonomics.",
-    icon: Monitor,
+    icon: HardDrive,
     color: "from-amber-400 to-amber-600",
     textColor: "text-amber-600 dark:text-amber-400",
     link: "#contact"
@@ -48,7 +59,7 @@ const services = [
   {
     name: "Gadget Sales and Repairs",
     description: "Sourcing and supply of quality computers, accessories, and tech equipment at competitive prices.",
-    icon: ShoppingBag,
+    icon: BarChart,
     color: "from-cyan-400 to-cyan-600",
     textColor: "text-cyan-600 dark:text-cyan-400",
     link: "#contact"

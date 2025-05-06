@@ -1,9 +1,9 @@
 "use client";
 
-import { useState, useEffect } from "react";
-import Link from "next/link";
+import React from 'react';
+import Link from 'next/link';
+import { Menu } from 'lucide-react';
 import { usePathname } from "next/navigation";
-import { Menu, X, ChevronDown } from "lucide-react";
 import { Button } from "./ui/button";
 import { cn } from "@/app/lib/utils";
 import { motion, AnimatePresence } from "framer-motion";
@@ -20,11 +20,10 @@ const navigation = [
 
 export default function Navbar() {
   const pathname = usePathname();
-  const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
-  const [openSubmenu, setOpenSubmenu] = useState<string | null>(null);
-  const [scrolled, setScrolled] = useState(false);
+  const [isMenuOpen, setIsMenuOpen] = React.useState(false);
+  const [scrolled, setScrolled] = React.useState(false);
 
-  useEffect(() => {
+  React.useEffect(() => {
     const handleScroll = () => {
       setScrolled(window.scrollY > 10);
     };
@@ -38,13 +37,8 @@ export default function Navbar() {
     return pathname.startsWith(href);
   };
 
-  const handleSubmenuToggle = (name: string) => {
-    setOpenSubmenu(openSubmenu === name ? null : name);
-  };
-
-  const closeMenu = () => {
-    setMobileMenuOpen(false);
-    setOpenSubmenu(null);
+  const toggleMenu = () => {
+    setIsMenuOpen(!isMenuOpen);
   };
 
   return (
@@ -77,7 +71,7 @@ export default function Navbar() {
           <button
             type="button"
             className="-m-2.5 ml-2 inline-flex items-center justify-center rounded-md p-2.5 text-gray-300 dark:text-yellow-400"
-            onClick={() => setMobileMenuOpen(true)}
+            onClick={toggleMenu}
           >
             <span className="sr-only">Open main menu</span>
             <Menu className="h-6 w-6" aria-hidden="true" />
@@ -144,7 +138,7 @@ export default function Navbar() {
       
       {/* Mobile menu */}
       <AnimatePresence>
-        {mobileMenuOpen && (
+        {isMenuOpen && (
           <motion.div 
             className="lg:hidden fixed inset-0 z-50"
             initial={{ opacity: 0 }}
@@ -160,17 +154,17 @@ export default function Navbar() {
               transition={{ type: "spring", damping: 25, stiffness: 300 }}
             >
               <div className="flex items-center justify-between">
-                <Link href="/" className="-m-1.5 p-1.5" onClick={closeMenu}>
+                <Link href="/" className="-m-1.5 p-1.5" onClick={toggleMenu}>
                   <span className="sr-only">TeaMo</span>
                   <span className="text-xl font-bold text-primary-600 dark:text-yellow-400">TeaMo</span>
                 </Link>
                 <button
                   type="button"
                   className="-m-2.5 rounded-md p-2.5 text-gray-300 dark:text-yellow-400"
-                  onClick={closeMenu}
+                  onClick={toggleMenu}
                 >
                   <span className="sr-only">Close menu</span>
-                  <X className="h-6 w-6" aria-hidden="true" />
+                  <Menu className="h-6 w-6" aria-hidden="true" />
                 </button>
               </div>
               <div className="mt-6 flow-root">
@@ -181,7 +175,7 @@ export default function Navbar() {
                         <Link
                           href={item.href}
                           className="block rounded-lg py-2 text-base font-semibold leading-7 text-gray-300 dark:text-yellow-400 hover:bg-gray-900 dark:hover:bg-black/70"
-                          onClick={closeMenu}
+                          onClick={toggleMenu}
                         >
                           {item.name}
                         </Link>
@@ -189,12 +183,12 @@ export default function Navbar() {
                     ))}
                   </div>
                   <div className="py-6 space-y-3">
-                    <Link href="#contact" onClick={closeMenu}>
+                    <Link href="#contact" onClick={toggleMenu}>
                       <motion.div whileHover={{ scale: 1.02 }} whileTap={{ scale: 0.98 }} className="w-full">
                         <Button className="w-full border-gray-300 dark:border-yellow-500 dark:text-yellow-400 dark:hover:bg-black hover:shadow-md" variant="outline">Contact Us</Button>
                       </motion.div>
                     </Link>
-                    <Link href="#services" onClick={closeMenu}>
+                    <Link href="#services" onClick={toggleMenu}>
                       <motion.div whileHover={{ scale: 1.02 }} whileTap={{ scale: 0.98 }} className="w-full">
                         <Button className="w-full bg-gradient-to-r from-primary-600 to-secondary-600 hover:from-primary-700 hover:to-secondary-700 dark:from-yellow-500 dark:to-yellow-600 dark:text-gray-900">Book a Service</Button>
                       </motion.div>

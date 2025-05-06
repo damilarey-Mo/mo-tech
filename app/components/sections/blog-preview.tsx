@@ -1,6 +1,7 @@
 "use client";
 
 import React from 'react';
+import Image from 'next/image';
 import Link from 'next/link';
 import { blogPosts } from '@/app/data/blogPosts';
 
@@ -18,6 +19,16 @@ export default function BlogPreviewSection() {
           <p className="mt-4 text-lg text-gray-600 dark:text-gray-300">
             Stay updated with our latest tech insights and industry best practices
           </p>
+        </div>
+
+        <div className="relative w-full h-64">
+          <Image
+            className="rounded-2xl object-cover"
+            src="/path/to/blog/image.jpg"
+            alt="Blog preview"
+            fill
+            sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
+          />
         </div>
 
         <div className="mx-auto grid max-w-7xl grid-cols-1 gap-8 md:grid-cols-2 lg:grid-cols-3">

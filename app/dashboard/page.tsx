@@ -1,5 +1,6 @@
 "use client";
 
+import React from 'react';
 import { useState, useEffect } from "react";
 import Link from "next/link";
 import { useRouter } from "next/navigation";
@@ -11,7 +12,6 @@ import {
   Bell, 
   Calendar,
   MessageSquare,
-  Clock,
   HelpCircle,
   LogOut,
   Shield,
@@ -22,6 +22,7 @@ import { Button } from "@/app/components/ui/button";
 import ThemeSwitcher from "@/app/components/theme-switcher";
 import CybersecurityDashboard from "@/app/dashboard/cybersecurity";
 import { cn } from "@/app/lib/utils";
+import Image from 'next/image';
 
 // Mock data
 const stats = [
@@ -193,11 +194,15 @@ export default function DashboardPage() {
               onClick={handleLogout}
             >
               <span>{userName}</span>
-              <img
-                className="h-8 w-8 rounded-full"
-                src="https://randomuser.me/api/portraits/men/32.jpg"
-                alt="User avatar"
-              />
+              <div className="relative h-32 w-32">
+                <Image
+                  src="/path/to/profile.jpg"
+                  alt="Profile"
+                  fill
+                  className="rounded-full object-cover"
+                  sizes="(max-width: 128px) 100vw, 128px"
+                />
+              </div>
             </button>
           </div>
         </div>
