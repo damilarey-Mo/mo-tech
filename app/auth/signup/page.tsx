@@ -2,12 +2,20 @@
 
 import React from 'react';
 import Link from 'next/link';
-import { motion } from 'framer-motion';
-import { Mail, Lock, User, ArrowRight } from 'lucide-react';
+import { motion, AnimatePresence } from 'framer-motion';
 import { useState } from "react";
 import { useRouter } from "next/navigation";
 import { Button } from "@/app/components/ui/button";
-import { Github, Check, Loader2 } from "lucide-react";
+import { 
+  Mail, 
+  Lock, 
+  User, 
+  ArrowRight, 
+  Github, 
+  Check, 
+  Loader2, 
+  X 
+} from "lucide-react";
 import ThemeSwitcher from "@/app/components/theme-switcher";
 
 export default function SignupPage() {
