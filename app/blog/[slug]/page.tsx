@@ -5,27 +5,29 @@ import BlogPostContent from '@/app/components/BlogPostContent';
 import NewsletterSignup from '@/app/components/NewsletterSignup';
 import { Metadata } from 'next';
 
-interface Props {
-  params: Promise<{ slug: string }>;
-  searchParams?: Promise<{ [key: string]: string | string[] | undefined }>;
-}
+type BlogParams = {
+  slug: string;
+};
+
+type Props = {
+  params: BlogParams;
+  searchParams: { [key: string]: string | string[] | undefined };
+};
 
 export async function generateMetadata({ 
   params 
 }: Props): Promise<Metadata> {
-  const resolvedParams = await params;
   return {
-    title: `Blog Post - ${resolvedParams.slug}`,
+    title: `Blog Post - ${params.slug}`,
+    description: `Read our blog post about ${params.slug}`,
   };
 }
 
-export default async function BlogPost({ 
+export default function BlogPost({ 
   params,
   searchParams,
 }: Props) {
-  const resolvedParams = await params;
-  const resolvedSearchParams = searchParams ? await searchParams : undefined;
-  const post = blogPosts.find((post) => post.slug === resolvedParams.slug);
+  const post = blogPosts.find((post) => post.slug === params.slug);
 
   if (!post) {
     return (
@@ -33,7 +35,7 @@ export default async function BlogPost({
         <div className="max-w-3xl mx-auto text-center">
           <h1 className="text-4xl font-bold text-gray-900 dark:text-white mb-8">Blog Post Not Found</h1>
           <p className="text-xl text-gray-600 dark:text-gray-300 mb-8">
-            Sorry, the blog post you're looking for doesn't exist.
+            Sorry, the blog post you&apos;re looking for doesn&apos;t exist.
           </p>
           <Link
             href="/blog"
@@ -65,6 +67,7 @@ export default async function BlogPost({
             stroke="currentColor"
             viewBox="0 0 24 24"
             xmlns="http://www.w3.org/2000/svg"
+            aria-hidden="true"
           >
             <path
               strokeLinecap="round"
@@ -73,7 +76,7 @@ export default async function BlogPost({
               d="M10 19l-7-7m0 0l7-7m-7 7h18"
             />
           </svg>
-          Back to Blog
+          <span>Back to Blog</span>
         </Link>
 
         {/* Post header */}
