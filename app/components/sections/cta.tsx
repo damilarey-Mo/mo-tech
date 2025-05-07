@@ -90,7 +90,7 @@ export default function CTASection() {
                   whileTap={{ scale: 0.98 }}
                   className="rounded-md bg-primary-600 dark:bg-yellow-500 px-5 py-3 text-base font-semibold text-white dark:text-gray-900 shadow-sm hover:bg-primary-500 dark:hover:bg-yellow-400 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-primary-600 dark:focus-visible:outline-yellow-500"
                 >
-                  Book Your Free Diagnosis
+                  Request Now
                   <motion.span
                     animate={{ x: [0, 3, 0] }}
                     transition={{ repeat: Infinity, duration: 1.5, repeatType: "mirror" }}
@@ -103,7 +103,7 @@ export default function CTASection() {
                 href="#services" 
                 className="text-base font-semibold leading-6 text-white hover:text-primary-300 dark:hover:text-yellow-300"
               >
-                Learn more about our services <span aria-hidden="true">→</span>
+                Learn more<span aria-hidden="true">→</span>
               </Link>
             </motion.div>
           </div>

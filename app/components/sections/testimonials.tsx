@@ -10,7 +10,7 @@ const testimonials = [
     name: "Oluwaseun Adebayo",
     role: "CEO, TechForge Nigeria Ltd",
     country: "Nigeria",
-    image: "/images/testimonials/oluwaseun.jpg",
+    image: "/images/testimonials/James Wilson.jpg",
     content: "I was skeptical about managed IT services at first, but TeaMo has completely transformed how our business operates. Their 24/7 support has saved us countless times, especially during critical business hours. The team's response time is incredible - they're often fixing issues before we even notice them!",
     service: "Managed IT Services"
   },
@@ -18,15 +18,15 @@ const testimonials = [
     name: "Sarah Thompson",
     role: "Small Business Owner",
     country: "United Kingdom",
-    image: "/images/testimonials/sarah.jpg",
+    image: "/images/testimonials/Sarah.avif",
     content: "After a ransomware scare, we knew we needed serious cybersecurity help. TeaMo didn't just set up our security systems; they trained our staff and created easy-to-follow protocols. It's been 18 months now, and we feel so much more confident about our digital security. Worth every penny!",
     service: "Cybersecurity"
   },
   {
-    name: "Michael Chen",
+    name: "Jeremy Braddock",
     role: "Operations Director, Pacific Trade Solutions",
     country: "Australia",
-    image: "/images/testimonials/michael.jpg",
+    image: "/images/testimonials/jeremy.jpg",
     content: "The infrastructure assessment TeaMo conducted opened our eyes to so many inefficiencies we hadn't noticed. They helped us optimize our entire network, and our system performance has improved dramatically. Our employees actually cheered when the new systems went live!",
     service: "IT Infrastructure Optimization"
   },
@@ -34,15 +34,15 @@ const testimonials = [
     name: "Dr. Lisa Mueller",
     role: "Chief of Medicine, SwissCare Clinic",
     country: "Switzerland",
-    image: "/images/testimonials/lisa.jpg",
+    image: "/images/testimonials/premium_photo-1682437845919-2f07f880d07b.avif",
     content: "TeaMo's cloud migration service was exactly what our medical practice needed. They handled all our compliance requirements and made sure our patient data remained secure throughout the transition. The whole process was smoother than I could have imagined.",
     service: "Cloud Services"
   },
   {
-    name: "James Wilson",
+    name: "Casandra Thibela",
     role: "Founder, EduTech Innovations",
     country: "United States",
-    image: "/images/testimonials/james.jpg",
+    image: "/images/testimonials/clasandrathibela.jpg",
     content: "I reached out to TeaMo when our remote work setup was a mess. They revamped our entire system, set up proper VPNs, and created a secure but user-friendly environment. Now our team of 50+ can work from anywhere without any hiccups. Game changer!",
     service: "Remote Work Solutions"
   },
@@ -50,7 +50,7 @@ const testimonials = [
     name: "Aisha Mohammed",
     role: "Financial Controller, Lagos Investment Group",
     country: "Nigeria",
-    image: "/images/testimonials/aisha.jpg",
+    image: "/images/testimonials/Aisha.jpg",
     content: "TeaMo's IT consulting helped us make smart technology investments that aligned with our growth plans. They didn't just throw solutions at us - they took time to understand our business and suggested practical, cost-effective options. Our ROI has been fantastic!",
     service: "IT Consulting"
   },
@@ -58,15 +58,15 @@ const testimonials = [
     name: "Marcus Svensson",
     role: "IT Director, Nordic Retail Solutions",
     country: "Sweden",
-    image: "/images/testimonials/marcus.jpg",
+    image: "/images/testimonials/Marcus.jpg",
     content: "The disaster recovery plan TeaMo developed for us was put to the test during a major power outage. Their system worked flawlessly - we were back up and running in minutes, not hours. Our board was incredibly impressed with the minimal downtime.",
     service: "Disaster Recovery"
   },
   {
-    name: "Yuki Tanaka",
+    name: "Alexi Replogle",
     role: "Startup Founder",
-    country: "Japan",
-    image: "/images/testimonials/yuki.jpg",
+    country: "Switzerland",
+    image: "/images/testimonials/alexi.jpg",
     content: "As a startup, we needed flexible IT solutions that could grow with us. TeaMo provided exactly that. Their scalable infrastructure and support have been crucial in our expansion from 5 to 50 employees. They truly understand the unique challenges of growing businesses.",
     service: "Scalable IT Solutions"
   },
@@ -74,7 +74,7 @@ const testimonials = [
     name: "Maria Rodriguez",
     role: "COO, Digital Marketing Agency",
     country: "Spain",
-    image: "/images/testimonials/maria.jpg",
+    image: "/images/testimonials/Maria.jpg",
     content: "TeaMo's network security implementation was thorough and professional. They found vulnerabilities we didn't even know existed and fixed them all. Now I sleep better knowing our client data is properly protected.",
     service: "Network Security"
   },
@@ -85,6 +85,86 @@ const testimonials = [
     image: "/images/testimonials/ahmed.jpg",
     content: "The hardware procurement and management service from TeaMo has been exceptional. They handled everything from selection to installation and maintenance. Their team's knowledge of both local and international markets is impressive.",
     service: "Hardware Management"
+  },
+  {
+    name: "Chioma Okonkwo",
+    role: "CEO, TechRepair Solutions",
+    country: "Nigeria",
+    image: "/images/testimonials/dorrell-tibbs-HSY1UqOyN5k-unsplash.jpg",
+    content: "TeaMo's hardware diagnostic service is unmatched in Lagos. They quickly identified and fixed complex motherboard issues that other repair shops couldn't handle. Their technicians are highly skilled and their diagnostic tools are state-of-the-art. They saved us from having to replace expensive equipment!",
+    service: "Hardware Diagnostics"
+  },
+  {
+    name: "Babajide Adeleke",
+    role: "Owner, GadgetCare Plus",
+    country: "Nigeria",
+    image: "/images/testimonials/joseph-okon-d-W7HGzGYpA-unsplash.jpg",
+    content: "As a gadget repair business owner, I've dealt with many service providers, but TeaMo stands out. Their hardware repair service is exceptional - quick turnaround times, genuine parts, and excellent customer service. They've become our go-to partner for complex repairs.",
+    service: "Hardware Repair"
+  },
+  {
+    name: "Folake Adeyemi",
+    role: "Director, SmartFix Nigeria",
+    country: "Nigeria",
+    image: "/images/testimonials/premium_photo-1661868397660-8c52f33c5934.avif",
+    content: "TeaMo has revolutionized our gadget service center. Their diagnostic tools and repair techniques have helped us handle repairs more efficiently. The training they provided to our staff was comprehensive and practical. Our customer satisfaction has improved significantly!",
+    service: "Gadget Service"
+  },
+  {
+    name: "Sophie Laurent",
+    role: "CTO, FinTech Innovations",
+    country: "France",
+    image: "/images/testimonials/premium_photo-1682125667183-d36beea3c85d.avif",
+    content: "TeaMo developed our mobile banking app from scratch, and the results exceeded our expectations. The app's performance, security features, and user interface are exactly what we needed. They understood our vision and delivered a product that our customers love.",
+    service: "App Development"
+  },
+  {
+    name: "David Chen",
+    role: "Founder, AsiaConnect Tech",
+    country: "Singapore",
+    image: "/images/testimonials/photo-1566165335512-bb5ba58365b4.avif",
+    content: "We partnered with TeaMo for our e-commerce platform development. Their expertise in both web and mobile development helped us create a seamless shopping experience. The integration with local payment systems was smooth, and the platform's performance is outstanding.",
+    service: "Web Development"
+  },
+  {
+    name: "Emily Thompson",
+    role: "Product Manager, CanadaTech Solutions",
+    country: "Canada",
+    image: "/images/testimonials/premium_photo-1661715433477-7b48c4e5f013.avif",
+    content: "TeaMo's web development team built our company's customer portal from the ground up. The attention to detail, responsive design, and robust backend implementation have made it a valuable tool for our business. Their ongoing support has been exceptional.",
+    service: "Web Development"
+  },
+  {
+    name: "Hiroshi Tanaka",
+    role: "CEO, JapanTech Ventures",
+    country: "Japan",
+    image: "/images/testimonials/vector-1744084582070-cf0561eb1fb3.avif",
+    content: "Our mobile app project with TeaMo was a great success. They understood our unique market requirements and delivered a highly polished app that resonates with Japanese users. Their development process was transparent and efficient.",
+    service: "App Development"
+  },
+  {
+    name: "Isabella Romano",
+    role: "Director, EuroTech Startups",
+    country: "Italy",
+    image: "/images/testimonials/premium_photo-1682430330601-ca5238249297.avif",
+    content: "TeaMo developed our startup's MVP in record time. The web application they built is scalable, secure, and user-friendly. Their team's expertise in modern web technologies and agile development practices made the entire process smooth.",
+    service: "Web Development"
+  },
+  {
+    name: "Kunle Adebiyi",
+    role: "Manager, Lagos Device Hub",
+    country: "Nigeria",
+    image: "/images/testimonials/oluwaferanmi-caleb-Q1QRTSeZIxI-unsplash.jpg",
+    content: "TeaMo's gadget repair service has been a game-changer for our business. Their quick diagnostics and reliable repairs have helped us maintain our reputation for quality service. The warranty they provide on repairs gives our customers extra confidence.",
+    service: "Gadget Service"
+  },
+  {
+    name: "Michael Roberts",
+    role: "Founder, US Digital Solutions",
+    country: "United States",
+    image: "/images/testimonials/chad-madden-f4xCFAU6ZNw-unsplash.jpg",
+    content: "Working with TeaMo on our enterprise web application was a fantastic experience. Their development team's technical expertise and problem-solving skills helped us create a powerful platform that serves thousands of users daily.",
+    service: "Web Development"
   }
 ];
 

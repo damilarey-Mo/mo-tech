@@ -7,14 +7,13 @@ import { usePathname } from "next/navigation";
 import { Button } from "./ui/button";
 import { cn } from "@/app/lib/utils";
 import { motion, AnimatePresence } from "framer-motion";
-import ThemeSwitcher from "./theme-switcher";
 
 const navigation = [
   { name: "Home", href: "/" },
-  { name: "About", href: "#about" },
+  { name: "About", href: "/about" },
   { name: "Services", href: "#services" },
-  { name: "Projects", href: "#projects" },
-  { name: "Blog", href: "#blog" },
+  { name: "Projects", href: "/projects" },
+  { name: "Blog", href: "/blog" },
   { name: "Contact", href: "#contact" },
 ];
 
@@ -22,8 +21,10 @@ export default function Navbar() {
   const pathname = usePathname();
   const [isMenuOpen, setIsMenuOpen] = React.useState(false);
   const [scrolled, setScrolled] = React.useState(false);
+  const [mounted, setMounted] = React.useState(false);
 
   React.useEffect(() => {
+    setMounted(true);
     const handleScroll = () => {
       setScrolled(window.scrollY > 10);
     };
@@ -41,13 +42,32 @@ export default function Navbar() {
     setIsMenuOpen(!isMenuOpen);
   };
 
+  // Prevent hydration mismatch by not rendering until mounted
+  if (!mounted) {
+    return (
+      <header className="fixed w-full z-50 bg-black/90 border-b border-gray-800 dark:bg-black dark:border-gray-800">
+        <nav className="mx-auto flex max-w-7xl items-center justify-between p-6 lg:px-8" aria-label="Global">
+          <div className="flex lg:flex-1">
+            <Link href="/" className="-m-1.5 p-1.5 flex items-center">
+              <span className="sr-only">TeaMo</span>
+              <span className="text-xl font-bold text-primary-600 dark:text-yellow-400">TeaMo</span>
+            </Link>
+          </div>
+        </nav>
+      </header>
+    );
+  }
+
   return (
-    <header className={cn(
-      "fixed w-full z-50 transition-all duration-300 ease-in-out",
-      scrolled
-        ? "bg-black/95 shadow-md backdrop-blur-sm dark:bg-black dark:shadow-dark-lg"
-        : "bg-black/90 border-b border-gray-800 dark:bg-black dark:border-gray-800"
-    )}>
+    <header 
+      className={cn(
+        "fixed w-full z-50 transition-all duration-300 ease-in-out",
+        scrolled
+          ? "bg-black/95 shadow-md backdrop-blur-sm dark:bg-black dark:shadow-dark-lg"
+          : "bg-black/90 border-b border-gray-800 dark:bg-black dark:border-gray-800"
+      )}
+      suppressHydrationWarning
+    >
       <nav className="mx-auto flex max-w-7xl items-center justify-between p-6 lg:px-8" aria-label="Global">
         <motion.div 
           className="flex lg:flex-1"
@@ -67,7 +87,6 @@ export default function Navbar() {
         </motion.div>
         
         <div className="flex lg:hidden">
-          <ThemeSwitcher />
           <button
             type="button"
             className="-m-2.5 ml-2 inline-flex items-center justify-center rounded-md p-2.5 text-gray-300 dark:text-yellow-400"
@@ -113,8 +132,7 @@ export default function Navbar() {
           animate={{ opacity: 1, x: 0 }}
           transition={{ duration: 0.5, delay: 0.2 }}
         >
-          <ThemeSwitcher />
-          <Link href="#contact">
+          <Link href="/contact">
             <motion.div whileHover={{ scale: 1.05 }} whileTap={{ scale: 0.95 }}>
               <Button 
                 variant="outline" 
@@ -124,7 +142,7 @@ export default function Navbar() {
               </Button>
             </motion.div>
           </Link>
-          <Link href="#services">
+          <Link href="#contact">
             <motion.div whileHover={{ scale: 1.05 }} whileTap={{ scale: 0.95 }}>
               <Button 
                 className="transition-all duration-300 ease-in-out bg-gradient-to-r from-primary-600 to-secondary-600 hover:from-primary-700 hover:to-secondary-700 dark:from-yellow-500 dark:to-yellow-600 dark:text-gray-900 dark:hover:from-yellow-400 dark:hover:to-yellow-500 hover:shadow-lg"

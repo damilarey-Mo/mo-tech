@@ -34,26 +34,26 @@ export default function HeroSection() {
               <div className="inline-flex items-center rounded-full bg-yellow-400/10 px-3 py-1 text-sm font-medium text-yellow-400 ring-1 ring-inset ring-yellow-400/20 mb-6">
                 Leading IT Solutions in Lagos
               </div>
-              <h1 className="text-4xl sm:text-5xl lg:text-6xl font-bold text-white mb-6 leading-tight">
+              <h1 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold text-white mb-4 sm:mb-6 leading-tight">
                 Empowering Your Business Through{' '}
                 <span className="text-yellow-400">Technology</span>
               </h1>
-              <p className="text-lg text-yellow-100 mb-8 max-w-2xl">
+              <p className="text-base sm:text-lg text-yellow-100 mb-6 sm:mb-8 max-w-2xl mx-auto lg:mx-0">
                 Transform your business with our comprehensive IT solutions. From 24/7 support to advanced cybersecurity, we're your trusted technology partner in Lagos.
               </p>
 
               {/* CTA Buttons */}
-              <div className="flex flex-col sm:flex-row gap-4 justify-center lg:justify-start">
+              <div className="flex flex-col sm:flex-row gap-3 sm:gap-4 justify-center lg:justify-start px-4 sm:px-0">
                 <Link
                   href="/contact"
-                  className="inline-flex items-center px-6 py-3 rounded-lg bg-yellow-500 text-black font-semibold hover:bg-yellow-400 transition-colors duration-200 group"
+                  className="inline-flex items-center justify-center px-6 py-3.5 rounded-xl bg-gradient-to-r from-yellow-500 to-yellow-400 text-black font-semibold hover:from-yellow-400 hover:to-yellow-500 transition-all duration-200 shadow-lg hover:shadow-xl hover:-translate-y-0.5 group w-full sm:w-auto"
                 >
                   Get Started
                   <ArrowRight className="ml-2 h-5 w-5 group-hover:translate-x-1 transition-transform duration-200" />
                 </Link>
                 <Link
                   href="/services"
-                  className="inline-flex items-center px-6 py-3 rounded-lg bg-white/10 text-white font-semibold hover:bg-white/20 transition-colors duration-200"
+                  className="inline-flex items-center justify-center px-6 py-3.5 rounded-xl bg-white/10 text-white font-semibold hover:bg-white/20 transition-all duration-200 border border-white/20 backdrop-blur-sm hover:border-white/30 hover:-translate-y-0.5 w-full sm:w-auto"
                 >
                   Explore Services
                 </Link>
@@ -92,7 +92,7 @@ export default function HeroSection() {
                 <div className="absolute inset-0 bg-gradient-to-br from-yellow-400/20 to-amber-600/20 rounded-3xl transform rotate-6" />
                 <div className="absolute inset-0 bg-white/10 backdrop-blur-sm rounded-3xl shadow-2xl">
                   <img
-                    src="/images/hero-illustration.png"
+                    src="/images/service.jpg"
                     alt="IT Solutions Illustration"
                     className="w-full h-full object-cover rounded-3xl"
                   />

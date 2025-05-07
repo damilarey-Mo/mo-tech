@@ -57,11 +57,11 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en" suppressHydrationWarning>
-      <body className={`${inter.variable} font-sans antialiased`}>
+      <body className={`${inter.variable} font-sans antialiased bg-gray-50 dark:bg-gray-900`}>
         <ThemeProvider>
           <div className="relative flex min-h-screen flex-col">
             <Navbar />
-            <main className="flex-1">{children}</main>
+            <main className="flex-1 pt-16">{children}</main>
             <Footer />
           </div>
         </ThemeProvider>
