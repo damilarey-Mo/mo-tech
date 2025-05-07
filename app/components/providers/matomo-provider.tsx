@@ -1,13 +1,24 @@
 'use client';
 
-import { ReactNode, useEffect } from 'react';
+import { ReactNode, Suspense } from 'react';
 import { useMatomoTracking } from '@/app/hooks/useMatomo';
 
 interface MatomoProviderProps {
   children: ReactNode;
 }
 
-export function MatomoProvider({ children }: MatomoProviderProps) {
+function MatomoTracker() {
   useMatomoTracking();
-  return <>{children}</>;
+  return null;
+}
+
+export function MatomoProvider({ children }: MatomoProviderProps) {
+  return (
+    <>
+      <Suspense fallback={null}>
+        <MatomoTracker />
+      </Suspense>
+      {children}
+    </>
+  );
 } 

@@ -10,6 +10,8 @@ export function useMatomoTracking() {
 
   // Track page views
   useEffect(() => {
+    if (typeof window === 'undefined') return;
+
     const url = pathname + (searchParams?.toString() ? `?${searchParams.toString()}` : '');
     matomoInstance.trackPageView({
       documentTitle: document.title,
@@ -19,6 +21,8 @@ export function useMatomoTracking() {
 
   // Track user interactions
   useEffect(() => {
+    if (typeof window === 'undefined') return;
+
     const trackUserInteractions = (event: MouseEvent) => {
       const target = event.target as HTMLElement;
       
