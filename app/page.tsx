@@ -7,6 +7,7 @@ import TestimonialsSection from "@/app/components/sections/testimonials";
 import CTASection from "@/app/components/sections/cta";
 import BlogPreviewSection from "@/app/components/sections/blog-preview";
 import ContactSection from "@/app/components/sections/contact";
+import ServiceCarousel from './components/sections/service-carousel';
 
 // These sections will be created
 // import AboutSection from "@/app/components/sections/about";
@@ -19,6 +20,7 @@ export default function Home() {
   return (
     <React.Fragment>
       <HeroSection />
+      <ServiceCarousel />
       <AboutSection />
       <ServicesSection />
       <FeaturedProjectsSection />
