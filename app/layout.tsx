@@ -5,8 +5,6 @@ import { ThemeProvider } from "@/components/theme-provider";
 import Navbar from "./components/navbar";
 import Footer from "./components/footer";
 import MatomoAnalytics from "./components/analytics/matomo";
-import { MatomoProvider } from "./components/analytics/matomo-provider";
-import matomoInstance from './lib/matomo';
 import Script from 'next/script';
 
 const inter = Inter({ subsets: ["latin"] });
@@ -18,7 +16,7 @@ export const metadata: Metadata = {
   openGraph: {
     title: "TeaMo | Tech Support & Web Services in Lagos",
     description: "Comprehensive IT support, web development, and tech solutions for businesses in Lagos, Nigeria.",
-    url: "https://teamo-five.vercel.app",
+    url: "https://teamotech.com",
     siteName: "TeaMo IT/Tech Solutions",
     images: [
       {
@@ -48,7 +46,7 @@ export const metadata: Metadata = {
       "max-snippet": -1,
     },
   },
-  metadataBase: new URL("https://teamo-five.vercel.app"),
+  metadataBase: new URL("https://teamotech.com"),
   alternates: {
     canonical: "/",
   },
@@ -62,46 +60,24 @@ export default function RootLayout({
   return (
     <html lang="en" suppressHydrationWarning>
       <head>
-        {/* Google Analytics */}
-        <Script
-          id="google-analytics"
-          strategy="afterInteractive"
-          dangerouslySetInnerHTML={{
-            __html: `
-              window.dataLayer = window.dataLayer || [];
-              function gtag(){dataLayer.push(arguments);}
-              gtag('js', new Date());
-              gtag('config', 'G-4CRW7T9ZFH', {
-                page_path: window.location.pathname,
-              });
-            `,
-          }}
-        />
-        <Script
-          id="google-analytics-script"
-          strategy="afterInteractive"
-          src="https://www.googletagmanager.com/gtag/js?id=G-4CRW7T9ZFH"
-        />
-        <noscript>
-          <p>
-            <img 
-              referrerPolicy="no-referrer-when-downgrade" 
-              src="https://teamo.matomo.cloud/matomo.php?idsite=1&rec=1" 
-              style={{ border: 0 }} 
-              alt="" 
-            />
-          </p>
-        </noscript>
+        <Script id="matomo-tag-manager" strategy="beforeInteractive">
+          {`
+            var _mtm = window._mtm = window._mtm || [];
+            _mtm.push({'mtm.startTime': (new Date().getTime()), 'event': 'mtm.Start'});
+            (function() {
+              var d=document, g=d.createElement('script'), s=d.getElementsByTagName('script')[0];
+              g.async=true; g.src='https://cdn.matomo.cloud/teamo.matomo.cloud/container_S0sonybd.js'; s.parentNode.insertBefore(g,s);
+            })();
+          `}
+        </Script>
       </head>
       <body className={`${inter.className} font-sans antialiased bg-gray-50 dark:bg-gray-900`}>
         <ThemeProvider>
           <div className="relative flex min-h-screen flex-col">
-            <MatomoProvider value={matomoInstance}>
-              <Navbar />
-              <main className="flex-1 pt-16">{children}</main>
-              <Footer />
-              <MatomoAnalytics />
-            </MatomoProvider>
+            <Navbar />
+            <main className="flex-1 pt-16">{children}</main>
+            <Footer />
+            <MatomoAnalytics />
           </div>
         </ThemeProvider>
       </body>
