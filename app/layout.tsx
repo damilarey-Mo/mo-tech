@@ -2,10 +2,11 @@ import "./globals.css";
 import type { Metadata } from "next";
 import { Inter } from "next/font/google";
 import { ThemeProvider } from "@/components/theme-provider";
+import { MatomoProvider } from '@datapunt/matomo-tracker-react';
 import Navbar from "./components/navbar";
 import Footer from "./components/footer";
 import MatomoAnalytics from "./components/analytics/matomo";
-import Script from 'next/script';
+import matomoInstance from './lib/matomo';
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -16,7 +17,7 @@ export const metadata: Metadata = {
   openGraph: {
     title: "TeaMo | Tech Support & Web Services in Lagos",
     description: "Comprehensive IT support, web development, and tech solutions for businesses in Lagos, Nigeria.",
-    url: "https://teamotech.com",
+    url: "https://teamo-five.vercel.app",
     siteName: "TeaMo IT/Tech Solutions",
     images: [
       {
@@ -46,7 +47,7 @@ export const metadata: Metadata = {
       "max-snippet": -1,
     },
   },
-  metadataBase: new URL("https://teamotech.com"),
+  metadataBase: new URL("https://teamo-five.vercel.app"),
   alternates: {
     canonical: "/",
   },
@@ -60,22 +61,6 @@ export default function RootLayout({
   return (
     <html lang="en" suppressHydrationWarning>
       <head>
-        <Script id="matomo" strategy="beforeInteractive">
-          {`
-            var _paq = window._paq = window._paq || [];
-            _paq.push(["setCookieDomain", "*.teamo-five.vercel.app"]);
-            _paq.push(["setDoNotTrack", true]);
-            _paq.push(['trackPageView']);
-            _paq.push(['enableLinkTracking']);
-            (function() {
-              var u="https://teamo.matomo.cloud/";
-              _paq.push(['setTrackerUrl', u+'matomo.php']);
-              _paq.push(['setSiteId', '1']);
-              var d=document, g=d.createElement('script'), s=d.getElementsByTagName('script')[0];
-              g.async=true; g.src='https://cdn.matomo.cloud/teamo.matomo.cloud/matomo.js'; s.parentNode.insertBefore(g,s);
-            })();
-          `}
-        </Script>
         <noscript>
           <p>
             <img 
@@ -90,10 +75,12 @@ export default function RootLayout({
       <body className={`${inter.className} font-sans antialiased bg-gray-50 dark:bg-gray-900`}>
         <ThemeProvider>
           <div className="relative flex min-h-screen flex-col">
-            <Navbar />
-            <main className="flex-1 pt-16">{children}</main>
-            <Footer />
-            <MatomoAnalytics />
+            <MatomoProvider value={matomoInstance}>
+              <Navbar />
+              <main className="flex-1 pt-16">{children}</main>
+              <Footer />
+              <MatomoAnalytics />
+            </MatomoProvider>
           </div>
         </ThemeProvider>
       </body>
