@@ -8,6 +8,11 @@ export function useMatomoTracking() {
   const pathname = usePathname();
   const searchParams = useSearchParams();
 
+  // Skip tracking on 404 page
+  if (pathname === '/404' || pathname === '/_not-found') {
+    return;
+  }
+
   // Track page views
   useEffect(() => {
     if (typeof window === 'undefined') return;
