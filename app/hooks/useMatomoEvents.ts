@@ -1,12 +1,10 @@
 'use client';
 
-import { useMatomo } from '@datapunt/matomo-tracker-react';
+import matomoInstance from '../lib/matomo';
 
 export function useMatomoEvents() {
-  const { trackEvent } = useMatomo();
-
   const trackButtonClick = (buttonName: string, value?: number) => {
-    trackEvent({
+    matomoInstance.trackEvent({
       category: 'button',
       action: 'click',
       name: buttonName,
@@ -15,7 +13,7 @@ export function useMatomoEvents() {
   };
 
   const trackFormSubmit = (formName: string, success: boolean) => {
-    trackEvent({
+    matomoInstance.trackEvent({
       category: 'form',
       action: 'submit',
       name: formName,
@@ -24,7 +22,7 @@ export function useMatomoEvents() {
   };
 
   const trackNavigation = (from: string, to: string) => {
-    trackEvent({
+    matomoInstance.trackEvent({
       category: 'navigation',
       action: 'navigate',
       name: `${from} -> ${to}`,
@@ -33,7 +31,7 @@ export function useMatomoEvents() {
   };
 
   const trackSearch = (query: string, resultsCount: number) => {
-    trackEvent({
+    matomoInstance.trackEvent({
       category: 'search',
       action: 'query',
       name: query,
@@ -42,7 +40,7 @@ export function useMatomoEvents() {
   };
 
   const trackDownload = (fileName: string, fileType: string) => {
-    trackEvent({
+    matomoInstance.trackEvent({
       category: 'download',
       action: 'file',
       name: `${fileName} (${fileType})`,
@@ -51,7 +49,7 @@ export function useMatomoEvents() {
   };
 
   const trackVideoPlay = (videoName: string, duration: number) => {
-    trackEvent({
+    matomoInstance.trackEvent({
       category: 'video',
       action: 'play',
       name: videoName,

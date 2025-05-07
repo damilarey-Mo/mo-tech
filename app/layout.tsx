@@ -2,11 +2,10 @@ import "./globals.css";
 import type { Metadata } from "next";
 import { Inter } from "next/font/google";
 import { ThemeProvider } from "@/components/theme-provider";
-import { MatomoProvider } from '@datapunt/matomo-tracker-react';
+import { MatomoProvider } from './components/providers/matomo-provider';
 import Navbar from "./components/navbar";
 import Footer from "./components/footer";
 import MatomoAnalytics from "./components/analytics/matomo";
-import matomoInstance from './lib/matomo';
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -17,7 +16,7 @@ export const metadata: Metadata = {
   openGraph: {
     title: "TeaMo | Tech Support & Web Services in Lagos",
     description: "Comprehensive IT support, web development, and tech solutions for businesses in Lagos, Nigeria.",
-    url: "https://teamo-five.vercel.app",
+    url: "https://teamotech.com",
     siteName: "TeaMo IT/Tech Solutions",
     images: [
       {
@@ -47,11 +46,22 @@ export const metadata: Metadata = {
       "max-snippet": -1,
     },
   },
-  metadataBase: new URL("https://teamo-five.vercel.app"),
+  metadataBase: new URL("https://teamotech.com"),
   alternates: {
     canonical: "/",
   },
 };
+
+function AppContent({ children }: { children: React.ReactNode }) {
+  return (
+    <div className="relative flex min-h-screen flex-col">
+      <Navbar />
+      <main className="flex-1 pt-16">{children}</main>
+      <Footer />
+      <MatomoAnalytics />
+    </div>
+  );
+}
 
 export default function RootLayout({
   children,
@@ -74,14 +84,9 @@ export default function RootLayout({
       </head>
       <body className={`${inter.className} font-sans antialiased bg-gray-50 dark:bg-gray-900`}>
         <ThemeProvider>
-          <div className="relative flex min-h-screen flex-col">
-            <MatomoProvider value={matomoInstance}>
-              <Navbar />
-              <main className="flex-1 pt-16">{children}</main>
-              <Footer />
-              <MatomoAnalytics />
-            </MatomoProvider>
-          </div>
+          <MatomoProvider>
+            <AppContent>{children}</AppContent>
+          </MatomoProvider>
         </ThemeProvider>
       </body>
     </html>
