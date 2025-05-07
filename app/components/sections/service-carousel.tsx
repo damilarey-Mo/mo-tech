@@ -1,9 +1,11 @@
 "use client";
 
 import React, { useState, useEffect } from 'react';
-import { motion, AnimatePresence } from 'framer-motion';
 import { ChevronLeft, ChevronRight, Shield, Code, Smartphone, Laptop } from 'lucide-react';
 import Image from 'next/image';
+
+// Import Framer Motion components directly
+import { motion, AnimatePresence } from 'framer-motion';
 
 const services = [
   {
@@ -68,6 +70,14 @@ export default function ServiceCarousel() {
   const [currentIndex, setCurrentIndex] = useState(0);
   const [direction, setDirection] = useState(0);
   const [isAutoPlaying, setIsAutoPlaying] = useState(true);
+  const [progress, setProgress] = useState(0);
+  const [touchStart, setTouchStart] = useState(0);
+  const [touchEnd, setTouchEnd] = useState(0);
+  const [isMounted, setIsMounted] = useState(false);
+
+  useEffect(() => {
+    setIsMounted(true);
+  }, []);
 
   const slideVariants = {
     enter: (direction: number) => ({
@@ -92,24 +102,53 @@ export default function ServiceCarousel() {
   const nextSlide = () => {
     setDirection(1);
     setCurrentIndex((prev) => (prev + 1) % services.length);
+    setProgress(0);
   };
 
   const prevSlide = () => {
     setDirection(-1);
     setCurrentIndex((prev) => (prev - 1 + services.length) % services.length);
+    setProgress(0);
   };
 
   useEffect(() => {
-    if (!isAutoPlaying) return;
+    if (!isAutoPlaying || !isMounted) return;
     
     const timer = setInterval(() => {
-      nextSlide();
-    }, 5000);
+      setProgress((prev) => {
+        if (prev >= 100) {
+          nextSlide();
+          return 0;
+        }
+        return prev + 1;
+      });
+    }, 50);
 
     return () => clearInterval(timer);
-  }, [isAutoPlaying, currentIndex]);
+  }, [isAutoPlaying, currentIndex, isMounted]);
+
+  const handleTouchStart = (e: React.TouchEvent) => {
+    setTouchStart(e.targetTouches[0].clientX);
+  };
+
+  const handleTouchMove = (e: React.TouchEvent) => {
+    setTouchEnd(e.targetTouches[0].clientX);
+  };
+
+  const handleTouchEnd = () => {
+    if (touchStart - touchEnd > 75) {
+      nextSlide();
+    }
+    if (touchStart - touchEnd < -75) {
+      prevSlide();
+    }
+  };
 
   const IconComponent = services[currentIndex].icon;
+
+  if (!isMounted) {
+    return null;
+  }
 
   return (
     <section className="py-16 sm:py-24 bg-gradient-to-b from-gray-50 to-white dark:from-gray-800/50 dark:to-gray-900">
@@ -137,7 +176,20 @@ export default function ServiceCarousel() {
           className="relative h-[600px] overflow-hidden rounded-3xl shadow-2xl"
           onMouseEnter={() => setIsAutoPlaying(false)}
           onMouseLeave={() => setIsAutoPlaying(true)}
+          onTouchStart={handleTouchStart}
+          onTouchMove={handleTouchMove}
+          onTouchEnd={handleTouchEnd}
         >
+          {/* Progress Bar */}
+          <div className="absolute top-0 left-0 w-full h-1 bg-gray-200/20 z-20">
+            <motion.div
+              className="h-full bg-yellow-400"
+              initial={{ width: 0 }}
+              animate={{ width: `${progress}%` }}
+              transition={{ duration: 0.05 }}
+            />
+          </div>
+
           <AnimatePresence initial={false} custom={direction} mode="wait">
             <motion.div
               key={currentIndex}
@@ -172,9 +224,13 @@ export default function ServiceCarousel() {
                       transition={{ duration: 0.5, delay: 0.3 }}
                     >
                       <div className="flex items-center gap-4 mb-6">
-                        <div className="p-2 rounded-lg bg-yellow-400/10">
+                        <motion.div 
+                          className="p-2 rounded-lg bg-yellow-400/10"
+                          whileHover={{ scale: 1.1 }}
+                          whileTap={{ scale: 0.95 }}
+                        >
                           <IconComponent className="h-8 w-8 text-yellow-400" />
-                        </div>
+                        </motion.div>
                         <h3 className="text-3xl font-bold tracking-tight text-white">
                           {services[currentIndex].title}
                         </h3>
@@ -183,15 +239,16 @@ export default function ServiceCarousel() {
                         {services[currentIndex].description}
                       </p>
                       <ul className="mt-8 grid grid-cols-1 gap-4 sm:grid-cols-2">
-                        {services[currentIndex].features.map((feature) => (
+                        {services[currentIndex].features.map((feature, index) => (
                           <motion.li 
                             key={feature} 
-                            className="flex items-center gap-2 text-gray-200"
+                            className="flex items-center gap-2 text-gray-200 group"
                             initial={{ opacity: 0, x: -20 }}
                             animate={{ opacity: 1, x: 0 }}
-                            transition={{ duration: 0.3 }}
+                            transition={{ duration: 0.3, delay: index * 0.1 }}
+                            whileHover={{ x: 5 }}
                           >
-                            <div className="h-1.5 w-1.5 rounded-full bg-yellow-400" />
+                            <div className="h-1.5 w-1.5 rounded-full bg-yellow-400 group-hover:scale-150 transition-transform duration-200" />
                             {feature}
                           </motion.li>
                         ))}
@@ -202,13 +259,15 @@ export default function ServiceCarousel() {
                         animate={{ opacity: 1, y: 0 }}
                         transition={{ duration: 0.5, delay: 0.5 }}
                       >
-                        <a
+                        <motion.a
                           href="#contact"
-                          className="inline-flex items-center rounded-lg bg-yellow-400 px-6 py-3 text-base font-semibold text-gray-900 hover:bg-yellow-500 transition-all duration-200 hover:scale-105"
+                          className="inline-flex items-center rounded-lg bg-yellow-400 px-6 py-3 text-base font-semibold text-gray-900 hover:bg-yellow-500 transition-all duration-200"
+                          whileHover={{ scale: 1.05 }}
+                          whileTap={{ scale: 0.95 }}
                         >
                           {services[currentIndex].cta}
                           <ChevronRight className="ml-2 h-5 w-5" />
-                        </a>
+                        </motion.a>
                       </motion.div>
                     </motion.div>
                   </div>
@@ -218,31 +277,38 @@ export default function ServiceCarousel() {
           </AnimatePresence>
 
           {/* Navigation Buttons */}
-          <button
+          <motion.button
             onClick={prevSlide}
-            className="absolute left-4 top-1/2 -translate-y-1/2 rounded-full bg-black/50 p-3 text-white hover:bg-black/70 transition-all duration-200 hover:scale-110 z-10"
+            className="absolute left-4 top-1/2 -translate-y-1/2 rounded-full bg-black/50 p-3 text-white hover:bg-black/70 transition-all duration-200 z-10"
+            whileHover={{ scale: 1.1 }}
+            whileTap={{ scale: 0.95 }}
           >
             <ChevronLeft className="h-6 w-6" />
-          </button>
-          <button
+          </motion.button>
+          <motion.button
             onClick={nextSlide}
-            className="absolute right-4 top-1/2 -translate-y-1/2 rounded-full bg-black/50 p-3 text-white hover:bg-black/70 transition-all duration-200 hover:scale-110 z-10"
+            className="absolute right-4 top-1/2 -translate-y-1/2 rounded-full bg-black/50 p-3 text-white hover:bg-black/70 transition-all duration-200 z-10"
+            whileHover={{ scale: 1.1 }}
+            whileTap={{ scale: 0.95 }}
           >
             <ChevronRight className="h-6 w-6" />
-          </button>
+          </motion.button>
 
           {/* Dots */}
           <div className="absolute bottom-4 left-1/2 -translate-x-1/2 flex gap-2 z-10">
             {services.map((_, index) => (
-              <button
+              <motion.button
                 key={index}
                 onClick={() => {
                   setDirection(index > currentIndex ? 1 : -1);
                   setCurrentIndex(index);
+                  setProgress(0);
                 }}
-                className={`h-2 w-2 rounded-full transition-all duration-200 ${
-                  index === currentIndex ? 'bg-yellow-400 w-8' : 'bg-white/50 hover:bg-white/70'
+                className={`h-2 rounded-full transition-all duration-200 ${
+                  index === currentIndex ? 'bg-yellow-400 w-8' : 'bg-white/50 hover:bg-white/70 w-2'
                 }`}
+                whileHover={{ scale: 1.2 }}
+                whileTap={{ scale: 0.9 }}
               />
             ))}
           </div>
