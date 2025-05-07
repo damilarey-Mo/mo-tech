@@ -1,30 +1,25 @@
 'use client';
 
-import { usePathname, useSearchParams } from 'next/navigation';
+import { usePathname } from 'next/navigation';
 import { useEffect } from 'react';
 import matomoInstance from '../lib/matomo';
 
-export function useMatomoTracking() {
+// Basic page view tracking without search params
+export function useMatomoPageView() {
   const pathname = usePathname();
-  const searchParams = useSearchParams();
 
-  // Skip tracking on 404 page
-  if (pathname === '/404' || pathname === '/_not-found') {
-    return;
-  }
-
-  // Track page views
   useEffect(() => {
     if (typeof window === 'undefined') return;
-
-    const url = pathname + (searchParams?.toString() ? `?${searchParams.toString()}` : '');
+    
     matomoInstance.trackPageView({
       documentTitle: document.title,
-      href: url,
+      href: pathname,
     });
-  }, [pathname, searchParams]);
+  }, [pathname]);
+}
 
-  // Track user interactions
+// User interaction tracking
+export function useMatomoInteractions() {
   useEffect(() => {
     if (typeof window === 'undefined') return;
 
@@ -121,4 +116,17 @@ export function useMatomoTracking() {
       clearInterval(timeInterval);
     };
   }, []);
+}
+
+// Main tracking hook that combines both
+export function useMatomoTracking() {
+  const pathname = usePathname();
+
+  // Skip tracking on 404 page
+  if (pathname === '/404' || pathname === '/_not-found') {
+    return;
+  }
+
+  useMatomoPageView();
+  useMatomoInteractions();
 } 

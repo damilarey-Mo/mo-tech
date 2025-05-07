@@ -1,14 +1,14 @@
 'use client';
 
 import { ReactNode, Suspense } from 'react';
-import { useMatomoTracking } from '@/app/hooks/useMatomo';
+import { useMatomoPageView } from '@/app/hooks/useMatomo';
 
 interface MatomoProviderProps {
   children: ReactNode;
 }
 
 function MatomoTracker() {
-  useMatomoTracking();
+  useMatomoPageView();
   return null;
 }
 
