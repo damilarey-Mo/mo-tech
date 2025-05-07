@@ -92,7 +92,7 @@ export default function HeroSection() {
                 <div className="absolute inset-0 bg-gradient-to-br from-yellow-400/20 to-amber-600/20 rounded-3xl transform rotate-6" />
                 <div className="absolute inset-0 bg-white/10 backdrop-blur-sm rounded-3xl shadow-2xl">
                   <img
-                    src="/images/service.jpg"
+                    src="/images/IT_generals.jpg"
                     alt="IT Solutions Illustration"
                     className="w-full h-full object-cover rounded-3xl"
                   />
