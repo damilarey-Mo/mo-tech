@@ -4,17 +4,21 @@ import { Inter } from "next/font/google";
 import { ThemeProvider } from "@/components/theme-provider";
 import Navbar from "./components/navbar";
 import Footer from "./components/footer";
+import MatomoAnalytics from "./components/analytics/matomo";
+import { MatomoProvider } from "./components/analytics/matomo-provider";
+import matomoInstance from './lib/matomo';
+import Script from 'next/script';
 
-const inter = Inter({ subsets: ["latin"], variable: "--font-inter" });
+const inter = Inter({ subsets: ["latin"] });
 
 export const metadata: Metadata = {
-  title: "TeaMo | Tech Support & Web Services in Lagos",
-  description: "TeaMo provides comprehensive IT support, web development, and tech solutions for businesses in Lagos, Nigeria. Trust in our community-driven tech company for expert service.",
+  title: "TeaMo - Leading IT Solutions Provider in Lagos",
+  description: "TeaMo is a premier IT solutions provider in Lagos, offering comprehensive technology services including web development, cybersecurity, and IT infrastructure management.",
   keywords: "Tech Support Lagos, IT Services Nigeria, Web Development Lagos, Website Management Lagos, Affordable Hosting Nigeria, Professional Workstation Setup Lagos",
   openGraph: {
     title: "TeaMo | Tech Support & Web Services in Lagos",
     description: "Comprehensive IT support, web development, and tech solutions for businesses in Lagos, Nigeria.",
-    url: "https://teamotech.com",
+    url: "https://teamo-five.vercel.app",
     siteName: "TeaMo IT/Tech Solutions",
     images: [
       {
@@ -44,7 +48,7 @@ export const metadata: Metadata = {
       "max-snippet": -1,
     },
   },
-  metadataBase: new URL("https://teamotech.com"),
+  metadataBase: new URL("https://teamo-five.vercel.app"),
   alternates: {
     canonical: "/",
   },
@@ -57,12 +61,47 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en" suppressHydrationWarning>
-      <body className={`${inter.variable} font-sans antialiased bg-gray-50 dark:bg-gray-900`}>
+      <head>
+        {/* Google Analytics */}
+        <Script
+          id="google-analytics"
+          strategy="afterInteractive"
+          dangerouslySetInnerHTML={{
+            __html: `
+              window.dataLayer = window.dataLayer || [];
+              function gtag(){dataLayer.push(arguments);}
+              gtag('js', new Date());
+              gtag('config', 'G-4CRW7T9ZFH', {
+                page_path: window.location.pathname,
+              });
+            `,
+          }}
+        />
+        <Script
+          id="google-analytics-script"
+          strategy="afterInteractive"
+          src="https://www.googletagmanager.com/gtag/js?id=G-4CRW7T9ZFH"
+        />
+        <noscript>
+          <p>
+            <img 
+              referrerPolicy="no-referrer-when-downgrade" 
+              src="https://teamo.matomo.cloud/matomo.php?idsite=1&rec=1" 
+              style={{ border: 0 }} 
+              alt="" 
+            />
+          </p>
+        </noscript>
+      </head>
+      <body className={`${inter.className} font-sans antialiased bg-gray-50 dark:bg-gray-900`}>
         <ThemeProvider>
           <div className="relative flex min-h-screen flex-col">
-            <Navbar />
-            <main className="flex-1 pt-16">{children}</main>
-            <Footer />
+            <MatomoProvider value={matomoInstance}>
+              <Navbar />
+              <main className="flex-1 pt-16">{children}</main>
+              <Footer />
+              <MatomoAnalytics />
+            </MatomoProvider>
           </div>
         </ThemeProvider>
       </body>
