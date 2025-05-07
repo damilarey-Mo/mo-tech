@@ -250,10 +250,10 @@ export default function TestimonialsSection() {
           >
             <h2 className="text-3xl font-bold text-white sm:text-4xl lg:text-5xl">
               What Our Clients Say
-            </h2>
+          </h2>
             <p className="mt-4 text-lg text-yellow-100">
               Trusted by businesses worldwide for reliable and innovative IT solutions
-            </p>
+          </p>
           </motion.div>
         </div>
 
@@ -278,7 +278,7 @@ export default function TestimonialsSection() {
               }}
               className="absolute w-full"
             >
-              <motion.div 
+              <motion.div
                 className="bg-white/10 backdrop-blur-sm rounded-2xl p-8 shadow-xl max-w-3xl mx-auto cursor-pointer"
                 whileHover={{ scale: 1.02 }}
                 transition={{ type: "spring", stiffness: 300, damping: 20 }}

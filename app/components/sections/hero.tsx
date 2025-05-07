@@ -25,7 +25,7 @@ export default function HeroSection() {
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pt-32 pb-20">
           <div className="grid lg:grid-cols-2 gap-12 items-center">
             {/* Left Column - Text Content */}
-            <motion.div
+      <motion.div 
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.8 }}
@@ -60,7 +60,7 @@ export default function HeroSection() {
               </div>
 
               {/* Features List */}
-              <motion.div
+          <motion.div 
                 initial={{ opacity: 0 }}
                 animate={{ opacity: 1 }}
                 transition={{ delay: 0.5, duration: 0.8 }}
@@ -76,13 +76,13 @@ export default function HeroSection() {
                   >
                     <CheckCircle className="h-5 w-5 text-yellow-400 mr-2 flex-shrink-0" />
                     <span>{feature}</span>
-                  </motion.div>
+              </motion.div>
                 ))}
               </motion.div>
-            </motion.div>
-
+          </motion.div>
+          
             {/* Right Column - Hero Image/Animation */}
-            <motion.div
+          <motion.div 
               initial={{ opacity: 0, scale: 0.9 }}
               animate={{ opacity: 1, scale: 1 }}
               transition={{ duration: 0.8 }}
@@ -102,7 +102,7 @@ export default function HeroSection() {
           </div>
 
           {/* Stats Section */}
-          <motion.div
+        <motion.div 
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ delay: 1, duration: 0.8 }}
@@ -114,7 +114,7 @@ export default function HeroSection() {
               { number: "24/7", label: "Support Available" },
               { number: "15+", label: "Years Experience" }
             ].map((stat, index) => (
-              <motion.div
+            <motion.div 
                 key={stat.label}
                 initial={{ opacity: 0, y: 20 }}
                 animate={{ opacity: 1, y: 0 }}
@@ -123,14 +123,14 @@ export default function HeroSection() {
               >
                 <div className="text-3xl font-bold text-yellow-400 mb-2">
                   {stat.number}
-                </div>
+                      </div>
                 <div className="text-yellow-100">
                   {stat.label}
-                </div>
+                  </div>
               </motion.div>
             ))}
-          </motion.div>
-        </div>
+            </motion.div>
+          </div>
 
         {/* Bottom Wave */}
         <div className="absolute bottom-0 left-0 right-0">
