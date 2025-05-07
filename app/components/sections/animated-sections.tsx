@@ -17,34 +17,55 @@ interface Service {
 
 interface AnimatedSectionsProps {
   stats: Stat[];
-  services: Service[];
+  services?: Service[];
 }
 
 export default function AnimatedSections({ stats, services }: AnimatedSectionsProps) {
+  const containerVariants = {
+    hidden: { opacity: 0 },
+    visible: {
+      opacity: 1,
+      transition: {
+        staggerChildren: 0.1
+      }
+    }
+  };
+
+  const itemVariants = {
+    hidden: { y: 20, opacity: 0 },
+    visible: {
+      y: 0,
+      opacity: 1,
+      transition: {
+        duration: 0.5
+      }
+    }
+  };
+
   return (
     <>
       {/* Stats section */}
       <div className="py-12 sm:py-16">
         <div className="mx-auto max-w-7xl px-6 lg:px-8">
           <div className="mx-auto max-w-2xl lg:max-w-none">
-            <div className="grid grid-cols-1 gap-y-8 gap-x-6 sm:grid-cols-2 lg:grid-cols-4">
+            <motion.div
+              className="grid gap-6 md:grid-cols-2 lg:grid-cols-4"
+              variants={containerVariants}
+              initial="hidden"
+              whileInView="visible"
+              viewport={{ once: true }}
+            >
               {stats.map((stat, index) => (
                 <motion.div
-                  key={stat.label}
-                  initial={{ opacity: 0, y: 20 }}
-                  animate={{ opacity: 1, y: 0 }}
-                  transition={{ duration: 0.5, delay: index * 0.1 }}
-                  className="text-center"
+                  key={index}
+                  className="flex flex-col items-center justify-center space-y-2 text-center"
+                  variants={itemVariants}
                 >
-                  <div className="text-3xl font-bold tracking-tight text-primary-600 dark:text-yellow-400">
-                    {stat.number}
-                  </div>
-                  <div className="mt-2 text-base text-gray-600 dark:text-gray-300">
-                    {stat.label}
-                  </div>
+                  <h3 className="text-4xl font-bold tracking-tighter">{stat.number}</h3>
+                  <p className="text-sm text-gray-500 dark:text-gray-400">{stat.label}</p>
                 </motion.div>
               ))}
-            </div>
+            </motion.div>
           </div>
         </div>
       </div>
@@ -62,7 +83,7 @@ export default function AnimatedSections({ stats, services }: AnimatedSectionsPr
           </div>
           <div className="mx-auto mt-16 max-w-2xl sm:mt-20 lg:mt-24 lg:max-w-none">
             <dl className="grid max-w-xl grid-cols-1 gap-x-8 gap-y-16 lg:max-w-none lg:grid-cols-3">
-              {services.map((service) => (
+              {services?.map((service) => (
                 <motion.div
                   key={service.title}
                   initial={{ opacity: 0, y: 20 }}

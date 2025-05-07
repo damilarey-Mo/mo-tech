@@ -1,9 +1,9 @@
 import React from 'react';
 import Image from "next/image";
-import { Shield, Code, Smartphone, Cloud, Server, Laptop } from 'lucide-react';
 import CTASection from "@/app/components/sections/cta";
 import ServiceCarousel from '../components/sections/service-carousel';
 import AnimatedSections from '../components/sections/animated-sections';
+import ServicesSection from '../components/sections/services-section';
 import { Metadata } from 'next';
 
 export const metadata: Metadata = {
@@ -27,39 +27,6 @@ const team = [
     role: "Lead Developer",
     image: "https://placehold.co/400x400/1a1a1a/ffffff?text=MC",
   },
-];
-
-const services = [
-  {
-    icon: Shield,
-    title: "Cybersecurity Solutions",
-    description: "Enterprise-grade security protocols and 24/7 monitoring to protect your digital assets."
-  },
-  {
-    icon: Code,
-    title: "Web Development",
-    description: "Custom web applications and e-commerce solutions built with cutting-edge technologies."
-  },
-  {
-    icon: Smartphone,
-    title: "Mobile App Development",
-    description: "Native and cross-platform mobile applications that deliver exceptional user experiences."
-  },
-  {
-    icon: Cloud,
-    title: "Cloud Services",
-    description: "Secure cloud infrastructure and migration services for scalable business operations."
-  },
-  {
-    icon: Server,
-    title: "IT Infrastructure",
-    description: "Comprehensive IT infrastructure setup and management for optimal performance."
-  },
-  {
-    icon: Laptop,
-    title: "Hardware Services",
-    description: "Expert diagnostics, repair, and maintenance for all your business hardware needs."
-  }
 ];
 
 const stats = [
@@ -144,8 +111,11 @@ export default function AboutPage() {
         </div>
       </section>
 
-      {/* Animated Sections */}
-      <AnimatedSections stats={stats} services={services} />
+      {/* Stats Section */}
+      <AnimatedSections stats={stats} />
+
+      {/* Services Section */}
+      <ServicesSection />
 
       <CTASection />
     </main>
