@@ -60,16 +60,32 @@ export default function RootLayout({
   return (
     <html lang="en" suppressHydrationWarning>
       <head>
-        <Script id="matomo-tag-manager" strategy="beforeInteractive">
+        <Script id="matomo" strategy="beforeInteractive">
           {`
-            var _mtm = window._mtm = window._mtm || [];
-            _mtm.push({'mtm.startTime': (new Date().getTime()), 'event': 'mtm.Start'});
+            var _paq = window._paq = window._paq || [];
+            _paq.push(["setCookieDomain", "*.teamo-five.vercel.app"]);
+            _paq.push(["setDoNotTrack", true]);
+            _paq.push(['trackPageView']);
+            _paq.push(['enableLinkTracking']);
             (function() {
+              var u="https://teamo.matomo.cloud/";
+              _paq.push(['setTrackerUrl', u+'matomo.php']);
+              _paq.push(['setSiteId', '1']);
               var d=document, g=d.createElement('script'), s=d.getElementsByTagName('script')[0];
-              g.async=true; g.src='https://cdn.matomo.cloud/teamo.matomo.cloud/container_S0sonybd.js'; s.parentNode.insertBefore(g,s);
+              g.async=true; g.src='https://cdn.matomo.cloud/teamo.matomo.cloud/matomo.js'; s.parentNode.insertBefore(g,s);
             })();
           `}
         </Script>
+        <noscript>
+          <p>
+            <img 
+              referrerPolicy="no-referrer-when-downgrade" 
+              src="https://teamo.matomo.cloud/matomo.php?idsite=1&rec=1" 
+              style={{ border: 0 }} 
+              alt="" 
+            />
+          </p>
+        </noscript>
       </head>
       <body className={`${inter.className} font-sans antialiased bg-gray-50 dark:bg-gray-900`}>
         <ThemeProvider>
