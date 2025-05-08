@@ -18,13 +18,23 @@ const team = [
     image: "https://placehold.co/400x400/1a1a1a/ffffff?text=DM",
   },
   {
-    name: "Sarah Johnson",
-    role: "CTO",
+    name: "Chris Obi",
+    role: "Technical Lead",
     image: "https://placehold.co/400x400/1a1a1a/ffffff?text=SJ",
   },
   {
-    name: "Michael Chen",
-    role: "Lead Developer",
+    name: "Angela Okafor",
+    role: "UI/UX Lead",
+    image: "https://placehold.co/400x400/1a1a1a/ffffff?text=AO",
+  },
+  {
+    name: "Ahmad Faraz",
+    role: "Cybersecurity Lead",
+    image: "https://placehold.co/400x400/1a1a1a/ffffff?text=SJ",
+  },
+  {
+    name: "Olamilekan Adisa",
+    role: "Lead Software Developer",
     image: "https://placehold.co/400x400/1a1a1a/ffffff?text=MC",
   },
 ];
