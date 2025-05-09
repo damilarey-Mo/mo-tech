@@ -1,22 +1,64 @@
 "use client";
 
-import React from 'react';
-import { motion } from 'framer-motion';
+import React, { useState, useEffect } from 'react';
+import { motion, AnimatePresence } from 'framer-motion';
 import Link from 'next/link';
-import { ArrowRight, CheckCircle } from 'lucide-react';
+import { ArrowRight, CheckCircle, ChevronLeft, ChevronRight } from 'lucide-react';
 
 const features = [
   "24/7 IT Support & Monitoring",
-  "Mobile App & Web Development",
-  "Cybersecurity Solutions",
-  "Gadget Sales and Repairs"
+  "Fasted Service Delivery",
+  "Free System/GadgetDiagnostics",
+  "Flexible Pickup and delivery",
+  "Team of Experienced and Certified Professionals",
+  "Sourcing Top-Quality Gadgets at the Best Prices"
 ];
 
 export default function HeroSection() {
+  const [currentImage, setCurrentImage] = useState(0);
+  const images = [
+    {
+      src: "/images/IT_generals.jpg",
+      alt: "IT Solutions"
+    },
+    {
+      src: "/images/webapp.png",
+      alt: "Modern Gadgets"
+    },
+    {
+      src: "/images/Hardware.jpg",
+      alt: "Hardware Solutions"
+    },
+    {
+      src: "/images/hardwares.jpg",
+      alt: "IT Services"
+    },
+    {
+      src: "/images/cybersec.png",
+      alt: "IT Services"
+    }
+  ];
+
+  useEffect(() => {
+    const timer = setInterval(() => {
+      setCurrentImage((prev) => (prev + 1) % images.length);
+    }, 5000); // Change image every 5 seconds
+
+    return () => clearInterval(timer);
+  }, [images.length]);
+
+  const nextImage = () => {
+    setCurrentImage((prev) => (prev + 1) % images.length);
+  };
+
+  const prevImage = () => {
+    setCurrentImage((prev) => (prev - 1 + images.length) % images.length);
+  };
+
   return (
     <div className="relative min-h-screen">
       {/* Background with overlay */}
-      <div className="absolute inset-0 bg-[url('/images/hero-bg.jpg')] bg-cover bg-center">
+      <div className="absolute inset-0 bg-[url('/images/')] bg-cover bg-center">
         <div className="absolute inset-0 bg-gradient-to-br from-black/95 via-black/90 to-black/95" />
       </div>
 
@@ -35,8 +77,8 @@ export default function HeroSection() {
                 Leading IT Solutions in Lagos
               </div>
               <h1 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold text-white mb-4 sm:mb-6 leading-tight">
-                Empowering Your Business Through{' '}
-                <span className="text-yellow-400">Technology</span>
+                Empowering Your Business with{' '}
+                <span className="text-yellow-400">Modern Technology</span>
               </h1>
               <p className="text-base sm:text-lg text-yellow-100 mb-6 sm:mb-8 max-w-2xl mx-auto lg:mx-0">
                 Transform your business with our comprehensive IT solutions. From 24/7 support to advanced cybersecurity, we're your trusted technology partner in Lagos.
@@ -82,7 +124,7 @@ export default function HeroSection() {
           </motion.div>
           
             {/* Right Column - Hero Image/Animation */}
-          <motion.div 
+            <motion.div 
               initial={{ opacity: 0, scale: 0.9 }}
               animate={{ opacity: 1, scale: 1 }}
               transition={{ duration: 0.8 }}
@@ -90,12 +132,52 @@ export default function HeroSection() {
             >
               <div className="relative w-full h-[600px]">
                 <div className="absolute inset-0 bg-gradient-to-br from-yellow-400/20 to-amber-600/20 rounded-3xl transform rotate-6" />
-                <div className="absolute inset-0 bg-white/10 backdrop-blur-sm rounded-3xl shadow-2xl">
-                  <img
-                    src="/images/IT_generals.jpg"
-                    alt="IT Solutions Illustration"
-                    className="w-full h-full object-cover rounded-3xl"
+                <div className="absolute inset-0 bg-white/10 backdrop-blur-sm rounded-3xl shadow-2xl overflow-hidden">
+                  <div className="relative w-full h-full">
+                    <AnimatePresence mode="wait">
+          <motion.div 
+                        key={currentImage}
+                        className="absolute inset-0"
+                        initial={{ opacity: 0, x: 100 }}
+                        animate={{ opacity: 1, x: 0 }}
+                        exit={{ opacity: 0, x: -100 }}
+                        transition={{ duration: 0.5 }}
+                      >
+                        <img
+                          src={images[currentImage].src}
+                          alt={images[currentImage].alt}
+                          className="w-full h-full object-cover"
+                        />
+                      </motion.div>
+                    </AnimatePresence>
+
+                    {/* Carousel Controls */}
+                    <div className="absolute inset-x-0 bottom-4 flex justify-center gap-2">
+                      {images.map((_, index) => (
+                        <button
+                    key={index}
+                          onClick={() => setCurrentImage(index)}
+                          className={`w-2 h-2 rounded-full transition-all duration-300 ${
+                            currentImage === index ? 'bg-yellow-400 w-4' : 'bg-white/50'
+                          }`}
                   />
+                ))}
+              </div>
+
+                    {/* Navigation Buttons */}
+                    <button
+                      onClick={prevImage}
+                      className="absolute left-4 top-1/2 -translate-y-1/2 p-2 rounded-full bg-black/20 hover:bg-black/40 text-white transition-colors"
+                    >
+                      <ChevronLeft className="w-6 h-6" />
+                    </button>
+                    <button
+                      onClick={nextImage}
+                      className="absolute right-4 top-1/2 -translate-y-1/2 p-2 rounded-full bg-black/20 hover:bg-black/40 text-white transition-colors"
+                    >
+                      <ChevronRight className="w-6 h-6" />
+                    </button>
+                  </div>
                 </div>
               </div>
             </motion.div>

@@ -13,7 +13,7 @@ const services = [
     title: "Cybersecurity Solutions",
     description: "Protect your business with enterprise-grade security protocols and 24/7 monitoring. Our comprehensive cybersecurity solutions include threat detection, vulnerability assessment, and real-time protection against evolving digital threats.",
     icon: Shield,
-    image: "https://placehold.co/1920x1080/1a1a1a/ffffff?text=Cybersecurity+Solutions",
+    image: "/images/cybersec.png",
     features: [
       "Real-time threat monitoring",
       "Advanced firewall protection",
@@ -27,7 +27,7 @@ const services = [
     title: "Web Development",
     description: "Transform your online presence with custom web applications and e-commerce solutions. We build scalable, secure, and high-performance websites that drive business growth and enhance user engagement.",
     icon: Code,
-    image: "https://placehold.co/1920x1080/1a1a1a/ffffff?text=Web+Development",
+    image: "/images/webapp.png",
     features: [
       "Custom web applications",
       "E-commerce solutions",
@@ -41,7 +41,7 @@ const services = [
     title: "Mobile App Development",
     description: "Reach your customers anywhere with native and cross-platform mobile applications. Our expert developers create intuitive, feature-rich apps that deliver exceptional user experiences across all devices.",
     icon: Smartphone,
-    image: "https://placehold.co/1920x1080/1a1a1a/ffffff?text=Mobile+App+Development",
+    image: "/images/gadgets.jpg",
     features: [
       "iOS & Android development",
       "Cross-platform solutions",
@@ -55,7 +55,7 @@ const services = [
     title: "Hardware Services",
     description: "Keep your business running smoothly with our comprehensive hardware services. From diagnostics to repairs, we provide expert solutions for all your business hardware needs with guaranteed quality service.",
     icon: Laptop,
-    image: "https://placehold.co/1920x1080/1a1a1a/ffffff?text=Hardware+Services",
+    image: "/images/Hardware.jpg",
     features: [
       "Hardware diagnostics",
       "Repair & maintenance",

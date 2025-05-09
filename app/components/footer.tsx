@@ -89,8 +89,7 @@ export default function Footer() {
               <span className="text-2xl font-bold text-primary-600 dark:text-yellow-400">Teamo</span>
             </Link>
             <p className="mt-4 text-sm text-gray-600 dark:text-yellow-400/80 max-w-md">
-              Streamline your workflow and boost productivity with our comprehensive 
-              platform designed for modern teams.
+            Your trusted tech partner, offering 24/7 IT support, free diagnostics, flexible pickup & delivery, and affordable high-quality gadgets—all with reliable, customer-first service..
             </p>
           </div>
           

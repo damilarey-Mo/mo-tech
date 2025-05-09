@@ -7,7 +7,7 @@ import Link from "next/link";
 const projects = [
   {
     id: 1,
-    title: "Lagos Retail E-Commerce Platform",
+    title: "Retail E-Commerce Platform",
     category: "Web Development",
     description: "A fully responsive e-commerce solution with integrated payment systems for a leading Lagos retailer.",
     imageSrc: "/images/projects/ecommerce-project.jpg",
@@ -25,9 +25,9 @@ const projects = [
   },
   {
     id: 3,
-    title: "Healthcare Appointment System",
+    title: "Cyber Security Solutions WebApp",
     category: "Web Application",
-    description: "Custom appointment scheduling system for a Lagos medical clinic, reducing wait times by 45%.",
+    description: "Enterprise-grade All in One cybersecurity Suite with 30+ tools",
     imageSrc: "/images/projects/healthcare-project.jpg",
     tags: ["Web App", "Healthcare", "UX Design"],
     link: "#"

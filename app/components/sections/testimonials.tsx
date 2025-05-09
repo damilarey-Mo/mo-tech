@@ -34,15 +34,15 @@ const testimonials = [
     name: "Dr. Lisa Mueller",
     role: "Chief of Medicine, SwissCare Clinic",
     country: "Switzerland",
-    image: "/images/testimonials/premium_photo-1682437845919-2f07f880d07b.avif",
+    image: "/images/testimonials/reola.png",
     content: "TeaMo's cloud migration service was exactly what our medical practice needed. They handled all our compliance requirements and made sure our patient data remained secure throughout the transition. The whole process was smoother than I could have imagined.",
     service: "Cloud Services"
   },
   {
     name: "Casandra Thibela",
-    role: "Founder, EduTech Innovations",
-    country: "United States",
-    image: "/images/testimonials/clasandrathibela.jpg",
+    role: "Founder, Customer Konnect",
+    country: "South Africa",
+    image: "/images/testimonials/Casandra.avif",
     content: "I reached out to TeaMo when our remote work setup was a mess. They revamped our entire system, set up proper VPNs, and created a secure but user-friendly environment. Now our team of 50+ can work from anywhere without any hiccups. Game changer!",
     service: "Remote Work Solutions"
   },
@@ -56,7 +56,7 @@ const testimonials = [
   },
   {
     name: "Marcus Svensson",
-    role: "IT Director, Nordic Retail Solutions",
+    role: "Manager, Nordic Logistics",
     country: "Sweden",
     image: "/images/testimonials/Marcus.jpg",
     content: "The disaster recovery plan TeaMo developed for us was put to the test during a major power outage. Their system worked flawlessly - we were back up and running in minutes, not hours. Our board was incredibly impressed with the minimal downtime.",
@@ -74,7 +74,7 @@ const testimonials = [
     name: "Maria Rodriguez",
     role: "COO, Digital Marketing Agency",
     country: "Spain",
-    image: "/images/testimonials/Maria.jpg",
+    image: "/images/testimonials/Maria.avif",
     content: "TeaMo's network security implementation was thorough and professional. They found vulnerabilities we didn't even know existed and fixed them all. Now I sleep better knowing our client data is properly protected.",
     service: "Network Security"
   },
@@ -82,87 +82,87 @@ const testimonials = [
     name: "Ahmed Hassan",
     role: "Managing Director, Tech Distribution Ltd",
     country: "UAE",
-    image: "/images/testimonials/ahmed.jpg",
+    image: "/images/testimonials/ahmed.avif",
     content: "The hardware procurement and management service from TeaMo has been exceptional. They handled everything from selection to installation and maintenance. Their team's knowledge of both local and international markets is impressive.",
     service: "Hardware Management"
   },
   {
     name: "Chioma Okonkwo",
-    role: "CEO, TechRepair Solutions",
+    role: "HR, Savanah Logistics",
     country: "Nigeria",
-    image: "/images/testimonials/dorrell-tibbs-HSY1UqOyN5k-unsplash.jpg",
+    image: "/images/testimonials/Chioma.jpg",
     content: "TeaMo's hardware diagnostic service is unmatched in Lagos. They quickly identified and fixed complex motherboard issues that other repair shops couldn't handle. Their technicians are highly skilled and their diagnostic tools are state-of-the-art. They saved us from having to replace expensive equipment!",
     service: "Hardware Diagnostics"
   },
   {
-    name: "Babajide Adeleke",
-    role: "Owner, GadgetCare Plus",
+    name: "Maria Adeleke",
+    role: " Gadget Plus",
     country: "Nigeria",
-    image: "/images/testimonials/joseph-okon-d-W7HGzGYpA-unsplash.jpg",
-    content: "As a gadget repair business owner, I've dealt with many service providers, but TeaMo stands out. Their hardware repair service is exceptional - quick turnaround times, genuine parts, and excellent customer service. They've become our go-to partner for complex repairs.",
+    image: "/images/testimonials/Maria .jpg",
+    content: "As a gadget business owner, I've dealt with many service providers, but TeaMo stands out. Their hardware repair service is exceptional - quick turnaround times, genuine parts, and excellent customer service. They've become our go-to partner for complex repairs.",
     service: "Hardware Repair"
   },
   {
     name: "Folake Adeyemi",
-    role: "Director, SmartFix Nigeria",
+    role: "Manager, Apple-Plus Nigeria",
     country: "Nigeria",
-    image: "/images/testimonials/premium_photo-1661868397660-8c52f33c5934.avif",
+    image: "/images/testimonials/clasandrathibela.jpg",
     content: "TeaMo has revolutionized our gadget service center. Their diagnostic tools and repair techniques have helped us handle repairs more efficiently. The training they provided to our staff was comprehensive and practical. Our customer satisfaction has improved significantly!",
     service: "Gadget Service"
   },
   {
     name: "Sophie Laurent",
-    role: "CTO, FinTech Innovations",
+    role: "PM, FinTech Innovations",
     country: "France",
-    image: "/images/testimonials/premium_photo-1682125667183-d36beea3c85d.avif",
+    image: "/images/testimonials/Sophie.avif",
     content: "TeaMo developed our mobile banking app from scratch, and the results exceeded our expectations. The app's performance, security features, and user interface are exactly what we needed. They understood our vision and delivered a product that our customers love.",
     service: "App Development"
   },
   {
-    name: "David Chen",
-    role: "Founder, AsiaConnect Tech",
+    name: "David Cheng",
+    role: "Founder, ChengaConnect Tech",
     country: "Singapore",
-    image: "/images/testimonials/photo-1566165335512-bb5ba58365b4.avif",
+    image: "/images/testimonials/Cheng.avif",
     content: "We partnered with TeaMo for our e-commerce platform development. Their expertise in both web and mobile development helped us create a seamless shopping experience. The integration with local payment systems was smooth, and the platform's performance is outstanding.",
     service: "Web Development"
   },
   {
-    name: "Emily Thompson",
-    role: "Product Manager, CanadaTech Solutions",
+    name: "Aubrey Thompson",
+    role: "Product Manager, Cerox Finance Solutions",
     country: "Canada",
-    image: "/images/testimonials/premium_photo-1661715433477-7b48c4e5f013.avif",
+    image: "/images/testimonials/harps-joseph.jpg",
     content: "TeaMo's web development team built our company's customer portal from the ground up. The attention to detail, responsive design, and robust backend implementation have made it a valuable tool for our business. Their ongoing support has been exceptional.",
     service: "Web Development"
   },
   {
-    name: "Hiroshi Tanaka",
-    role: "CEO, JapanTech Ventures",
+    name: "Hanah Tanaka",
+    role: "CEO, SwapCard",
     country: "Japan",
-    image: "/images/testimonials/vector-1744084582070-cf0561eb1fb3.avif",
+    image: "/images/testimonials/Tanaka.jpg",
     content: "Our mobile app project with TeaMo was a great success. They understood our unique market requirements and delivered a highly polished app that resonates with Japanese users. Their development process was transparent and efficient.",
     service: "App Development"
   },
   {
     name: "Isabella Romano",
-    role: "Director, EuroTech Startups",
+    role: "Director, Lima Startups",
     country: "Italy",
-    image: "/images/testimonials/premium_photo-1682430330601-ca5238249297.avif",
+    image: "/images/testimonials/isabel.jpg",
     content: "TeaMo developed our startup's MVP in record time. The web application they built is scalable, secure, and user-friendly. Their team's expertise in modern web technologies and agile development practices made the entire process smooth.",
     service: "Web Development"
   },
   {
     name: "Kunle Adebiyi",
-    role: "Manager, Lagos Device Hub",
+    role: "Manager, Gadget Affairs",
     country: "Nigeria",
-    image: "/images/testimonials/oluwaferanmi-caleb-Q1QRTSeZIxI-unsplash.jpg",
+    image: "/images/testimonials/kunle.jpg",
     content: "TeaMo's gadget repair service has been a game-changer for our business. Their quick diagnostics and reliable repairs have helped us maintain our reputation for quality service. The warranty they provide on repairs gives our customers extra confidence.",
     service: "Gadget Service"
   },
   {
-    name: "Michael Roberts",
-    role: "Founder, US Digital Solutions",
+    name: "Michael Jabril",
+    role: "Manager, Hamilton Hotel",
     country: "United States",
-    image: "/images/testimonials/chad-madden-f4xCFAU6ZNw-unsplash.jpg",
+    image: "/images/testimonials/jurica-koletic.jpg",
     content: "Working with TeaMo on our enterprise web application was a fantastic experience. Their development team's technical expertise and problem-solving skills helped us create a powerful platform that serves thousands of users daily.",
     service: "Web Development"
   }

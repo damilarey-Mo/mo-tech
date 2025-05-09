@@ -28,12 +28,12 @@ const services = [
   {
     icon: Server,
     title: "IT Infrastructure",
-    description: "Comprehensive IT infrastructure setup and management for optimal performance."
+    description: "Comprehensive IT infrastructure setup, Installation of private Internet Service Providers, and management for optimal performance."
   },
   {
     icon: Laptop,
     title: "Hardware Services",
-    description: "Expert diagnostics, repair, and maintenance for all your business hardware needs."
+    description: "Expert diagnostics, repair, and maintenance for all your business and personal hardware needs."
   }
 ];
 
