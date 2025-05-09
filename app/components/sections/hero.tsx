@@ -5,14 +5,7 @@ import { motion, AnimatePresence } from 'framer-motion';
 import Link from 'next/link';
 import { ArrowRight, CheckCircle, ChevronLeft, ChevronRight } from 'lucide-react';
 
-const features = [
-  "24/7 IT Support & Monitoring",
-  "Fasted Service Delivery",
-  "Free System/GadgetDiagnostics",
-  "Flexible Pickup and delivery",
-  "Team of Experienced and Certified Professionals",
-  "Sourcing Top-Quality Gadgets at the Best Prices"
-];
+
 
 export default function HeroSection() {
   const [currentImage, setCurrentImage] = useState(0);
@@ -102,25 +95,7 @@ export default function HeroSection() {
               </div>
 
               {/* Features List */}
-          <motion.div 
-                initial={{ opacity: 0 }}
-                animate={{ opacity: 1 }}
-                transition={{ delay: 0.5, duration: 0.8 }}
-                className="mt-12 grid grid-cols-2 gap-4"
-              >
-                {features.map((feature, index) => (
-                  <motion.div
-                    key={feature}
-                    initial={{ opacity: 0, x: -20 }}
-                    animate={{ opacity: 1, x: 0 }}
-                    transition={{ delay: 0.7 + index * 0.1 }}
-                    className="flex items-center text-yellow-100"
-                  >
-                    <CheckCircle className="h-5 w-5 text-yellow-400 mr-2 flex-shrink-0" />
-                    <span>{feature}</span>
-              </motion.div>
-                ))}
-              </motion.div>
+          
           </motion.div>
           
             {/* Right Column - Hero Image/Animation */}

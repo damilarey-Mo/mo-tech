@@ -13,7 +13,7 @@ const services = [
     title: "Cybersecurity Solutions",
     description: "Protect your business with enterprise-grade security protocols and 24/7 monitoring. Our comprehensive cybersecurity solutions include threat detection, vulnerability assessment, and real-time protection against evolving digital threats.",
     icon: Shield,
-    image: "/images/cybersec.png",
+    image: "/images/projects/Mosecure.png",
     features: [
       "Real-time threat monitoring",
       "Advanced firewall protection",
@@ -27,7 +27,7 @@ const services = [
     title: "Web Development",
     description: "Transform your online presence with custom web applications and e-commerce solutions. We build scalable, secure, and high-performance websites that drive business growth and enhance user engagement.",
     icon: Code,
-    image: "/images/webapp.png",
+    image: "/images/projects/ecommerce.jpg",
     features: [
       "Custom web applications",
       "E-commerce solutions",
@@ -41,7 +41,7 @@ const services = [
     title: "Mobile App Development",
     description: "Reach your customers anywhere with native and cross-platform mobile applications. Our expert developers create intuitive, feature-rich apps that deliver exceptional user experiences across all devices.",
     icon: Smartphone,
-    image: "/images/gadgets.jpg",
+    image: "/images/projects/Mosecure.png",
     features: [
       "iOS & Android development",
       "Cross-platform solutions",
@@ -55,7 +55,7 @@ const services = [
     title: "Hardware Services",
     description: "Keep your business running smoothly with our comprehensive hardware services. From diagnostics to repairs, we provide expert solutions for all your business hardware needs with guaranteed quality service.",
     icon: Laptop,
-    image: "/images/Hardware.jpg",
+    image: "/images/projects/ecommerce.jpg",
     features: [
       "Hardware diagnostics",
       "Repair & maintenance",
@@ -151,9 +151,9 @@ export default function ServiceCarousel() {
   }
 
   return (
-    <section className="py-16 sm:py-24 bg-gradient-to-b from-gray-50 to-white dark:from-gray-800/50 dark:to-gray-900">
-      <div className="mx-auto max-w-7xl px-6 lg:px-8">
-        <div className="mx-auto max-w-2xl text-center mb-16">
+    <section className="py-12 sm:py-16 bg-gradient-to-b from-gray-50 to-white dark:from-gray-800/50 dark:to-gray-900">
+      <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+        <div className="mx-auto max-w-2xl text-center mb-12 sm:mb-16">
           <motion.h2 
             className="text-3xl font-bold tracking-tight text-gray-900 dark:text-white sm:text-4xl"
             initial={{ opacity: 0, y: 20 }}
@@ -163,7 +163,7 @@ export default function ServiceCarousel() {
             Our Core Services
           </motion.h2>
           <motion.p 
-            className="mt-6 text-lg leading-8 text-gray-600 dark:text-gray-300"
+            className="mt-4 text-base sm:text-lg leading-7 text-gray-600 dark:text-gray-300"
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.5, delay: 0.2 }}
@@ -173,7 +173,7 @@ export default function ServiceCarousel() {
         </div>
 
         <div 
-          className="relative h-[600px] overflow-hidden rounded-3xl shadow-2xl"
+          className="relative h-[500px] sm:h-[600px] overflow-hidden rounded-2xl sm:rounded-3xl shadow-xl"
           onMouseEnter={() => setIsAutoPlaying(false)}
           onMouseLeave={() => setIsAutoPlaying(true)}
           onTouchStart={handleTouchStart}
@@ -216,29 +216,29 @@ export default function ServiceCarousel() {
                 />
                 <div className="absolute inset-0 bg-gradient-to-r from-black/90 via-black/70 to-black/50" />
                 <div className="absolute inset-0 flex items-center">
-                  <div className="mx-auto max-w-7xl px-6 lg:px-8">
+                  <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
                     <motion.div 
                       className="max-w-2xl"
                       initial={{ opacity: 0, y: 20 }}
                       animate={{ opacity: 1, y: 0 }}
                       transition={{ duration: 0.5, delay: 0.3 }}
                     >
-                      <div className="flex items-center gap-4 mb-6">
+                      <div className="flex items-center gap-3 sm:gap-4 mb-4 sm:mb-6">
                         <motion.div 
                           className="p-2 rounded-lg bg-yellow-400/10"
                           whileHover={{ scale: 1.1 }}
                           whileTap={{ scale: 0.95 }}
                         >
-                          <IconComponent className="h-8 w-8 text-yellow-400" />
+                          <IconComponent className="h-6 w-6 sm:h-8 sm:w-8 text-yellow-400" />
                         </motion.div>
-                        <h3 className="text-3xl font-bold tracking-tight text-white">
+                        <h3 className="text-2xl sm:text-3xl font-bold tracking-tight text-white">
                           {services[currentIndex].title}
                         </h3>
                       </div>
-                      <p className="mt-4 text-lg text-gray-200">
+                      <p className="mt-3 sm:mt-4 text-base sm:text-lg text-gray-200">
                         {services[currentIndex].description}
                       </p>
-                      <ul className="mt-8 grid grid-cols-1 gap-4 sm:grid-cols-2">
+                      <ul className="mt-6 sm:mt-8 grid grid-cols-1 gap-3 sm:gap-4 sm:grid-cols-2">
                         {services[currentIndex].features.map((feature, index) => (
                           <motion.li 
                             key={feature} 
@@ -249,24 +249,24 @@ export default function ServiceCarousel() {
                             whileHover={{ x: 5 }}
                           >
                             <div className="h-1.5 w-1.5 rounded-full bg-yellow-400 group-hover:scale-150 transition-transform duration-200" />
-                            {feature}
+                            <span className="text-sm sm:text-base">{feature}</span>
                           </motion.li>
                         ))}
                       </ul>
                       <motion.div 
-                        className="mt-8"
+                        className="mt-6 sm:mt-8"
                         initial={{ opacity: 0, y: 20 }}
                         animate={{ opacity: 1, y: 0 }}
                         transition={{ duration: 0.5, delay: 0.5 }}
                       >
                         <motion.a
                           href="#contact"
-                          className="inline-flex items-center rounded-lg bg-yellow-400 px-6 py-3 text-base font-semibold text-gray-900 hover:bg-yellow-500 transition-all duration-200"
+                          className="inline-flex items-center rounded-lg bg-yellow-400 px-6 py-3 text-sm sm:text-base font-semibold text-gray-900 hover:bg-yellow-500 transition-all duration-200"
                           whileHover={{ scale: 1.05 }}
                           whileTap={{ scale: 0.95 }}
                         >
                           {services[currentIndex].cta}
-                          <ChevronRight className="ml-2 h-5 w-5" />
+                          <ChevronRight className="ml-2 h-4 w-4 sm:h-5 sm:w-5" />
                         </motion.a>
                       </motion.div>
                     </motion.div>
@@ -276,26 +276,46 @@ export default function ServiceCarousel() {
             </motion.div>
           </AnimatePresence>
 
-          {/* Navigation Buttons */}
-          <motion.button
-            onClick={prevSlide}
-            className="absolute left-4 top-1/2 -translate-y-1/2 rounded-full bg-black/50 p-3 text-white hover:bg-black/70 transition-all duration-200 z-10"
-            whileHover={{ scale: 1.1 }}
-            whileTap={{ scale: 0.95 }}
-          >
-            <ChevronLeft className="h-6 w-6" />
-          </motion.button>
-          <motion.button
-            onClick={nextSlide}
-            className="absolute right-4 top-1/2 -translate-y-1/2 rounded-full bg-black/50 p-3 text-white hover:bg-black/70 transition-all duration-200 z-10"
-            whileHover={{ scale: 1.1 }}
-            whileTap={{ scale: 0.95 }}
-          >
-            <ChevronRight className="h-6 w-6" />
-          </motion.button>
+          {/* Mobile Navigation Buttons */}
+          <div className="absolute inset-x-0 bottom-4 flex justify-center gap-2 sm:hidden">
+            {services.map((_, index) => (
+              <motion.button
+                key={index}
+                onClick={() => {
+                  setDirection(index > currentIndex ? 1 : -1);
+                  setCurrentIndex(index);
+                  setProgress(0);
+                }}
+                className={`h-2 rounded-full transition-all duration-200 ${
+                  index === currentIndex ? 'bg-yellow-400 w-8' : 'bg-white/50 w-2'
+                }`}
+                whileTap={{ scale: 0.9 }}
+              />
+            ))}
+          </div>
 
-          {/* Dots */}
-          <div className="absolute bottom-4 left-1/2 -translate-x-1/2 flex gap-2 z-10">
+          {/* Desktop Navigation Buttons */}
+          <div className="absolute inset-y-0 left-0 right-0 hidden sm:flex items-center justify-between px-4">
+            <motion.button
+              onClick={prevSlide}
+              className="rounded-full bg-black/50 p-3 text-white hover:bg-black/70 transition-all duration-200 z-10"
+              whileHover={{ scale: 1.1 }}
+              whileTap={{ scale: 0.95 }}
+            >
+              <ChevronLeft className="h-6 w-6" />
+            </motion.button>
+            <motion.button
+              onClick={nextSlide}
+              className="rounded-full bg-black/50 p-3 text-white hover:bg-black/70 transition-all duration-200 z-10"
+              whileHover={{ scale: 1.1 }}
+              whileTap={{ scale: 0.95 }}
+            >
+              <ChevronRight className="h-6 w-6" />
+            </motion.button>
+          </div>
+
+          {/* Desktop Dots */}
+          <div className="absolute bottom-6 left-1/2 -translate-x-1/2 hidden sm:flex gap-2 z-10">
             {services.map((_, index) => (
               <motion.button
                 key={index}

@@ -172,11 +172,30 @@ export default function TestimonialsSection() {
   const [currentIndex, setCurrentIndex] = useState(0);
   const [direction, setDirection] = useState(1);
   const [isPaused, setIsPaused] = useState(false);
+  const [touchStart, setTouchStart] = useState(0);
+  const [touchEnd, setTouchEnd] = useState(0);
+  const [isDragging, setIsDragging] = useState(false);
+  const [isMobile, setIsMobile] = useState(false);
+
+  // Add window resize listener to detect mobile view
+  useEffect(() => {
+    const checkMobile = () => {
+      setIsMobile(window.innerWidth < 640);
+    };
+    
+    checkMobile();
+    window.addEventListener('resize', checkMobile);
+    
+    return () => window.removeEventListener('resize', checkMobile);
+  }, []);
 
   const goToNext = () => {
     if (currentIndex < testimonials.length - 1) {
       setDirection(1);
       setCurrentIndex(currentIndex + 1);
+    } else {
+      setDirection(1);
+      setCurrentIndex(0);
     }
   };
 
@@ -184,83 +203,117 @@ export default function TestimonialsSection() {
     if (currentIndex > 0) {
       setDirection(-1);
       setCurrentIndex(currentIndex - 1);
+    } else {
+      setDirection(-1);
+      setCurrentIndex(testimonials.length - 1);
     }
   };
 
-  const goToRandom = () => {
-    let newIndex;
-    do {
-      newIndex = Math.floor(Math.random() * testimonials.length);
-    } while (newIndex === currentIndex);
-    
-    setDirection(newIndex > currentIndex ? 1 : -1);
-    setCurrentIndex(newIndex);
+  const handleTouchStart = (e: React.TouchEvent) => {
+    setTouchStart(e.targetTouches[0].clientX);
+    setIsPaused(true);
+    setIsDragging(true);
+  };
+
+  const handleTouchMove = (e: React.TouchEvent) => {
+    if (isDragging) {
+      setTouchEnd(e.targetTouches[0].clientX);
+    }
+  };
+
+  const handleTouchEnd = () => {
+    setIsDragging(false);
+    const swipeDistance = touchStart - touchEnd;
+    const minSwipeDistance = 50;
+
+    if (Math.abs(swipeDistance) > minSwipeDistance) {
+      if (swipeDistance > 0) {
+        goToNext();
+      } else {
+        goToPrevious();
+      }
+    }
+    setIsPaused(false);
+  };
+
+  // Handle click on mobile view
+  const handleMobileClick = (e: React.MouseEvent) => {
+    if (isMobile) {
+      const clickX = e.clientX;
+      const containerWidth = e.currentTarget.clientWidth;
+      const clickPosition = clickX / containerWidth;
+
+      if (clickPosition < 0.3) {
+        goToPrevious();
+      } else if (clickPosition > 0.7) {
+        goToNext();
+      }
+    }
   };
 
   useEffect(() => {
     if (!isPaused) {
       const timer = setInterval(() => {
-        if (currentIndex === testimonials.length - 1) {
-          setDirection(-1);
-          setCurrentIndex(currentIndex - 1);
-        } else if (currentIndex === 0) {
-          setDirection(1);
-          setCurrentIndex(currentIndex + 1);
-        } else {
-          setCurrentIndex(currentIndex + direction);
-        }
-      }, 8000);
+        goToNext();
+      }, 6000);
 
       return () => clearInterval(timer);
     }
-  }, [currentIndex, direction, isPaused]);
+  }, [currentIndex, isPaused]);
 
   const slideVariants = {
     enter: (direction: number) => ({
       x: direction > 0 ? 1000 : -1000,
       opacity: 0,
-      scale: 0.85,
-      rotateY: direction > 0 ? 45 : -45
+      scale: 0.95,
+      rotateY: direction > 0 ? 15 : -15,
+      filter: "blur(4px)"
     }),
     center: {
       zIndex: 1,
       x: 0,
       opacity: 1,
       scale: 1,
-      rotateY: 0
+      rotateY: 0,
+      filter: "blur(0px)"
     },
     exit: (direction: number) => ({
       zIndex: 0,
       x: direction < 0 ? 1000 : -1000,
       opacity: 0,
-      scale: 0.85,
-      rotateY: direction < 0 ? 45 : -45
+      scale: 0.95,
+      rotateY: direction < 0 ? 15 : -15,
+      filter: "blur(4px)"
     })
   };
 
   return (
-    <section className="py-24 bg-black">
+    <section className="py-16 sm:py-24 bg-black">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="text-center mb-16">
+        <div className="text-center mb-12 sm:mb-16">
           <motion.div
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8, ease: "easeOut" }}
             viewport={{ once: true, margin: "-50px" }}
           >
-            <h2 className="text-3xl font-bold text-white sm:text-4xl lg:text-5xl">
+            <h2 className="text-3xl sm:text-4xl font-bold text-white mb-4">
               What Our Clients Say
-          </h2>
-            <p className="mt-4 text-lg text-yellow-100">
-              Trusted by businesses worldwide for reliable and innovative IT solutions
-          </p>
+            </h2>
+            <p className="text-gray-400 text-base sm:text-lg max-w-2xl mx-auto">
+              Don't just take our word for it - hear from businesses that have transformed their operations with our IT solutions.
+            </p>
           </motion.div>
         </div>
 
         <div 
-          className="relative h-[500px] overflow-hidden perspective"
+          className="relative h-[600px] sm:h-[500px] overflow-hidden rounded-2xl sm:rounded-3xl bg-gray-900/50 backdrop-blur-sm"
           onMouseEnter={() => setIsPaused(true)}
           onMouseLeave={() => setIsPaused(false)}
+          onTouchStart={handleTouchStart}
+          onTouchMove={handleTouchMove}
+          onTouchEnd={handleTouchEnd}
+          onClick={handleMobileClick}
         >
           <AnimatePresence initial={false} custom={direction} mode="wait">
             <motion.div
@@ -271,144 +324,114 @@ export default function TestimonialsSection() {
               animate="center"
               exit="exit"
               transition={{
-                x: { type: "spring", stiffness: 200, damping: 25 },
-                opacity: { duration: 0.5 },
-                scale: { duration: 0.5 },
-                rotateY: { duration: 0.5 }
+                x: { type: "spring", stiffness: 400, damping: 40 },
+                opacity: { duration: 0.3 },
+                scale: { duration: 0.3 },
+                rotateY: { duration: 0.3 },
+                filter: { duration: 0.3 }
               }}
-              className="absolute w-full"
+              className="absolute inset-0 p-6 sm:p-8"
             >
-              <motion.div
-                className="bg-white/10 backdrop-blur-sm rounded-2xl p-8 shadow-xl max-w-3xl mx-auto cursor-pointer"
-                whileHover={{ scale: 1.02 }}
-                transition={{ type: "spring", stiffness: 300, damping: 20 }}
-                onClick={goToRandom}
-              >
-                <div className="flex flex-col items-center text-center">
+              <div className="h-full flex flex-col sm:flex-row items-center gap-6 sm:gap-8">
+                {/* Image Section */}
+                <motion.div 
+                  className="relative w-32 h-32 sm:w-40 sm:h-40 rounded-full overflow-hidden border-4 border-yellow-400/20"
+                  initial={{ opacity: 0, scale: 0.8, rotate: -10 }}
+                  animate={{ opacity: 1, scale: 1, rotate: 0 }}
+                  transition={{ duration: 0.5, delay: 0.2 }}
+                >
+                  <Image
+                    src={testimonials[currentIndex].image}
+                    alt={testimonials[currentIndex].name}
+                    fill
+                    className="object-cover"
+                    sizes="(max-width: 768px) 128px, 160px"
+                  />
+                </motion.div>
+
+                {/* Content Section */}
+                <div className="flex-1 text-center sm:text-left">
                   <motion.div
-                    initial={{ scale: 0 }}
-                    animate={{ scale: 1 }}
-                    transition={{ delay: 0.2, type: "spring", stiffness: 200 }}
-                  >
-                    <Quote className="w-12 h-12 text-yellow-400 mb-6" />
-                  </motion.div>
-                  
-                  <motion.div 
-                    className="relative mb-8"
-                    initial={{ scale: 0, rotate: -180 }}
-                    animate={{ scale: 1, rotate: 0 }}
-                    transition={{ delay: 0.3, type: "spring", stiffness: 200 }}
-                  >
-                    <div className="absolute inset-0 bg-gradient-to-br from-yellow-400/20 to-amber-600/20 rounded-full transform rotate-6" />
-                    <div className="relative w-24 h-24">
-                      <Image
-                        className="rounded-full object-cover ring-4 ring-yellow-400/20"
-                        src={testimonials[currentIndex].image}
-                        alt={testimonials[currentIndex].name}
-                        fill
-                        sizes="(max-width: 96px) 100vw, 96px"
-                      />
-                    </div>
-                  </motion.div>
-
-                  <motion.blockquote 
-                    className="text-xl text-yellow-100 mb-8 italic"
                     initial={{ opacity: 0, y: 20 }}
                     animate={{ opacity: 1, y: 0 }}
-                    transition={{ delay: 0.4, duration: 0.5 }}
+                    transition={{ duration: 0.5, delay: 0.3 }}
                   >
-                    &ldquo;{testimonials[currentIndex].content}&rdquo;
-                  </motion.blockquote>
-
-                  <motion.div 
-                    className="space-y-2"
-                    initial={{ opacity: 0, y: 20 }}
-                    animate={{ opacity: 1, y: 0 }}
-                    transition={{ delay: 0.5, duration: 0.5 }}
-                  >
-                    <div className="text-white font-semibold text-lg">
-                      {testimonials[currentIndex].name}
+                    <Quote className="h-8 w-8 text-yellow-400 mb-4 mx-auto sm:mx-0" />
+                    <p className="text-gray-200 text-base sm:text-lg leading-relaxed mb-6">
+                      {testimonials[currentIndex].content}
+                    </p>
+                    <div className="flex flex-col sm:flex-row items-center gap-2 sm:gap-4">
+                      <div>
+                        <h3 className="text-white font-semibold text-lg">
+                          {testimonials[currentIndex].name}
+                        </h3>
+                        <div className="flex items-center gap-2 text-gray-400 text-sm">
+                          <span>{testimonials[currentIndex].role}</span>
+                          <span>•</span>
+                          <div className="flex items-center gap-1">
+                            <MapPin className="h-4 w-4" />
+                            <span>{testimonials[currentIndex].country}</span>
+                          </div>
+                        </div>
+                      </div>
+                      <div className="flex items-center gap-1">
+                        {[...Array(5)].map((_, i) => (
+                          <Star
+                            key={i}
+                            className="h-4 w-4 text-yellow-400 fill-yellow-400"
+                          />
+                        ))}
+                      </div>
                     </div>
-                    <div className="text-yellow-200">
-                      {testimonials[currentIndex].role}
-                    </div>
-                    <div className="flex items-center justify-center text-yellow-300 text-sm">
-                      <MapPin className="w-4 h-4 mr-1" />
-                      {testimonials[currentIndex].country}
-                    </div>
-                    <div className="flex items-center justify-center space-x-1 mt-2">
-                      {[...Array(5)].map((_, i) => (
-                        <motion.div
-                          key={i}
-                          initial={{ scale: 0 }}
-                          animate={{ scale: 1 }}
-                          transition={{ delay: 0.6 + i * 0.1 }}
-                        >
-                          <Star className="w-5 h-5 fill-yellow-400 text-yellow-400" />
-                        </motion.div>
-                      ))}
-                    </div>
-                  </motion.div>
-
-                  <motion.div 
-                    className="mt-6 inline-flex items-center rounded-full bg-yellow-400/10 px-4 py-2 text-sm font-medium text-yellow-400 ring-1 ring-inset ring-yellow-400/20"
-                    initial={{ scale: 0 }}
-                    animate={{ scale: 1 }}
-                    transition={{ delay: 0.8, type: "spring", stiffness: 200 }}
-                  >
-                    {testimonials[currentIndex].service}
                   </motion.div>
                 </div>
-              </motion.div>
+              </div>
             </motion.div>
           </AnimatePresence>
 
-          {/* Navigation Dots */}
-          <div className="absolute -bottom-4 left-0 right-0 flex justify-center space-x-2 z-10">
+          {/* Mobile Navigation */}
+          <div className="absolute bottom-4 left-0 right-0 flex justify-center gap-2 sm:hidden">
             {testimonials.map((_, index) => (
               <motion.button
                 key={index}
-                onClick={() => {
-                  const newDirection = index > currentIndex ? 1 : -1;
-                  setDirection(newDirection);
+                onClick={(e) => {
+                  e.stopPropagation(); // Prevent triggering container click
+                  setDirection(index > currentIndex ? 1 : -1);
                   setCurrentIndex(index);
                 }}
-                className={`w-3 h-3 rounded-full transition-all duration-300 transform ${
-                  index === currentIndex 
-                    ? 'bg-yellow-400 scale-110' 
-                    : 'bg-yellow-400/30 hover:bg-yellow-400/50'
+                className={`h-2 rounded-full transition-all duration-200 ${
+                  index === currentIndex ? 'bg-yellow-400 w-8' : 'bg-white/50 w-2'
                 }`}
-                whileHover={{ scale: 1.2 }}
                 whileTap={{ scale: 0.9 }}
-                aria-label={`Go to testimonial ${index + 1}`}
               />
             ))}
           </div>
 
-          {/* Side Navigation Arrows */}
-          <motion.button
-            onClick={goToPrevious}
-            className={`absolute left-4 top-1/2 -translate-y-1/2 p-3 rounded-full bg-white/10 backdrop-blur-sm text-yellow-400 hover:bg-white/20 transition-all duration-200 z-10 ${
-              currentIndex === 0 ? 'opacity-50 cursor-not-allowed translate-x-2' : 'hover:translate-x-0'
-            }`}
-            whileHover={currentIndex > 0 ? { scale: 1.1, x: -4 } : {}}
-            whileTap={currentIndex > 0 ? { scale: 0.9 } : {}}
-            disabled={currentIndex === 0}
-          >
-            <ChevronLeft className="w-6 h-6" />
-          </motion.button>
-          
-          <motion.button
-            onClick={goToNext}
-            className={`absolute right-4 top-1/2 -translate-y-1/2 p-3 rounded-full bg-white/10 backdrop-blur-sm text-yellow-400 hover:bg-white/20 transition-all duration-200 z-10 ${
-              currentIndex === testimonials.length - 1 ? 'opacity-50 cursor-not-allowed -translate-x-2' : 'hover:translate-x-0'
-            }`}
-            whileHover={currentIndex < testimonials.length - 1 ? { scale: 1.1, x: 4 } : {}}
-            whileTap={currentIndex < testimonials.length - 1 ? { scale: 0.9 } : {}}
-            disabled={currentIndex === testimonials.length - 1}
-          >
-            <ChevronRight className="w-6 h-6" />
-          </motion.button>
+          {/* Desktop Navigation */}
+          <div className="absolute inset-y-0 left-0 right-0 hidden sm:flex items-center justify-between px-4">
+            <motion.button
+              onClick={(e) => {
+                e.stopPropagation(); // Prevent triggering container click
+                goToPrevious();
+              }}
+              className="rounded-full bg-black/50 p-3 text-white hover:bg-black/70 transition-all duration-200 z-10"
+              whileHover={{ scale: 1.1 }}
+              whileTap={{ scale: 0.95 }}
+            >
+              <ChevronLeft className="h-6 w-6" />
+            </motion.button>
+            <motion.button
+              onClick={(e) => {
+                e.stopPropagation(); // Prevent triggering container click
+                goToNext();
+              }}
+              className="rounded-full bg-black/50 p-3 text-white hover:bg-black/70 transition-all duration-200 z-10"
+              whileHover={{ scale: 1.1 }}
+              whileTap={{ scale: 0.95 }}
+            >
+              <ChevronRight className="h-6 w-6" />
+            </motion.button>
+          </div>
         </div>
       </div>
     </section>
