@@ -299,10 +299,10 @@ export default function TestimonialsSection() {
           >
             <h2 className="text-3xl sm:text-4xl font-bold text-white mb-4">
               What Our Clients Say
-            </h2>
+          </h2>
             <p className="text-gray-400 text-base sm:text-lg max-w-2xl mx-auto">
               Don't just take our word for it - hear from businesses that have transformed their operations with our IT solutions.
-            </p>
+          </p>
           </motion.div>
         </div>
 
@@ -351,8 +351,8 @@ export default function TestimonialsSection() {
 
                 {/* Content Section */}
                 <div className="flex-1 text-center sm:text-left">
-                  <motion.div
-                    initial={{ opacity: 0, y: 20 }}
+              <motion.div
+                initial={{ opacity: 0, y: 20 }}
                     animate={{ opacity: 1, y: 0 }}
                     transition={{ duration: 0.5, delay: 0.3 }}
                   >
@@ -386,7 +386,7 @@ export default function TestimonialsSection() {
                   </motion.div>
                 </div>
               </div>
-            </motion.div>
+              </motion.div>
           </AnimatePresence>
 
           {/* Mobile Navigation */}

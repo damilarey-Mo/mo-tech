@@ -11,10 +11,10 @@ import { motion, AnimatePresence } from "framer-motion";
 const navigation = [
   { name: "Home", href: "/" },
   { name: "About", href: "/about" },
-  { name: "Services", href: "#services" },
+  { name: "Services", href: "/services" },
   { name: "Projects", href: "/projects" },
   { name: "Blog", href: "/blog" },
-  { name: "Contact", href: "#contact" },
+  { name: "Contact", href: "/contact" },
 ];
 
 export default function Navbar() {

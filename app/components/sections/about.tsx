@@ -77,7 +77,8 @@ export default function AboutSection() {
                   Our Story
                 </h3>
                 <p className="mt-6 text-base leading-7 text-gray-600 dark:text-gray-300">
-                  TeaMo was born from a simple idea: to provide honest, reliable tech support with a personal touch. 
+                  TeaMo <strong style={{ color: 'yellow', fontStyle: 'italic' }}> Formerly TechAffairsng</strong> 
+                  was born from a simple idea: to provide honest, reliable tech support with a personal touch. 
                   Starting as a small Team, we've grown to serve hundreds of clients across Lagos and beyond, 
                   maintaining our core values of trust, excellence, and community service.
                 </p>

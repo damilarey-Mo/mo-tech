@@ -85,13 +85,13 @@ export default function HeroSection() {
                 >
                   Get Started
                   <ArrowRight className="ml-2 h-5 w-5 group-hover:translate-x-1 transition-transform duration-200" />
-                </Link>
+            </Link>
                 <Link
                   href="/services"
                   className="inline-flex items-center justify-center px-6 py-3.5 rounded-xl bg-white/10 text-white font-semibold hover:bg-white/20 transition-all duration-200 border border-white/20 backdrop-blur-sm hover:border-white/30 hover:-translate-y-0.5 w-full sm:w-auto"
                 >
                   Explore Services
-                </Link>
+            </Link>
               </div>
 
               {/* Features List */}

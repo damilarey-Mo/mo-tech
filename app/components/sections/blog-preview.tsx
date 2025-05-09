@@ -24,7 +24,7 @@ export default function BlogPreviewSection() {
         <div className="relative w-full h-64">
           <Image
             className="rounded-2xl object-cover"
-            src="/path/to/blog/image.jpg"
+            src="/images/blog/image.jpg"
             alt="Blog preview"
             fill
             sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
