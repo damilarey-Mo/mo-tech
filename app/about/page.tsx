@@ -15,27 +15,47 @@ const team = [
   {
     name: "Damilarey Moshood",
     role: "CEO & Founder",
-    image: "https://placehold.co/400x400/1a1a1a/ffffff?text=DM",
+    image: "/images/team/moshood.jpg",
   },
   {
     name: "Chris Obi",
     role: "Technical Lead",
-    image: "https://placehold.co/400x400/1a1a1a/ffffff?text=SJ",
+    image: "/images/team/chris.png",
   },
   {
     name: "Angela Okafor",
     role: "UI/UX Lead",
-    image: "https://placehold.co/400x400/1a1a1a/ffffff?text=AO",
+    image: "/images/team/Angela.png",
   },
   {
     name: "Ahmad Faraz",
     role: "Cybersecurity Lead",
-    image: "https://placehold.co/400x400/1a1a1a/ffffff?text=SJ",
+    image: "/images/team/ahmad.png",
+  },
+  {
+    name: "Anefiok Abang",
+    role: "Project Managment Lead",
+    image: "/images/team/anefiok.jpg",
+  },
+  {
+    name: "Halimat Hamzat",
+    role: "Customer Relation Manager",
+    image: "/images/team/halimat.jpg",
+  },
+  {
+    name: "Tyronne Thomas",
+    role: "Digital Marketing Lead",
+    image: "/images/team/tyronne.jpg",
+  },
+  {
+    name: "Fola Adekitan",
+    role: "IT Compliance",
+    image: "/images/team/shade.jpg",
   },
   {
     name: "Olamilekan Adisa",
     role: "Lead Software Developer",
-    image: "https://placehold.co/400x400/1a1a1a/ffffff?text=MC",
+    image: "/images/team/lekan.png",
   },
 ];
 
@@ -75,7 +95,8 @@ export default function AboutPage() {
             <div className="space-y-4">
               <h2 className="text-3xl font-bold tracking-tighter sm:text-4xl md:text-5xl">Our Story</h2>
               <p className="text-gray-500 md:text-xl/relaxed lg:text-base/relaxed xl:text-xl/relaxed dark:text-gray-400">
-                TeaMo was founded with a vision to transform how businesses leverage technology. We combine technical expertise with business acumen to deliver solutions that drive growth and innovation.
+                TeaMo <strong style={{ color: 'yellow', fontStyle: 'italic' }}> Formerly TechAffairsng</strong>  
+                 was founded with a vision to transform how businesses leverage technology. We combine technical expertise with business acumen to deliver solutions that drive growth and innovation.
               </p>
             </div>
             <div className="space-y-4">
