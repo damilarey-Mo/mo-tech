@@ -18,10 +18,10 @@ const projects = [
   {
     id: 2,
     title: "Corporate Staff Computer Procurement and Setup",
-    category: "IT Infrastructure",
+    category: "IT Gadget Procurement",
     description: "End-to-end procurement and deployment of 200+ high-performance workstations for a leading financial institution, including hardware sourcing, OS deployment, security hardening, and staff training.",
     imageSrc: "/images/projects/fin.jpg",
-    tags: ["Hardware Procurement", "System Deployment", "IT Training"],
+    tags: ["Gadget Procurement", "System Deployment", "IT Training"],
     link: "#"
   },
   {
@@ -30,7 +30,7 @@ const projects = [
     category: "Web Application",
     description: "Enterprise-grade All in One cybersecurity Suite with 30+ tools",
     imageSrc: "/images/projects/Mosecure.png",
-    tags: ["Web App", "Healthcare", "UX Design"],
+    tags: ["Web App", "Cyber Security", "Enterprise Security"],
     link: "#"
   }
 ];
