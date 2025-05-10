@@ -2,7 +2,6 @@
 
 import React, { useState, useEffect } from 'react';
 import { ChevronLeft, ChevronRight, Shield, Code, Smartphone, Laptop } from 'lucide-react';
-import Image from 'next/image';
 
 // Import Framer Motion components directly
 import { motion, AnimatePresence } from 'framer-motion';
@@ -206,14 +205,7 @@ export default function ServiceCarousel() {
               className="absolute inset-0"
             >
               <div className="relative h-full">
-                <Image
-                  src={services[currentIndex].image}
-                  alt={services[currentIndex].title}
-                  fill
-                  className="object-cover"
-                  priority
-                  sizes="(max-width: 768px) 100vw, (max-width: 1200px) 80vw, 70vw"
-                />
+                
                 <div className="absolute inset-0 bg-gradient-to-r from-black/90 via-black/70 to-black/50" />
                 <div className="absolute inset-0 flex items-center">
                   <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
