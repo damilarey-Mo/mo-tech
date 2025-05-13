@@ -1,7 +1,7 @@
 "use client";
 
 import React, { useEffect, useState, useRef } from 'react';
-import { FaCode, FaCheckCircle, FaClock, FaTools, FaShoppingCart, FaServer, FaDatabase, FaMobile, FaShieldAlt, FaQuestionCircle, FaReact, FaNodeJs, FaPython, FaPhp, FaWordpress, FaLaravel, FaAws, FaDocker, FaGitAlt, FaVuejs, FaAngular, FaSass, FaBootstrap, FaJenkins, FaGithub, FaJira, FaTrello, FaSlack, FaConfluence, FaBitbucket, FaCircle, FaArrowUp } from 'react-icons/fa';
+import { FaCode, FaCheckCircle, FaClock, FaTools, FaShoppingCart, FaServer, FaDatabase, FaMobile, FaShieldAlt, FaQuestionCircle, FaReact, FaNodeJs, FaPython, FaPhp, FaWordpress, FaLaravel, FaAws, FaDocker, FaGitAlt, FaVuejs, FaAngular, FaSass, FaBootstrap, FaJenkins, FaGithub, FaJira, FaTrello, FaSlack, FaConfluence, FaBitbucket, FaCircle, FaArrowUp, FaBars, FaTimes, FaHome, FaCogs, FaLaptopCode, FaChartLine, FaMoneyBillWave, FaChevronLeft, FaChevronRight } from 'react-icons/fa';
 import Link from 'next/link';
 
 const process = [
@@ -433,6 +433,7 @@ const devOpsPractices = [
 ];
 
 const sections = [
+  { id: 'hero', label: 'Home' },
   { id: 'services', label: 'Services' },
   { id: 'process', label: 'Process' },
   { id: 'technologies', label: 'Technologies' },
@@ -444,7 +445,11 @@ const sections = [
 export default function WebDevelopmentPage() {
   const [isVisible, setIsVisible] = useState(false);
   const [activeSection, setActiveSection] = useState('');
+  const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
+  const [scrollProgress, setScrollProgress] = useState(0);
+  const [isSidebarCollapsed, setIsSidebarCollapsed] = useState(false);
   const sectionsRef = useRef<HTMLElement[]>([]);
+  const mobileMenuRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
     // Smooth scroll behavior
@@ -525,360 +530,418 @@ export default function WebDevelopmentPage() {
 
   return (
     <main className="flex min-h-screen flex-col items-center justify-between bg-black">
-      {/* Sticky Navigation */}
-      <nav className="fixed top-0 left-0 right-0 z-50 bg-black/90 backdrop-blur-sm border-b border-yellow-400/20">
-        <div className="mx-auto max-w-4xl px-4 sm:px-6 lg:px-8">
-          <div className="flex items-center justify-between h-16">
-            <Link href="/" className="text-yellow-400 font-bold text-xl">TeaMo</Link>
-            <div className="hidden md:flex space-x-8">
-              {sections.map((section) => (
-                <a
-                  key={section.id}
-                  href={`#${section.id}`}
-                  className={`text-sm font-medium transition-colors duration-200 ${
-                    activeSection === section.id
-                      ? 'text-yellow-400'
-                      : 'text-yellow-100 hover:text-yellow-400'
-                  }`}
-                >
-                  {section.label}
-                </a>
-              ))}
+      {/* Default Navbar */}
+      <nav className="fixed top-0 left-0 right-0 z-50 bg-black/80 backdrop-blur-lg border-b border-yellow-400/20">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="flex justify-between items-center h-16">
+            <div className="flex items-center">
+              <Link href="/" className="text-yellow-400 font-bold text-xl">
+                MO-TECH
+              </Link>
             </div>
-            <Link
-              href="/contact"
-              className="inline-block px-4 py-2 rounded-full bg-yellow-400 text-black font-semibold text-sm hover:bg-yellow-300 transition-colors duration-200"
-            >
-              Contact Us
-            </Link>
+            <div className="hidden md:block">
+              <div className="ml-10 flex items-center space-x-4">
+                <Link href="/services/web-development" className="text-yellow-400 bg-yellow-400/10 px-3 py-2 rounded-md text-sm font-medium">
+                  Web Development
+                </Link>
+                <Link href="/services/app-development" className="text-yellow-100 hover:text-yellow-400 px-3 py-2 rounded-md text-sm font-medium">
+                  App Development
+                </Link>
+                <Link href="/services/it-support" className="text-yellow-100 hover:text-yellow-400 px-3 py-2 rounded-md text-sm font-medium">
+                  IT Support
+                </Link>
+                <Link href="/services/workstation-setup" className="text-yellow-100 hover:text-yellow-400 px-3 py-2 rounded-md text-sm font-medium">
+                  Workstation Setup
+                </Link>
+                <Link href="/services/cybersecurity" className="text-yellow-100 hover:text-yellow-400 px-3 py-2 rounded-md text-sm font-medium">
+                  Cybersecurity
+                </Link>
+              </div>
+            </div>
+            <div className="md:hidden">
+              <button
+                onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
+                className="text-yellow-400 hover:text-yellow-300"
+              >
+                {isMobileMenuOpen ? <FaTimes size={24} /> : <FaBars size={24} />}
+              </button>
+            </div>
           </div>
         </div>
       </nav>
 
-      {/* Back to Top Button */}
-      {isVisible && (
-        <button
-          onClick={scrollToTop}
-          className="fixed bottom-8 right-8 z-50 p-3 rounded-full bg-yellow-400 text-black hover:bg-yellow-300 transition-all duration-200 shadow-lg hover:shadow-xl"
-          aria-label="Back to top"
+      {/* Service-specific Sidebar */}
+      <div className={`fixed left-0 top-16 h-[calc(100vh-4rem)] bg-black/80 backdrop-blur-lg border-r border-yellow-400/20 z-40 hidden md:block transition-all duration-300 ${isSidebarCollapsed ? 'w-16' : 'w-48'}`}>
+        <div className="p-4">
+          <div className="flex items-center justify-between mb-4">
+            {!isSidebarCollapsed && (
+              <h3 className="text-yellow-400 font-semibold">Web Development</h3>
+            )}
+            <button
+              onClick={() => setIsSidebarCollapsed(!isSidebarCollapsed)}
+              className="text-yellow-400 hover:text-yellow-300 transition-colors duration-200"
+            >
+              {isSidebarCollapsed ? <FaChevronRight size={16} /> : <FaChevronLeft size={16} />}
+            </button>
+          </div>
+          <nav className="space-y-2">
+            {sections.map((section) => (
+              <a
+                key={section.id}
+                href={`#${section.id}`}
+                className={`flex items-center px-3 py-2 rounded-md text-sm font-medium transition-colors duration-200 ${
+                  activeSection === section.id
+                    ? 'text-yellow-400 bg-yellow-400/10'
+                    : 'text-yellow-100 hover:text-yellow-400 hover:bg-yellow-400/5'
+                }`}
+                title={isSidebarCollapsed ? section.label : ''}
+              >
+                {section.id === 'hero' && <FaHome className="flex-shrink-0" size={16} />}
+                {section.id === 'services' && <FaTools className="flex-shrink-0" size={16} />}
+                {section.id === 'process' && <FaCogs className="flex-shrink-0" size={16} />}
+                {section.id === 'technologies' && <FaLaptopCode className="flex-shrink-0" size={16} />}
+                {section.id === 'case-studies' && <FaChartLine className="flex-shrink-0" size={16} />}
+                {section.id === 'pricing' && <FaMoneyBillWave className="flex-shrink-0" size={16} />}
+                {section.id === 'faq' && <FaQuestionCircle className="flex-shrink-0" size={16} />}
+                {!isSidebarCollapsed && (
+                  <span className="ml-3">{section.label}</span>
+                )}
+              </a>
+            ))}
+          </nav>
+        </div>
+      </div>
+
+      {/* Mobile Menu */}
+      {isMobileMenuOpen && (
+        <div
+          ref={mobileMenuRef}
+          className="md:hidden fixed top-16 left-0 right-0 bg-black/95 backdrop-blur-lg border-b border-yellow-400/20 z-50"
         >
-          <FaArrowUp className="text-xl" />
-        </button>
+          <div className="px-2 pt-2 pb-3 space-y-1">
+            <Link href="/services/web-development" className="block px-3 py-2 rounded-md text-base font-medium text-yellow-400 bg-yellow-400/10">
+              Web Development
+            </Link>
+            <Link href="/services/app-development" className="block px-3 py-2 rounded-md text-base font-medium text-yellow-100 hover:text-yellow-400 hover:bg-yellow-400/5">
+              App Development
+            </Link>
+            <Link href="/services/it-support" className="block px-3 py-2 rounded-md text-base font-medium text-yellow-100 hover:text-yellow-400 hover:bg-yellow-400/5">
+              IT Support
+            </Link>
+            <Link href="/services/workstation-setup" className="block px-3 py-2 rounded-md text-base font-medium text-yellow-100 hover:text-yellow-400 hover:bg-yellow-400/5">
+              Workstation Setup
+            </Link>
+            <Link href="/services/cybersecurity" className="block px-3 py-2 rounded-md text-base font-medium text-yellow-100 hover:text-yellow-400 hover:bg-yellow-400/5">
+              Cybersecurity
+            </Link>
+            <div className="border-t border-yellow-400/20 my-2"></div>
+            {sections.map((section) => (
+              <a
+                key={section.id}
+                href={`#${section.id}`}
+                onClick={() => setIsMobileMenuOpen(false)}
+                className={`block px-3 py-2 rounded-md text-base font-medium ${
+                  activeSection === section.id
+                    ? 'text-yellow-400 bg-yellow-400/10'
+                    : 'text-yellow-100 hover:text-yellow-400 hover:bg-yellow-400/5'
+                }`}
+              >
+                {section.label}
+              </a>
+            ))}
+          </div>
+        </div>
       )}
 
-      {/* Hero Section */}
-      <section className="w-full pt-32 pb-16 md:pt-40 md:pb-24 bg-black text-center visible">
-        <h1 className="text-4xl sm:text-5xl font-extrabold text-yellow-400 mb-4 animate-fade-in">Web Development Services</h1>
-        <p className="mx-auto max-w-2xl text-lg sm:text-xl text-yellow-100 mb-6 animate-fade-in-delay">Expert web development services in Lagos. Custom websites, e-commerce solutions, and web applications. Modern tech stack, responsive design, and ongoing support.</p>
-        <Link href="/contact" className="inline-block px-8 py-3 rounded-full bg-yellow-400 text-black font-semibold text-lg hover:bg-yellow-300 transition-all duration-200 hover:scale-105 animate-fade-in-delay-2">Start Your Project</Link>
-      </section>
+      {/* Main Content with Sidebar Offset */}
+      <div className={`w-full transition-all duration-300 ${isSidebarCollapsed ? 'md:ml-16' : 'md:ml-48'}`}>
+        {/* Back to Top Button */}
+        {isVisible && (
+          <button
+            onClick={scrollToTop}
+            className="fixed bottom-8 right-8 z-50 p-3 rounded-full bg-yellow-400 text-black hover:bg-yellow-300 transition-all duration-200 shadow-lg hover:shadow-xl"
+            aria-label="Back to top"
+          >
+            <FaArrowUp className="text-xl" />
+          </button>
+        )}
 
-      {/* Services Overview */}
-      <section ref={setSectionRef} id="services" className="w-full py-8 md:py-12 bg-black scroll-mt-16">
-        <div className="mx-auto max-w-4xl px-4 sm:px-6 lg:px-8">
-          <h2 className="text-2xl font-bold text-yellow-400 mb-4">Our Services</h2>
-          <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 mb-6">
-            {services.map((item, index) => (
-              <div
-                key={item.label}
-                className="flex items-start gap-4 bg-black rounded-xl border border-yellow-400/20 p-4 transition-all duration-300 hover:border-yellow-400/40 hover:shadow-lg hover:shadow-yellow-400/10"
-                style={{ animationDelay: `${index * 100}ms` }}
-              >
-                <div className="mt-1">{item.icon}</div>
-                <div>
-                  <h3 className="text-yellow-300 font-semibold">{item.label}</h3>
-                  <p className="text-yellow-100 text-sm">{item.desc}</p>
-                </div>
-              </div>
-            ))}
-          </div>
-        </div>
-      </section>
+        {/* Hero Section */}
+        <section className="w-full pt-32 pb-16 md:pt-40 md:pb-24 bg-black text-center visible">
+          <h1 className="text-4xl sm:text-5xl font-extrabold text-yellow-400 mb-4 animate-fade-in">Web Development Services</h1>
+          <p className="mx-auto max-w-2xl text-lg sm:text-xl text-yellow-100 mb-6 animate-fade-in-delay">Expert web development services in Lagos. Custom websites, e-commerce solutions, and web applications. Modern tech stack, responsive design, and ongoing support.</p>
+          <Link href="/contact" className="inline-block px-8 py-3 rounded-full bg-yellow-400 text-black font-semibold text-lg hover:bg-yellow-300 transition-all duration-200 hover:scale-105 animate-fade-in-delay-2">Start Your Project</Link>
+        </section>
 
-      {/* Process Section */}
-      <section ref={setSectionRef} id="process" className="w-full py-8 md:py-12 bg-black scroll-mt-16">
-        <div className="mx-auto max-w-4xl px-4 sm:px-6 lg:px-8">
-          <h2 className="text-2xl font-bold text-yellow-400 mb-4">Our Process</h2>
-          <ol className="text-yellow-100 mb-6 space-y-3 list-decimal list-inside">
-            {process.map((p) => (
-              <li key={p.step}><span className="font-bold text-yellow-300">{p.step}:</span> {p.desc}</li>
-            ))}
-          </ol>
-          <div className="flex items-center gap-3 text-yellow-200 mb-4">
-            <FaClock className="text-yellow-400 text-2xl" />
-            <span className="font-bold">Project Timeline:</span> 2-12 weeks (depending on complexity)
-          </div>
-        </div>
-      </section>
-
-      {/* Technologies Section */}
-      <section ref={setSectionRef} id="technologies" className="w-full py-8 md:py-12 bg-black scroll-mt-16">
-        <div className="mx-auto max-w-4xl px-4 sm:px-6 lg:px-8">
-          <h2 className="text-2xl font-bold text-yellow-400 mb-4">Technologies We Use</h2>
-          <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-4 mb-6">
-            {technologies.map((item) => (
-              <div key={item.label} className="flex items-start gap-4 bg-black rounded-xl border border-yellow-400/20 p-4">
-                <div className="mt-1">{item.icon}</div>
-                <div>
-                  <h3 className="text-yellow-300 font-semibold">{item.label}</h3>
-                  <p className="text-yellow-100 text-sm">{item.desc}</p>
-                </div>
-              </div>
-            ))}
-          </div>
-        </div>
-      </section>
-
-      {/* Tech Stack Combinations */}
-      <section ref={setSectionRef} className="w-full py-8 md:py-12 bg-black">
-        <div className="mx-auto max-w-4xl px-4 sm:px-6 lg:px-8">
-          <h2 className="text-2xl font-bold text-yellow-400 mb-4">Technology Stack Combinations</h2>
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-            {techStackCombinations.map((stack) => (
-              <div key={stack.name} className="bg-black rounded-xl border border-yellow-400/20 p-6">
-                <h3 className="text-yellow-300 font-semibold text-xl mb-2">{stack.name}</h3>
-                <div className="flex flex-wrap gap-2 mb-4">
-                  {stack.stack.map((tech) => (
-                    <span key={tech} className="px-3 py-1 bg-yellow-400/10 text-yellow-400 rounded-full text-sm">
-                      {tech}
-                    </span>
-                  ))}
-                </div>
-                <p className="text-yellow-100">{stack.useCase}</p>
-              </div>
-            ))}
-          </div>
-        </div>
-      </section>
-
-      {/* Development Methodologies */}
-      <section ref={setSectionRef} className="w-full py-8 md:py-12 bg-black">
-        <div className="mx-auto max-w-4xl px-4 sm:px-6 lg:px-8">
-          <h2 className="text-2xl font-bold text-yellow-400 mb-4">Development Methodologies</h2>
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
-            {developmentMethodologies.map((method) => (
-              <div key={method.name} className="bg-black rounded-xl border border-yellow-400/20 p-6">
-                <h3 className="text-yellow-300 font-semibold text-xl mb-4">{method.name}</h3>
-                <div className="mb-4">
-                  <h4 className="text-yellow-200 font-semibold mb-2">Practices</h4>
-                  <ul className="space-y-2">
-                    {method.practices.map((practice) => (
-                      <li key={practice} className="flex items-center gap-2 text-yellow-100">
-                        <FaCheckCircle className="text-yellow-400" />
-                        {practice}
-                      </li>
-                    ))}
-                  </ul>
-                </div>
-                <div className="mb-4">
-                  <h4 className="text-yellow-200 font-semibold mb-2">Tools</h4>
-                  <div className="flex flex-wrap gap-2">
-                    {method.tools.map((tool) => (
-                      <span key={tool} className="px-3 py-1 bg-yellow-400/10 text-yellow-400 rounded-full text-sm">
-                        {tool}
-                      </span>
-                    ))}
-                  </div>
-                </div>
-                <div>
-                  <h4 className="text-yellow-200 font-semibold mb-2">Benefits</h4>
-                  <ul className="space-y-2">
-                    {method.benefits.map((benefit) => (
-                      <li key={benefit} className="flex items-center gap-2 text-yellow-100">
-                        <FaCircle className="text-yellow-400 text-xs" />
-                        {benefit}
-                      </li>
-                    ))}
-                  </ul>
-                </div>
-              </div>
-            ))}
-          </div>
-        </div>
-      </section>
-
-      {/* DevOps & Deployment */}
-      <section ref={setSectionRef} className="w-full py-8 md:py-12 bg-black">
-        <div className="mx-auto max-w-4xl px-4 sm:px-6 lg:px-8">
-          <h2 className="text-2xl font-bold text-yellow-400 mb-4">DevOps & Deployment Practices</h2>
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
-            {devOpsPractices.map((practice) => (
-              <div key={practice.name} className="bg-black rounded-xl border border-yellow-400/20 p-6">
-                <h3 className="text-yellow-300 font-semibold text-xl mb-4">{practice.name}</h3>
-                <div className="mb-4">
-                  <h4 className="text-yellow-200 font-semibold mb-2">Tools</h4>
-                  <div className="flex flex-wrap gap-2">
-                    {practice.tools.map((tool) => (
-                      <span key={tool} className="px-3 py-1 bg-yellow-400/10 text-yellow-400 rounded-full text-sm">
-                        {tool}
-                      </span>
-                    ))}
-                  </div>
-                </div>
-                <div className="mb-4">
-                  <h4 className="text-yellow-200 font-semibold mb-2">Practices</h4>
-                  <ul className="space-y-2">
-                    {practice.practices.map((item) => (
-                      <li key={item} className="flex items-center gap-2 text-yellow-100">
-                        <FaCheckCircle className="text-yellow-400" />
-                        {item}
-                      </li>
-                    ))}
-                  </ul>
-                </div>
-                <div>
-                  <h4 className="text-yellow-200 font-semibold mb-2">Benefits</h4>
-                  <ul className="space-y-2">
-                    {practice.benefits.map((benefit) => (
-                      <li key={benefit} className="flex items-center gap-2 text-yellow-100">
-                        <FaCircle className="text-yellow-400 text-xs" />
-                        {benefit}
-                      </li>
-                    ))}
-                  </ul>
-                </div>
-              </div>
-            ))}
-          </div>
-        </div>
-      </section>
-
-      {/* Quality Assurance */}
-      <section ref={setSectionRef} className="w-full py-8 md:py-12 bg-black">
-        <div className="mx-auto max-w-4xl px-4 sm:px-6 lg:px-8">
-          <h2 className="text-2xl font-bold text-yellow-400 mb-4">Quality Assurance & Testing</h2>
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-            {qaProcedures.map((qa) => (
-              <div key={qa.name} className="bg-black rounded-xl border border-yellow-400/20 p-6">
-                <h3 className="text-yellow-300 font-semibold text-xl mb-4">{qa.name}</h3>
-                <div className="mb-4">
-                  <h4 className="text-yellow-200 font-semibold mb-2">Tools</h4>
-                  <div className="flex flex-wrap gap-2">
-                    {qa.tools.map((tool) => (
-                      <span key={tool} className="px-3 py-1 bg-yellow-400/10 text-yellow-400 rounded-full text-sm">
-                        {tool}
-                      </span>
-                    ))}
-                  </div>
-                </div>
-                <div>
-                  <h4 className="text-yellow-200 font-semibold mb-2">Practices</h4>
-                  <ul className="space-y-2">
-                    {qa.practices.map((practice) => (
-                      <li key={practice} className="flex items-center gap-2 text-yellow-100">
-                        <FaCheckCircle className="text-yellow-400" />
-                        {practice}
-                      </li>
-                    ))}
-                  </ul>
-                </div>
-              </div>
-            ))}
-          </div>
-        </div>
-      </section>
-
-      {/* Project Management Tools */}
-      <section ref={setSectionRef} className="w-full py-8 md:py-12 bg-black">
-        <div className="mx-auto max-w-4xl px-4 sm:px-6 lg:px-8">
-          <h2 className="text-2xl font-bold text-yellow-400 mb-4">Project Management Tools</h2>
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-            {projectManagementTools.map((tool) => (
-              <div key={tool.name} className="bg-black rounded-xl border border-yellow-400/20 p-6">
-                <div className="flex items-center gap-3 mb-4">
-                  {tool.icon}
-                  <h3 className="text-yellow-300 font-semibold text-xl">{tool.name}</h3>
-                </div>
-                <ul className="space-y-2">
-                  {tool.features.map((feature) => (
-                    <li key={feature} className="flex items-center gap-2 text-yellow-100">
-                      <FaCircle className="text-yellow-400 text-xs" />
-                      {feature}
-                    </li>
-                  ))}
-                </ul>
-              </div>
-            ))}
-          </div>
-        </div>
-      </section>
-
-      {/* Case Studies */}
-      <section ref={setSectionRef} id="case-studies" className="w-full py-8 md:py-12 bg-black scroll-mt-16">
-        <div className="mx-auto max-w-4xl px-4 sm:px-6 lg:px-8">
-          <h2 className="text-2xl font-bold text-yellow-400 mb-4">Case Studies</h2>
-          <div className="space-y-6">
-            {caseStudies.map((study) => (
-              <div key={study.title} className="bg-black rounded-xl border border-yellow-400/20 p-6">
-                <h3 className="text-yellow-300 font-semibold text-xl mb-2">{study.title}</h3>
-                <p className="text-yellow-100 mb-4">{study.description}</p>
-                <div className="flex flex-wrap gap-2 mb-4">
-                  {study.tech.map((tech) => (
-                    <span key={tech} className="px-3 py-1 bg-yellow-400/10 text-yellow-400 rounded-full text-sm">
-                      {tech}
-                    </span>
-                  ))}
-                </div>
-                <p className="text-yellow-300 font-semibold">{study.results}</p>
-              </div>
-            ))}
-          </div>
-        </div>
-      </section>
-
-      {/* Pricing Structure */}
-      <section ref={setSectionRef} id="pricing" className="w-full py-8 md:py-12 bg-black scroll-mt-16">
-        <div className="mx-auto max-w-4xl px-4 sm:px-6 lg:px-8">
-          <h2 className="text-2xl font-bold text-yellow-400 mb-4">Pricing Structure</h2>
-          <div className="space-y-6">
-            {pricingStructure.map((item) => (
-              <div key={item.type} className="bg-black rounded-xl border border-yellow-400/20 p-6">
-                <div className="flex justify-between items-start mb-4">
+        {/* Services Overview */}
+        <section ref={setSectionRef} id="services" className="w-full py-8 md:py-12 bg-black scroll-mt-16">
+          <div className="mx-auto max-w-4xl px-4 sm:px-6 lg:px-8">
+            <h2 className="text-2xl font-bold text-yellow-400 mb-4">Our Services</h2>
+            <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 mb-6">
+              {services.map((item, index) => (
+                <div
+                  key={item.label}
+                  className="flex items-start gap-4 bg-black rounded-xl border border-yellow-400/20 p-4 transition-all duration-300 hover:border-yellow-400/40 hover:shadow-lg hover:shadow-yellow-400/10"
+                  style={{ animationDelay: `${index * 100}ms` }}
+                >
+                  <div className="mt-1">{item.icon}</div>
                   <div>
-                    <h3 className="text-yellow-300 font-semibold text-xl">{item.type}</h3>
+                    <h3 className="text-yellow-300 font-semibold">{item.label}</h3>
                     <p className="text-yellow-100 text-sm">{item.desc}</p>
                   </div>
-                  <span className="text-yellow-400 font-bold text-xl">{item.price}</span>
                 </div>
-                <ul className="space-y-2">
-                  {item.features.map((feature) => (
-                    <li key={feature} className="flex items-center gap-2 text-yellow-100">
-                      <FaCheckCircle className="text-yellow-400" />
-                      {feature}
-                    </li>
-                  ))}
-                </ul>
-              </div>
-            ))}
+              ))}
+            </div>
           </div>
-          <p className="text-yellow-100 text-sm italic mt-4">* Prices may vary based on project requirements and complexity</p>
-        </div>
-      </section>
+        </section>
 
-      {/* Detailed Tech Stack Pricing */}
-      <section ref={setSectionRef} className="w-full py-8 md:py-12 bg-black">
-        <div className="mx-auto max-w-4xl px-4 sm:px-6 lg:px-8">
-          <h2 className="text-2xl font-bold text-yellow-400 mb-4">Detailed Tech Stack Pricing</h2>
-          <div className="space-y-8">
-            {techStackPricing.map((stack) => (
-              <div key={stack.name} className="bg-black rounded-xl border border-yellow-400/20 p-6">
-                <div className="flex justify-between items-start mb-4">
+        {/* Process Section */}
+        <section ref={setSectionRef} id="process" className="w-full py-8 md:py-12 bg-black scroll-mt-16">
+          <div className="mx-auto max-w-4xl px-4 sm:px-6 lg:px-8">
+            <h2 className="text-2xl font-bold text-yellow-400 mb-4">Our Process</h2>
+            <ol className="text-yellow-100 mb-6 space-y-3 list-decimal list-inside">
+              {process.map((p) => (
+                <li key={p.step}><span className="font-bold text-yellow-300">{p.step}:</span> {p.desc}</li>
+              ))}
+            </ol>
+            <div className="flex items-center gap-3 text-yellow-200 mb-4">
+              <FaClock className="text-yellow-400 text-2xl" />
+              <span className="font-bold">Project Timeline:</span> 2-12 weeks (depending on complexity)
+            </div>
+          </div>
+        </section>
+
+        {/* Technologies Section */}
+        <section ref={setSectionRef} id="technologies" className="w-full py-8 md:py-12 bg-black scroll-mt-16">
+          <div className="mx-auto max-w-4xl px-4 sm:px-6 lg:px-8">
+            <h2 className="text-2xl font-bold text-yellow-400 mb-4">Technologies We Use</h2>
+            <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-4 mb-6">
+              {technologies.map((item) => (
+                <div key={item.label} className="flex items-start gap-4 bg-black rounded-xl border border-yellow-400/20 p-4">
+                  <div className="mt-1">{item.icon}</div>
                   <div>
-                    <h3 className="text-yellow-300 font-semibold text-xl">{stack.name}</h3>
-                    <div className="flex flex-wrap gap-2 mt-2">
-                      {stack.stack.map((tech) => (
-                        <span key={tech} className="px-3 py-1 bg-yellow-400/10 text-yellow-400 rounded-full text-sm">
-                          {tech}
+                    <h3 className="text-yellow-300 font-semibold">{item.label}</h3>
+                    <p className="text-yellow-100 text-sm">{item.desc}</p>
+                  </div>
+                </div>
+              ))}
+            </div>
+          </div>
+        </section>
+
+        {/* Tech Stack Combinations */}
+        <section ref={setSectionRef} className="w-full py-8 md:py-12 bg-black">
+          <div className="mx-auto max-w-4xl px-4 sm:px-6 lg:px-8">
+            <h2 className="text-2xl font-bold text-yellow-400 mb-4">Technology Stack Combinations</h2>
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+              {techStackCombinations.map((stack) => (
+                <div key={stack.name} className="bg-black rounded-xl border border-yellow-400/20 p-6">
+                  <h3 className="text-yellow-300 font-semibold text-xl mb-2">{stack.name}</h3>
+                  <div className="flex flex-wrap gap-2 mb-4">
+                    {stack.stack.map((tech) => (
+                      <span key={tech} className="px-3 py-1 bg-yellow-400/10 text-yellow-400 rounded-full text-sm">
+                        {tech}
+                      </span>
+                    ))}
+                  </div>
+                  <p className="text-yellow-100">{stack.useCase}</p>
+                </div>
+              ))}
+            </div>
+          </div>
+        </section>
+
+        {/* Development Methodologies */}
+        <section ref={setSectionRef} className="w-full py-8 md:py-12 bg-black">
+          <div className="mx-auto max-w-4xl px-4 sm:px-6 lg:px-8">
+            <h2 className="text-2xl font-bold text-yellow-400 mb-4">Development Methodologies</h2>
+            <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+              {developmentMethodologies.map((method) => (
+                <div key={method.name} className="bg-black rounded-xl border border-yellow-400/20 p-6">
+                  <h3 className="text-yellow-300 font-semibold text-xl mb-4">{method.name}</h3>
+                  <div className="mb-4">
+                    <h4 className="text-yellow-200 font-semibold mb-2">Practices</h4>
+                    <ul className="space-y-2">
+                      {method.practices.map((practice) => (
+                        <li key={practice} className="flex items-center gap-2 text-yellow-100">
+                          <FaCheckCircle className="text-yellow-400" />
+                          {practice}
+                        </li>
+                      ))}
+                    </ul>
+                  </div>
+                  <div className="mb-4">
+                    <h4 className="text-yellow-200 font-semibold mb-2">Tools</h4>
+                    <div className="flex flex-wrap gap-2">
+                      {method.tools.map((tool) => (
+                        <span key={tool} className="px-3 py-1 bg-yellow-400/10 text-yellow-400 rounded-full text-sm">
+                          {tool}
                         </span>
                       ))}
                     </div>
                   </div>
-                  <span className="text-yellow-400 font-bold text-xl">{stack.basePrice}</span>
+                  <div>
+                    <h4 className="text-yellow-200 font-semibold mb-2">Benefits</h4>
+                    <ul className="space-y-2">
+                      {method.benefits.map((benefit) => (
+                        <li key={benefit} className="flex items-center gap-2 text-yellow-100">
+                          <FaCircle className="text-yellow-400 text-xs" />
+                          {benefit}
+                        </li>
+                      ))}
+                    </ul>
+                  </div>
                 </div>
-                <div className="mb-4">
-                  <h4 className="text-yellow-200 font-semibold mb-2">Included Features</h4>
+              ))}
+            </div>
+          </div>
+        </section>
+
+        {/* DevOps & Deployment */}
+        <section ref={setSectionRef} className="w-full py-8 md:py-12 bg-black">
+          <div className="mx-auto max-w-4xl px-4 sm:px-6 lg:px-8">
+            <h2 className="text-2xl font-bold text-yellow-400 mb-4">DevOps & Deployment Practices</h2>
+            <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+              {devOpsPractices.map((practice) => (
+                <div key={practice.name} className="bg-black rounded-xl border border-yellow-400/20 p-6">
+                  <h3 className="text-yellow-300 font-semibold text-xl mb-4">{practice.name}</h3>
+                  <div className="mb-4">
+                    <h4 className="text-yellow-200 font-semibold mb-2">Tools</h4>
+                    <div className="flex flex-wrap gap-2">
+                      {practice.tools.map((tool) => (
+                        <span key={tool} className="px-3 py-1 bg-yellow-400/10 text-yellow-400 rounded-full text-sm">
+                          {tool}
+                        </span>
+                      ))}
+                    </div>
+                  </div>
+                  <div className="mb-4">
+                    <h4 className="text-yellow-200 font-semibold mb-2">Practices</h4>
+                    <ul className="space-y-2">
+                      {practice.practices.map((item) => (
+                        <li key={item} className="flex items-center gap-2 text-yellow-100">
+                          <FaCheckCircle className="text-yellow-400" />
+                          {item}
+                        </li>
+                      ))}
+                    </ul>
+                  </div>
+                  <div>
+                    <h4 className="text-yellow-200 font-semibold mb-2">Benefits</h4>
+                    <ul className="space-y-2">
+                      {practice.benefits.map((benefit) => (
+                        <li key={benefit} className="flex items-center gap-2 text-yellow-100">
+                          <FaCircle className="text-yellow-400 text-xs" />
+                          {benefit}
+                        </li>
+                      ))}
+                    </ul>
+                  </div>
+                </div>
+              ))}
+            </div>
+          </div>
+        </section>
+
+        {/* Quality Assurance */}
+        <section ref={setSectionRef} className="w-full py-8 md:py-12 bg-black">
+          <div className="mx-auto max-w-4xl px-4 sm:px-6 lg:px-8">
+            <h2 className="text-2xl font-bold text-yellow-400 mb-4">Quality Assurance & Testing</h2>
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+              {qaProcedures.map((qa) => (
+                <div key={qa.name} className="bg-black rounded-xl border border-yellow-400/20 p-6">
+                  <h3 className="text-yellow-300 font-semibold text-xl mb-4">{qa.name}</h3>
+                  <div className="mb-4">
+                    <h4 className="text-yellow-200 font-semibold mb-2">Tools</h4>
+                    <div className="flex flex-wrap gap-2">
+                      {qa.tools.map((tool) => (
+                        <span key={tool} className="px-3 py-1 bg-yellow-400/10 text-yellow-400 rounded-full text-sm">
+                          {tool}
+                        </span>
+                      ))}
+                    </div>
+                  </div>
+                  <div>
+                    <h4 className="text-yellow-200 font-semibold mb-2">Practices</h4>
+                    <ul className="space-y-2">
+                      {qa.practices.map((practice) => (
+                        <li key={practice} className="flex items-center gap-2 text-yellow-100">
+                          <FaCheckCircle className="text-yellow-400" />
+                          {practice}
+                        </li>
+                      ))}
+                    </ul>
+                  </div>
+                </div>
+              ))}
+            </div>
+          </div>
+        </section>
+
+        {/* Project Management Tools */}
+        <section ref={setSectionRef} className="w-full py-8 md:py-12 bg-black">
+          <div className="mx-auto max-w-4xl px-4 sm:px-6 lg:px-8">
+            <h2 className="text-2xl font-bold text-yellow-400 mb-4">Project Management Tools</h2>
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+              {projectManagementTools.map((tool) => (
+                <div key={tool.name} className="bg-black rounded-xl border border-yellow-400/20 p-6">
+                  <div className="flex items-center gap-3 mb-4">
+                    {tool.icon}
+                    <h3 className="text-yellow-300 font-semibold text-xl">{tool.name}</h3>
+                  </div>
                   <ul className="space-y-2">
-                    {stack.features.map((feature) => (
+                    {tool.features.map((feature) => (
+                      <li key={feature} className="flex items-center gap-2 text-yellow-100">
+                        <FaCircle className="text-yellow-400 text-xs" />
+                        {feature}
+                      </li>
+                    ))}
+                  </ul>
+                </div>
+              ))}
+            </div>
+          </div>
+        </section>
+
+        {/* Case Studies */}
+        <section ref={setSectionRef} id="case-studies" className="w-full py-8 md:py-12 bg-black scroll-mt-16">
+          <div className="mx-auto max-w-4xl px-4 sm:px-6 lg:px-8">
+            <h2 className="text-2xl font-bold text-yellow-400 mb-4">Case Studies</h2>
+            <div className="space-y-6">
+              {caseStudies.map((study) => (
+                <div key={study.title} className="bg-black rounded-xl border border-yellow-400/20 p-6">
+                  <h3 className="text-yellow-300 font-semibold text-xl mb-2">{study.title}</h3>
+                  <p className="text-yellow-100 mb-4">{study.description}</p>
+                  <div className="flex flex-wrap gap-2 mb-4">
+                    {study.tech.map((tech) => (
+                      <span key={tech} className="px-3 py-1 bg-yellow-400/10 text-yellow-400 rounded-full text-sm">
+                        {tech}
+                      </span>
+                    ))}
+                  </div>
+                  <p className="text-yellow-300 font-semibold">{study.results}</p>
+                </div>
+              ))}
+            </div>
+          </div>
+        </section>
+
+        {/* Pricing Structure */}
+        <section ref={setSectionRef} id="pricing" className="w-full py-8 md:py-12 bg-black scroll-mt-16">
+          <div className="mx-auto max-w-4xl px-4 sm:px-6 lg:px-8">
+            <h2 className="text-2xl font-bold text-yellow-400 mb-4">Pricing Structure</h2>
+            <div className="space-y-6">
+              {pricingStructure.map((item) => (
+                <div key={item.type} className="bg-black rounded-xl border border-yellow-400/20 p-6">
+                  <div className="flex justify-between items-start mb-4">
+                    <div>
+                      <h3 className="text-yellow-300 font-semibold text-xl">{item.type}</h3>
+                      <p className="text-yellow-100 text-sm">{item.desc}</p>
+                    </div>
+                    <span className="text-yellow-400 font-bold text-xl">{item.price}</span>
+                  </div>
+                  <ul className="space-y-2">
+                    {item.features.map((feature) => (
                       <li key={feature} className="flex items-center gap-2 text-yellow-100">
                         <FaCheckCircle className="text-yellow-400" />
                         {feature}
@@ -886,46 +949,84 @@ export default function WebDevelopmentPage() {
                     ))}
                   </ul>
                 </div>
-                <div>
-                  <h4 className="text-yellow-200 font-semibold mb-2">Optional Add-ons</h4>
-                  <ul className="space-y-2">
-                    {stack.addons.map((addon) => (
-                      <li key={addon.name} className="flex justify-between items-center text-yellow-100">
-                        <span>{addon.name}</span>
-                        <span className="text-yellow-400">{addon.price}</span>
-                      </li>
-                    ))}
-                  </ul>
+              ))}
+            </div>
+            <p className="text-yellow-100 text-sm italic mt-4">* Prices may vary based on project requirements and complexity</p>
+          </div>
+        </section>
+
+        {/* Detailed Tech Stack Pricing */}
+        <section ref={setSectionRef} className="w-full py-8 md:py-12 bg-black">
+          <div className="mx-auto max-w-4xl px-4 sm:px-6 lg:px-8">
+            <h2 className="text-2xl font-bold text-yellow-400 mb-4">Detailed Tech Stack Pricing</h2>
+            <div className="space-y-8">
+              {techStackPricing.map((stack) => (
+                <div key={stack.name} className="bg-black rounded-xl border border-yellow-400/20 p-6">
+                  <div className="flex justify-between items-start mb-4">
+                    <div>
+                      <h3 className="text-yellow-300 font-semibold text-xl">{stack.name}</h3>
+                      <div className="flex flex-wrap gap-2 mt-2">
+                        {stack.stack.map((tech) => (
+                          <span key={tech} className="px-3 py-1 bg-yellow-400/10 text-yellow-400 rounded-full text-sm">
+                            {tech}
+                          </span>
+                        ))}
+                      </div>
+                    </div>
+                    <span className="text-yellow-400 font-bold text-xl">{stack.basePrice}</span>
+                  </div>
+                  <div className="mb-4">
+                    <h4 className="text-yellow-200 font-semibold mb-2">Included Features</h4>
+                    <ul className="space-y-2">
+                      {stack.features.map((feature) => (
+                        <li key={feature} className="flex items-center gap-2 text-yellow-100">
+                          <FaCheckCircle className="text-yellow-400" />
+                          {feature}
+                        </li>
+                      ))}
+                    </ul>
+                  </div>
+                  <div>
+                    <h4 className="text-yellow-200 font-semibold mb-2">Optional Add-ons</h4>
+                    <ul className="space-y-2">
+                      {stack.addons.map((addon) => (
+                        <li key={addon.name} className="flex justify-between items-center text-yellow-100">
+                          <span>{addon.name}</span>
+                          <span className="text-yellow-400">{addon.price}</span>
+                        </li>
+                      ))}
+                    </ul>
+                  </div>
                 </div>
-              </div>
-            ))}
+              ))}
+            </div>
           </div>
-        </div>
-      </section>
+        </section>
 
-      {/* FAQ Section */}
-      <section ref={setSectionRef} id="faq" className="w-full py-8 md:py-12 bg-black scroll-mt-16">
-        <div className="mx-auto max-w-4xl px-4 sm:px-6 lg:px-8">
-          <h2 className="text-2xl font-bold text-yellow-400 mb-4 flex items-center gap-2"><FaQuestionCircle className="text-yellow-400" /> FAQ</h2>
-          <div className="space-y-6">
-            {faqs.map((faq) => (
-              <div key={faq.q} className="bg-black rounded-xl border border-yellow-400/20 p-4">
-                <h3 className="text-yellow-300 font-semibold mb-2">{faq.q}</h3>
-                <p className="text-yellow-100">{faq.a}</p>
-              </div>
-            ))}
+        {/* FAQ Section */}
+        <section ref={setSectionRef} id="faq" className="w-full py-8 md:py-12 bg-black scroll-mt-16">
+          <div className="mx-auto max-w-4xl px-4 sm:px-6 lg:px-8">
+            <h2 className="text-2xl font-bold text-yellow-400 mb-4 flex items-center gap-2"><FaQuestionCircle className="text-yellow-400" /> FAQ</h2>
+            <div className="space-y-6">
+              {faqs.map((faq) => (
+                <div key={faq.q} className="bg-black rounded-xl border border-yellow-400/20 p-4">
+                  <h3 className="text-yellow-300 font-semibold mb-2">{faq.q}</h3>
+                  <p className="text-yellow-100">{faq.a}</p>
+                </div>
+              ))}
+            </div>
           </div>
-        </div>
-      </section>
+        </section>
 
-      {/* CTA Section */}
-      <section ref={setSectionRef} className="w-full py-8 md:py-12 bg-black">
-        <div className="mx-auto max-w-4xl px-4 sm:px-6 lg:px-8 text-center">
-          <h2 className="text-2xl font-bold text-yellow-400 mb-4">Ready to Start Your Project?</h2>
-          <p className="text-yellow-100 mb-6">Let's discuss how we can help bring your vision to life.</p>
-          <Link href="/contact" className="inline-block px-8 py-3 rounded-full bg-yellow-400 text-black font-semibold text-lg hover:bg-yellow-300 transition-colors duration-200">Get Started</Link>
-        </div>
-      </section>
+        {/* CTA Section */}
+        <section ref={setSectionRef} className="w-full py-8 md:py-12 bg-black">
+          <div className="mx-auto max-w-4xl px-4 sm:px-6 lg:px-8 text-center">
+            <h2 className="text-2xl font-bold text-yellow-400 mb-4">Ready to Start Your Project?</h2>
+            <p className="text-yellow-100 mb-6">Let's discuss how we can help bring your vision to life.</p>
+            <Link href="/contact" className="inline-block px-8 py-3 rounded-full bg-yellow-400 text-black font-semibold text-lg hover:bg-yellow-300 transition-colors duration-200">Get Started</Link>
+          </div>
+        </section>
+      </div>
 
       <style jsx global>{`
         @keyframes fadeIn {

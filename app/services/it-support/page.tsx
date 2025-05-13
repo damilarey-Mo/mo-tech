@@ -1,7 +1,7 @@
 "use client";
 
 import React, { useEffect, useState, useRef } from 'react';
-import { FaCode, FaCheckCircle, FaClock, FaTools, FaShoppingCart, FaServer, FaDatabase, FaMobile, FaShieldAlt, FaQuestionCircle, FaReact, FaNodeJs, FaPython, FaPhp, FaWordpress, FaLaravel, FaAws, FaDocker, FaGitAlt, FaVuejs, FaAngular, FaSass, FaBootstrap, FaJenkins, FaGithub, FaJira, FaTrello, FaSlack, FaConfluence, FaBitbucket, FaCircle, FaArrowUp, FaBars, FaTimes, FaLaptop, FaDesktop, FaNetworkWired, FaWifi, FaPrint, FaServer as FaServerIcon, FaDatabase as FaDatabaseIcon, FaCloud, FaLock, FaUserShield, FaShieldAlt as FaShieldAltIcon, FaCog, FaHeadset, FaUserCog, FaNetworkWired as FaNetworkWiredIcon, FaTools as FaToolsIcon, FaDesktop as FaDesktopIcon, FaServer as FaServerIcon2, FaCloud as FaCloudIcon, FaShieldAlt as FaShieldAltIcon2, FaPrint as FaPrintIcon, FaTools as FaToolsIcon2 } from 'react-icons/fa';
+import { FaCode, FaCheckCircle, FaClock, FaTools, FaShoppingCart, FaServer, FaDatabase, FaMobile, FaShieldAlt, FaQuestionCircle, FaReact, FaNodeJs, FaPython, FaPhp, FaWordpress, FaLaravel, FaAws, FaDocker, FaGitAlt, FaVuejs, FaAngular, FaSass, FaBootstrap, FaJenkins, FaGithub, FaJira, FaTrello, FaSlack, FaConfluence, FaBitbucket, FaCircle, FaArrowUp, FaBars, FaTimes, FaLaptop, FaDesktop, FaNetworkWired, FaWifi, FaPrint, FaServer as FaServerIcon, FaDatabase as FaDatabaseIcon, FaCloud, FaLock, FaUserShield, FaShieldAlt as FaShieldAltIcon, FaCog, FaHeadset, FaUserCog, FaNetworkWired as FaNetworkWiredIcon, FaTools as FaToolsIcon, FaDesktop as FaDesktopIcon, FaServer as FaServerIcon2, FaCloud as FaCloudIcon, FaShieldAlt as FaShieldAltIcon2, FaPrint as FaPrintIcon, FaTools as FaToolsIcon2, FaHome, FaCogs, FaLaptopCode, FaChartLine, FaMoneyBillWave, FaChevronLeft, FaChevronRight } from 'react-icons/fa';
 import Link from 'next/link';
 
 const sections = [
@@ -223,6 +223,7 @@ export default function ITSupportPage() {
   const [scrollProgress, setScrollProgress] = useState(0);
   const sectionsRef = useRef<HTMLElement[]>([]);
   const mobileMenuRef = useRef<HTMLDivElement>(null);
+  const [isSidebarCollapsed, setIsSidebarCollapsed] = useState(false);
 
   useEffect(() => {
     // Smooth scroll behavior
@@ -321,7 +322,7 @@ export default function ITSupportPage() {
 
   return (
     <main className="flex min-h-screen flex-col items-center justify-between bg-black">
-      {/* Sticky Navigation */}
+      {/* Default Navbar */}
       <nav className="fixed top-0 left-0 right-0 z-50 bg-black/80 backdrop-blur-lg border-b border-yellow-400/20">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="flex justify-between items-center h-16">
@@ -332,19 +333,21 @@ export default function ITSupportPage() {
             </div>
             <div className="hidden md:block">
               <div className="ml-10 flex items-center space-x-4">
-                {sections.map((section) => (
-                  <a
-                    key={section.id}
-                    href={`#${section.id}`}
-                    className={`px-3 py-2 rounded-md text-sm font-medium transition-colors duration-200 ${
-                      activeSection === section.id
-                        ? 'text-yellow-400 bg-yellow-400/10'
-                        : 'text-yellow-100 hover:text-yellow-400 hover:bg-yellow-400/5'
-                    }`}
-                  >
-                    {section.label}
-                  </a>
-                ))}
+                <Link href="/services/web-development" className="text-yellow-100 hover:text-yellow-400 px-3 py-2 rounded-md text-sm font-medium">
+                  Web Development
+                </Link>
+                <Link href="/services/app-development" className="text-yellow-100 hover:text-yellow-400 px-3 py-2 rounded-md text-sm font-medium">
+                  App Development
+                </Link>
+                <Link href="/services/it-support" className="text-yellow-400 bg-yellow-400/10 px-3 py-2 rounded-md text-sm font-medium">
+                  IT Support
+                </Link>
+                <Link href="/services/workstation-setup" className="text-yellow-100 hover:text-yellow-400 px-3 py-2 rounded-md text-sm font-medium">
+                  Workstation Setup
+                </Link>
+                <Link href="/services/cybersecurity" className="text-yellow-100 hover:text-yellow-400 px-3 py-2 rounded-md text-sm font-medium">
+                  Cybersecurity
+                </Link>
               </div>
             </div>
             <div className="md:hidden">
@@ -359,6 +362,48 @@ export default function ITSupportPage() {
         </div>
       </nav>
 
+      {/* Service-specific Sidebar */}
+      <div className={`fixed left-0 top-16 h-[calc(100vh-4rem)] bg-black/80 backdrop-blur-lg border-r border-yellow-400/20 z-40 hidden md:block transition-all duration-300 ${isSidebarCollapsed ? 'w-16' : 'w-48'}`}>
+        <div className="p-4">
+          <div className="flex items-center justify-between mb-4">
+            {!isSidebarCollapsed && (
+              <h3 className="text-yellow-400 font-semibold">IT Support</h3>
+            )}
+            <button
+              onClick={() => setIsSidebarCollapsed(!isSidebarCollapsed)}
+              className="text-yellow-400 hover:text-yellow-300 transition-colors duration-200"
+            >
+              {isSidebarCollapsed ? <FaChevronRight size={16} /> : <FaChevronLeft size={16} />}
+            </button>
+          </div>
+          <nav className="space-y-2">
+            {sections.map((section) => (
+              <a
+                key={section.id}
+                href={`#${section.id}`}
+                className={`flex items-center px-3 py-2 rounded-md text-sm font-medium transition-colors duration-200 ${
+                  activeSection === section.id
+                    ? 'text-yellow-400 bg-yellow-400/10'
+                    : 'text-yellow-100 hover:text-yellow-400 hover:bg-yellow-400/5'
+                }`}
+                title={isSidebarCollapsed ? section.label : ''}
+              >
+                {section.id === 'hero' && <FaHome className="flex-shrink-0" size={16} />}
+                {section.id === 'services' && <FaTools className="flex-shrink-0" size={16} />}
+                {section.id === 'process' && <FaCogs className="flex-shrink-0" size={16} />}
+                {section.id === 'technologies' && <FaLaptopCode className="flex-shrink-0" size={16} />}
+                {section.id === 'case-studies' && <FaChartLine className="flex-shrink-0" size={16} />}
+                {section.id === 'pricing' && <FaMoneyBillWave className="flex-shrink-0" size={16} />}
+                {section.id === 'faq' && <FaQuestionCircle className="flex-shrink-0" size={16} />}
+                {!isSidebarCollapsed && (
+                  <span className="ml-3">{section.label}</span>
+                )}
+              </a>
+            ))}
+          </nav>
+        </div>
+      </div>
+
       {/* Mobile Menu */}
       {isMobileMenuOpen && (
         <div
@@ -366,6 +411,22 @@ export default function ITSupportPage() {
           className="md:hidden fixed top-16 left-0 right-0 bg-black/95 backdrop-blur-lg border-b border-yellow-400/20 z-50"
         >
           <div className="px-2 pt-2 pb-3 space-y-1">
+            <Link href="/services/web-development" className="block px-3 py-2 rounded-md text-base font-medium text-yellow-100 hover:text-yellow-400 hover:bg-yellow-400/5">
+              Web Development
+            </Link>
+            <Link href="/services/app-development" className="block px-3 py-2 rounded-md text-base font-medium text-yellow-100 hover:text-yellow-400 hover:bg-yellow-400/5">
+              App Development
+            </Link>
+            <Link href="/services/it-support" className="block px-3 py-2 rounded-md text-base font-medium text-yellow-400 bg-yellow-400/10">
+              IT Support
+            </Link>
+            <Link href="/services/workstation-setup" className="block px-3 py-2 rounded-md text-base font-medium text-yellow-100 hover:text-yellow-400 hover:bg-yellow-400/5">
+              Workstation Setup
+            </Link>
+            <Link href="/services/cybersecurity" className="block px-3 py-2 rounded-md text-base font-medium text-yellow-100 hover:text-yellow-400 hover:bg-yellow-400/5">
+              Cybersecurity
+            </Link>
+            <div className="border-t border-yellow-400/20 my-2"></div>
             {sections.map((section) => (
               <a
                 key={section.id}
@@ -384,243 +445,246 @@ export default function ITSupportPage() {
         </div>
       )}
 
-      {/* Scroll Progress Indicator */}
-      <div className="fixed top-0 left-0 w-full h-1 bg-yellow-400/20 z-50">
-        <div
-          className="h-full bg-yellow-400 transition-all duration-300"
-          style={{ width: `${scrollProgress}%` }}
-        />
-      </div>
-
-      {/* Back to Top Button */}
-      {isVisible && (
-        <button
-          onClick={scrollToTop}
-          className="fixed bottom-8 right-8 p-3 rounded-full bg-yellow-400 text-black hover:bg-yellow-300 transition-colors duration-200 z-50"
-        >
-          <FaArrowUp size={20} />
-        </button>
-      )}
-
-      {/* Hero Section */}
-      <section id="hero" ref={setSectionRef} className="w-full pt-32 pb-16 md:pt-40 md:pb-24 bg-black text-center visible parallax-section relative overflow-hidden">
-        <div className="absolute inset-0 bg-gradient-to-b from-yellow-400/10 to-transparent animate-pulse"></div>
-        <div className="absolute inset-0 bg-[radial-gradient(circle_at_center,_var(--tw-gradient-stops))] from-yellow-400/5 via-transparent to-transparent animate-pulse-slow"></div>
-        <div className="absolute inset-0 bg-grid-pattern opacity-10"></div>
-        
-        {/* Tech Gears Background */}
-        <div className="absolute inset-0 overflow-hidden">
-          <div className="tech-gear tech-gear-1">
-            <FaCog className="text-yellow-400/20" size={60} />
-          </div>
-          <div className="tech-gear tech-gear-2">
-            <FaCog className="text-yellow-400/20" size={40} />
-          </div>
-          <div className="tech-gear tech-gear-3">
-            <FaCog className="text-yellow-400/20" size={80} />
-          </div>
-          <div className="tech-gear tech-gear-4">
-            <FaCog className="text-yellow-400/20" size={50} />
-          </div>
-          <div className="tech-gear tech-gear-5">
-            <FaCog className="text-yellow-400/20" size={70} />
-          </div>
+      {/* Main Content with Sidebar Offset */}
+      <div className={`w-full transition-all duration-300 ${isSidebarCollapsed ? 'md:ml-16' : 'md:ml-48'}`}>
+        {/* Scroll Progress Indicator */}
+        <div className="fixed top-0 left-0 w-full h-1 bg-yellow-400/20 z-50">
+          <div
+            className="h-full bg-yellow-400 transition-all duration-300"
+            style={{ width: `${scrollProgress}%` }}
+          />
         </div>
 
-        <div className="relative z-10">
-          <h1 className="text-4xl sm:text-5xl font-extrabold text-yellow-400 mb-4 animate-fade-in relative">
-            <span className="inline-block transform hover:scale-105 transition-transform duration-300 relative">
-              IT Support Services
-              <div className="absolute -inset-1 bg-yellow-400/20 rounded-lg blur-lg -z-10 animate-pulse-slow"></div>
-            </span>
-          </h1>
-          <p className="mx-auto max-w-2xl text-lg sm:text-xl text-yellow-100 mb-6 animate-fade-in-delay relative">
-            Professional IT support services for businesses of all sizes. From desktop support to network management, we've got you covered.
-            <div className="absolute -inset-1 bg-yellow-400/5 rounded-lg blur-lg -z-10 animate-pulse-slow"></div>
-          </p>
-          <div className="flex flex-col sm:flex-row gap-4 justify-center items-center animate-fade-in-delay-2">
-            <Link 
-              href="/contact" 
-              className="px-8 py-3 rounded-full bg-yellow-400 text-black font-semibold text-lg hover:bg-yellow-300 transition-all duration-200 transform hover:scale-105 hover:shadow-lg hover:shadow-yellow-400/20 relative group"
-            >
-              <span className="relative z-10">Get Support</span>
-              <div className="absolute inset-0 bg-yellow-400/20 rounded-full blur-lg -z-10 group-hover:scale-150 transition-transform duration-300"></div>
-              <div className="absolute inset-0 rounded-full border-2 border-yellow-400/20 group-hover:border-yellow-400/40 transition-colors duration-300"></div>
+        {/* Back to Top Button */}
+        {isVisible && (
+          <button
+            onClick={scrollToTop}
+            className="fixed bottom-8 right-8 p-3 rounded-full bg-yellow-400 text-black hover:bg-yellow-300 transition-colors duration-200 z-50"
+          >
+            <FaArrowUp size={20} />
+          </button>
+        )}
+
+        {/* Hero Section */}
+        <section id="hero" ref={setSectionRef} className="w-full pt-32 pb-16 md:pt-40 md:pb-24 bg-black text-center visible parallax-section relative overflow-hidden">
+          <div className="absolute inset-0 bg-gradient-to-b from-yellow-400/10 to-transparent animate-pulse"></div>
+          <div className="absolute inset-0 bg-[radial-gradient(circle_at_center,_var(--tw-gradient-stops))] from-yellow-400/5 via-transparent to-transparent animate-pulse-slow"></div>
+          <div className="absolute inset-0 bg-grid-pattern opacity-10"></div>
+          
+          {/* Tech Gears Background */}
+          <div className="absolute inset-0 overflow-hidden">
+            <div className="tech-gear tech-gear-1">
+              <FaCog className="text-yellow-400/20" size={60} />
+            </div>
+            <div className="tech-gear tech-gear-2">
+              <FaCog className="text-yellow-400/20" size={40} />
+            </div>
+            <div className="tech-gear tech-gear-3">
+              <FaCog className="text-yellow-400/20" size={80} />
+            </div>
+            <div className="tech-gear tech-gear-4">
+              <FaCog className="text-yellow-400/20" size={50} />
+            </div>
+            <div className="tech-gear tech-gear-5">
+              <FaCog className="text-yellow-400/20" size={70} />
+            </div>
+          </div>
+
+          <div className="relative z-10">
+            <h1 className="text-4xl sm:text-5xl font-extrabold text-yellow-400 mb-4 animate-fade-in relative">
+              <span className="inline-block transform hover:scale-105 transition-transform duration-300 relative">
+                IT Support Services
+                <div className="absolute -inset-1 bg-yellow-400/20 rounded-lg blur-lg -z-10 animate-pulse-slow"></div>
+              </span>
+            </h1>
+            <p className="mx-auto max-w-2xl text-lg sm:text-xl text-yellow-100 mb-6 animate-fade-in-delay relative">
+              Professional IT support services for businesses of all sizes. From desktop support to network management, we've got you covered.
+              <div className="absolute -inset-1 bg-yellow-400/5 rounded-lg blur-lg -z-10 animate-pulse-slow"></div>
+            </p>
+            <div className="flex flex-col sm:flex-row gap-4 justify-center items-center animate-fade-in-delay-2">
+              <Link 
+                href="/contact" 
+                className="px-8 py-3 rounded-full bg-yellow-400 text-black font-semibold text-lg hover:bg-yellow-300 transition-all duration-200 transform hover:scale-105 hover:shadow-lg hover:shadow-yellow-400/20 relative group"
+              >
+                <span className="relative z-10">Get Support</span>
+                <div className="absolute inset-0 bg-yellow-400/20 rounded-full blur-lg -z-10 group-hover:scale-150 transition-transform duration-300"></div>
+                <div className="absolute inset-0 rounded-full border-2 border-yellow-400/20 group-hover:border-yellow-400/40 transition-colors duration-300"></div>
+              </Link>
+              <a 
+                href="#services" 
+                className="px-8 py-3 rounded-full border-2 border-yellow-400 text-yellow-400 font-semibold text-lg hover:bg-yellow-400/10 transition-all duration-200 transform hover:scale-105 relative group"
+              >
+                <span className="relative z-10">Learn More</span>
+                <div className="absolute inset-0 bg-yellow-400/5 rounded-full blur-lg -z-10 group-hover:scale-150 transition-transform duration-300"></div>
+                <div className="absolute inset-0 rounded-full border-2 border-yellow-400/20 group-hover:border-yellow-400/40 transition-colors duration-300"></div>
+              </a>
+            </div>
+            <div className="mt-12 flex justify-center items-center space-x-4 animate-fade-in-delay-3">
+              <div className="feature-highlight group">
+                <div className="feature-icon-wrapper">
+                  <FaHeadset className="text-2xl animate-float" />
+                  <div className="feature-glow"></div>
+                </div>
+                <span className="text-sm">24/7 Support</span>
+              </div>
+              <div className="w-1 h-1 bg-yellow-400/40 rounded-full"></div>
+              <div className="feature-highlight group">
+                <div className="feature-icon-wrapper">
+                  <FaToolsIcon className="text-2xl animate-float-delay-1" />
+                  <div className="feature-glow"></div>
+                </div>
+                <span className="text-sm">Quick Resolution</span>
+              </div>
+              <div className="w-1 h-1 bg-yellow-400/40 rounded-full"></div>
+              <div className="feature-highlight group">
+                <div className="feature-icon-wrapper">
+                  <FaShieldAlt className="text-2xl animate-float-delay-2" />
+                  <div className="feature-glow"></div>
+                </div>
+                <span className="text-sm">Secure Support</span>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        {/* Services Section */}
+        <section id="services" ref={setSectionRef} className="w-full py-16 md:py-24 bg-black">
+          <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <h2 className="text-3xl font-bold text-yellow-400 mb-12 text-center">Our IT Support Services</h2>
+            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+              {services.map((service, index) => (
+                <div
+                  key={index}
+                  className="bg-black/50 border border-yellow-400/20 rounded-lg p-6 hover:border-yellow-400/40 transition-colors duration-300"
+                >
+                  <div className="mb-4">{service.icon}</div>
+                  <h3 className="text-xl font-semibold text-yellow-400 mb-2">{service.label}</h3>
+                  <p className="text-yellow-100">{service.desc}</p>
+                </div>
+              ))}
+            </div>
+          </div>
+        </section>
+
+        {/* Process Section */}
+        <section id="process" ref={setSectionRef} className="w-full py-16 md:py-24 bg-black">
+          <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <h2 className="text-3xl font-bold text-yellow-400 mb-12 text-center">Our Support Process</h2>
+            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
+              {process.map((step, index) => (
+                <div
+                  key={index}
+                  className="bg-black/50 border border-yellow-400/20 rounded-lg p-6 hover:border-yellow-400/40 transition-colors duration-300"
+                >
+                  <div className="mb-4">{step.icon}</div>
+                  <h3 className="text-xl font-semibold text-yellow-400 mb-2">{step.label}</h3>
+                  <p className="text-yellow-100">{step.desc}</p>
+                </div>
+              ))}
+            </div>
+          </div>
+        </section>
+
+        {/* Technologies Section */}
+        <section id="technologies" ref={setSectionRef} className="w-full py-16 md:py-24 bg-black">
+          <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <h2 className="text-3xl font-bold text-yellow-400 mb-12 text-center">Technologies We Support</h2>
+            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
+              {technologies.map((tech, index) => (
+                <div
+                  key={index}
+                  className="bg-black/50 border border-yellow-400/20 rounded-lg p-6 hover:border-yellow-400/40 transition-colors duration-300"
+                >
+                  <div className="mb-4">{tech.icon}</div>
+                  <h3 className="text-xl font-semibold text-yellow-400 mb-2">{tech.label}</h3>
+                  <p className="text-yellow-100">{tech.desc}</p>
+                </div>
+              ))}
+            </div>
+          </div>
+        </section>
+
+        {/* Case Studies Section */}
+        <section id="case-studies" ref={setSectionRef} className="w-full py-16 md:py-24 bg-black">
+          <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <h2 className="text-3xl font-bold text-yellow-400 mb-12 text-center">Case Studies</h2>
+            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+              {caseStudies.map((study, index) => (
+                <div
+                  key={index}
+                  className="bg-black/50 border border-yellow-400/20 rounded-lg p-6 hover:border-yellow-400/40 transition-colors duration-300"
+                >
+                  <h3 className="text-xl font-semibold text-yellow-400 mb-2">{study.title}</h3>
+                  <p className="text-yellow-100 mb-4">{study.description}</p>
+                  <ul className="space-y-2">
+                    {study.results.map((result, idx) => (
+                      <li key={idx} className="flex items-center text-yellow-100">
+                        <FaCheckCircle className="text-yellow-400 mr-2" />
+                        {result}
+                      </li>
+                    ))}
+                  </ul>
+                </div>
+              ))}
+            </div>
+          </div>
+        </section>
+
+        {/* Pricing Section */}
+        <section id="pricing" ref={setSectionRef} className="w-full py-16 md:py-24 bg-black">
+          <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <h2 className="text-3xl font-bold text-yellow-400 mb-12 text-center">Pricing Plans</h2>
+            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+              {pricingStructure.map((plan, index) => (
+                <div
+                  key={index}
+                  className="bg-black/50 border border-yellow-400/20 rounded-lg p-6 hover:border-yellow-400/40 transition-colors duration-300"
+                >
+                  <h3 className="text-xl font-semibold text-yellow-400 mb-2">{plan.title}</h3>
+                  <p className="text-3xl font-bold text-yellow-400 mb-4">{plan.price}</p>
+                  <ul className="space-y-2">
+                    {plan.features.map((feature, idx) => (
+                      <li key={idx} className="flex items-center text-yellow-100">
+                        <FaCheckCircle className="text-yellow-400 mr-2" />
+                        {feature}
+                      </li>
+                    ))}
+                  </ul>
+                </div>
+              ))}
+            </div>
+          </div>
+        </section>
+
+        {/* FAQ Section */}
+        <section id="faq" ref={setSectionRef} className="w-full py-16 md:py-24 bg-black">
+          <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <h2 className="text-3xl font-bold text-yellow-400 mb-12 text-center">Frequently Asked Questions</h2>
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
+              {faqs.map((faq, index) => (
+                <div
+                  key={index}
+                  className="bg-black/50 border border-yellow-400/20 rounded-lg p-6 hover:border-yellow-400/40 transition-colors duration-300"
+                >
+                  <h3 className="text-xl font-semibold text-yellow-400 mb-2">{faq.question}</h3>
+                  <p className="text-yellow-100">{faq.answer}</p>
+                </div>
+              ))}
+            </div>
+          </div>
+        </section>
+
+        {/* Final CTA Section */}
+        <section ref={setSectionRef} className="w-full py-16 md:py-24 bg-black text-center">
+          <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
+            <h2 className="text-3xl font-bold text-yellow-400 mb-6">Need IT Support?</h2>
+            <p className="text-lg text-yellow-100 mb-8">Contact us today to discuss your IT support needs.</p>
+            <Link href="/contact" className="inline-block px-8 py-3 rounded-full bg-yellow-400 text-black font-semibold text-lg hover:bg-yellow-300 transition-colors duration-200">
+              Get Support
             </Link>
-            <a 
-              href="#services" 
-              className="px-8 py-3 rounded-full border-2 border-yellow-400 text-yellow-400 font-semibold text-lg hover:bg-yellow-400/10 transition-all duration-200 transform hover:scale-105 relative group"
-            >
-              <span className="relative z-10">Learn More</span>
-              <div className="absolute inset-0 bg-yellow-400/5 rounded-full blur-lg -z-10 group-hover:scale-150 transition-transform duration-300"></div>
-              <div className="absolute inset-0 rounded-full border-2 border-yellow-400/20 group-hover:border-yellow-400/40 transition-colors duration-300"></div>
-            </a>
           </div>
-          <div className="mt-12 flex justify-center items-center space-x-4 animate-fade-in-delay-3">
-            <div className="feature-highlight group">
-              <div className="feature-icon-wrapper">
-                <FaHeadset className="text-2xl animate-float" />
-                <div className="feature-glow"></div>
-              </div>
-              <span className="text-sm">24/7 Support</span>
-            </div>
-            <div className="w-1 h-1 bg-yellow-400/40 rounded-full"></div>
-            <div className="feature-highlight group">
-              <div className="feature-icon-wrapper">
-                <FaToolsIcon className="text-2xl animate-float-delay-1" />
-                <div className="feature-glow"></div>
-              </div>
-              <span className="text-sm">Quick Resolution</span>
-            </div>
-            <div className="w-1 h-1 bg-yellow-400/40 rounded-full"></div>
-            <div className="feature-highlight group">
-              <div className="feature-icon-wrapper">
-                <FaShieldAlt className="text-2xl animate-float-delay-2" />
-                <div className="feature-glow"></div>
-              </div>
-              <span className="text-sm">Secure Support</span>
-            </div>
-          </div>
-        </div>
-      </section>
-
-      {/* Services Section */}
-      <section id="services" ref={setSectionRef} className="w-full py-16 md:py-24 bg-black">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <h2 className="text-3xl font-bold text-yellow-400 mb-12 text-center">Our IT Support Services</h2>
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-            {services.map((service, index) => (
-              <div
-                key={index}
-                className="bg-black/50 border border-yellow-400/20 rounded-lg p-6 hover:border-yellow-400/40 transition-colors duration-300"
-              >
-                <div className="mb-4">{service.icon}</div>
-                <h3 className="text-xl font-semibold text-yellow-400 mb-2">{service.label}</h3>
-                <p className="text-yellow-100">{service.desc}</p>
-              </div>
-            ))}
-          </div>
-        </div>
-      </section>
-
-      {/* Process Section */}
-      <section id="process" ref={setSectionRef} className="w-full py-16 md:py-24 bg-black">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <h2 className="text-3xl font-bold text-yellow-400 mb-12 text-center">Our Support Process</h2>
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
-            {process.map((step, index) => (
-              <div
-                key={index}
-                className="bg-black/50 border border-yellow-400/20 rounded-lg p-6 hover:border-yellow-400/40 transition-colors duration-300"
-              >
-                <div className="mb-4">{step.icon}</div>
-                <h3 className="text-xl font-semibold text-yellow-400 mb-2">{step.label}</h3>
-                <p className="text-yellow-100">{step.desc}</p>
-              </div>
-            ))}
-          </div>
-        </div>
-      </section>
-
-      {/* Technologies Section */}
-      <section id="technologies" ref={setSectionRef} className="w-full py-16 md:py-24 bg-black">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <h2 className="text-3xl font-bold text-yellow-400 mb-12 text-center">Technologies We Support</h2>
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
-            {technologies.map((tech, index) => (
-              <div
-                key={index}
-                className="bg-black/50 border border-yellow-400/20 rounded-lg p-6 hover:border-yellow-400/40 transition-colors duration-300"
-              >
-                <div className="mb-4">{tech.icon}</div>
-                <h3 className="text-xl font-semibold text-yellow-400 mb-2">{tech.label}</h3>
-                <p className="text-yellow-100">{tech.desc}</p>
-              </div>
-            ))}
-          </div>
-        </div>
-      </section>
-
-      {/* Case Studies Section */}
-      <section id="case-studies" ref={setSectionRef} className="w-full py-16 md:py-24 bg-black">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <h2 className="text-3xl font-bold text-yellow-400 mb-12 text-center">Case Studies</h2>
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-            {caseStudies.map((study, index) => (
-              <div
-                key={index}
-                className="bg-black/50 border border-yellow-400/20 rounded-lg p-6 hover:border-yellow-400/40 transition-colors duration-300"
-              >
-                <h3 className="text-xl font-semibold text-yellow-400 mb-2">{study.title}</h3>
-                <p className="text-yellow-100 mb-4">{study.description}</p>
-                <ul className="space-y-2">
-                  {study.results.map((result, idx) => (
-                    <li key={idx} className="flex items-center text-yellow-100">
-                      <FaCheckCircle className="text-yellow-400 mr-2" />
-                      {result}
-                    </li>
-                  ))}
-                </ul>
-              </div>
-            ))}
-          </div>
-        </div>
-      </section>
-
-      {/* Pricing Section */}
-      <section id="pricing" ref={setSectionRef} className="w-full py-16 md:py-24 bg-black">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <h2 className="text-3xl font-bold text-yellow-400 mb-12 text-center">Pricing Plans</h2>
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-            {pricingStructure.map((plan, index) => (
-              <div
-                key={index}
-                className="bg-black/50 border border-yellow-400/20 rounded-lg p-6 hover:border-yellow-400/40 transition-colors duration-300"
-              >
-                <h3 className="text-xl font-semibold text-yellow-400 mb-2">{plan.title}</h3>
-                <p className="text-3xl font-bold text-yellow-400 mb-4">{plan.price}</p>
-                <ul className="space-y-2">
-                  {plan.features.map((feature, idx) => (
-                    <li key={idx} className="flex items-center text-yellow-100">
-                      <FaCheckCircle className="text-yellow-400 mr-2" />
-                      {feature}
-                    </li>
-                  ))}
-                </ul>
-              </div>
-            ))}
-          </div>
-        </div>
-      </section>
-
-      {/* FAQ Section */}
-      <section id="faq" ref={setSectionRef} className="w-full py-16 md:py-24 bg-black">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <h2 className="text-3xl font-bold text-yellow-400 mb-12 text-center">Frequently Asked Questions</h2>
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
-            {faqs.map((faq, index) => (
-              <div
-                key={index}
-                className="bg-black/50 border border-yellow-400/20 rounded-lg p-6 hover:border-yellow-400/40 transition-colors duration-300"
-              >
-                <h3 className="text-xl font-semibold text-yellow-400 mb-2">{faq.question}</h3>
-                <p className="text-yellow-100">{faq.answer}</p>
-              </div>
-            ))}
-          </div>
-        </div>
-      </section>
-
-      {/* Final CTA Section */}
-      <section ref={setSectionRef} className="w-full py-16 md:py-24 bg-black text-center">
-        <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
-          <h2 className="text-3xl font-bold text-yellow-400 mb-6">Need IT Support?</h2>
-          <p className="text-lg text-yellow-100 mb-8">Contact us today to discuss your IT support needs.</p>
-          <Link href="/contact" className="inline-block px-8 py-3 rounded-full bg-yellow-400 text-black font-semibold text-lg hover:bg-yellow-300 transition-colors duration-200">
-            Get Support
-          </Link>
-        </div>
-      </section>
+        </section>
+      </div>
 
       {/* Styles */}
       <style jsx global>{`

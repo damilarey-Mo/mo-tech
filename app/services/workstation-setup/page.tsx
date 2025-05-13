@@ -1,7 +1,7 @@
 "use client";
 
 import React, { useEffect, useState, useRef } from 'react';
-import { FaCode, FaCheckCircle, FaClock, FaTools, FaShoppingCart, FaServer, FaDatabase, FaMobile, FaShieldAlt, FaQuestionCircle, FaReact, FaNodeJs, FaPython, FaPhp, FaWordpress, FaLaravel, FaAws, FaDocker, FaGitAlt, FaVuejs, FaAngular, FaSass, FaBootstrap, FaJenkins, FaGithub, FaJira, FaTrello, FaSlack, FaConfluence, FaBitbucket, FaCircle, FaArrowUp, FaBars, FaTimes, FaLaptop, FaDesktop, FaNetworkWired, FaWifi, FaPrint, FaServer as FaServerIcon, FaDatabase as FaDatabaseIcon, FaCloud, FaLock, FaUserShield, FaShieldAlt as FaShieldAltIcon, FaCog } from 'react-icons/fa';
+import { FaCode, FaCheckCircle, FaClock, FaTools, FaShoppingCart, FaServer, FaDatabase, FaMobile, FaShieldAlt, FaQuestionCircle, FaReact, FaNodeJs, FaPython, FaPhp, FaWordpress, FaLaravel, FaAws, FaDocker, FaGitAlt, FaVuejs, FaAngular, FaSass, FaBootstrap, FaJenkins, FaGithub, FaJira, FaTrello, FaSlack, FaConfluence, FaBitbucket, FaCircle, FaArrowUp, FaBars, FaTimes, FaLaptop, FaDesktop, FaNetworkWired, FaWifi, FaPrint, FaServer as FaServerIcon, FaDatabase as FaDatabaseIcon, FaCloud, FaLock, FaUserShield, FaShieldAlt as FaShieldAltIcon, FaCog, FaHome, FaCogs, FaLaptopCode, FaChartLine, FaMoneyBillWave, FaChevronLeft, FaChevronRight } from 'react-icons/fa';
 import Link from 'next/link';
 
 const sections = [
@@ -209,6 +209,7 @@ export default function WorkstationSetupPage() {
   const [activeSection, setActiveSection] = useState('');
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
   const [scrollProgress, setScrollProgress] = useState(0);
+  const [isSidebarCollapsed, setIsSidebarCollapsed] = useState(false);
   const sectionsRef = useRef<HTMLElement[]>([]);
   const mobileMenuRef = useRef<HTMLDivElement>(null);
 
@@ -315,416 +316,516 @@ export default function WorkstationSetupPage() {
         style={{ width: `${scrollProgress}%` }}
       />
 
-      {/* Sticky Navigation */}
-      <nav className="fixed top-0 left-0 right-0 z-40 bg-black/90 backdrop-blur-sm border-b border-yellow-400/20">
-        <div className="mx-auto max-w-4xl px-4 sm:px-6 lg:px-8">
-          <div className="flex items-center justify-between h-16">
-            <Link href="/" className="text-yellow-400 font-bold text-xl">TeaMo</Link>
-            
-            {/* Desktop Navigation */}
-            <div className="hidden md:flex space-x-8">
-              {sections.map((section) => (
-                <a
-                  key={section.id}
-                  href={`#${section.id}`}
-                  className={`text-sm font-medium transition-colors duration-200 ${
-                    activeSection === section.id
-                      ? 'text-yellow-400'
-                      : 'text-yellow-100 hover:text-yellow-400'
-                  }`}
-                >
-                  {section.label}
-                </a>
-              ))}
+      {/* Default Navbar */}
+      <nav className="fixed top-0 left-0 right-0 z-50 bg-black/80 backdrop-blur-lg border-b border-yellow-400/20">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="flex justify-between items-center h-16">
+            <div className="flex items-center">
+              <Link href="/" className="text-yellow-400 font-bold text-xl">
+                MO-TECH
+              </Link>
             </div>
-
-            {/* Mobile Menu Button */}
-            <button
-              className="md:hidden text-yellow-400"
-              onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
-            >
-              {isMobileMenuOpen ? <FaTimes size={24} /> : <FaBars size={24} />}
-            </button>
-
-            <Link
-              href="/contact"
-              className="hidden md:inline-block px-4 py-2 rounded-full bg-yellow-400 text-black font-semibold text-sm hover:bg-yellow-300 transition-colors duration-200"
-            >
-              Contact Us
-            </Link>
-          </div>
-        </div>
-
-        {/* Mobile Menu */}
-        <div
-          ref={mobileMenuRef}
-          className={`md:hidden absolute top-16 left-0 right-0 bg-black/95 backdrop-blur-sm border-b border-yellow-400/20 transition-all duration-300 ${
-            isMobileMenuOpen ? 'opacity-100 translate-y-0' : 'opacity-0 -translate-y-full pointer-events-none'
-          }`}
-        >
-          <div className="px-4 py-4 space-y-4">
-            {sections.map((section) => (
-              <a
-                key={section.id}
-                href={`#${section.id}`}
-                className={`block text-sm font-medium transition-colors duration-200 ${
-                  activeSection === section.id
-                    ? 'text-yellow-400'
-                    : 'text-yellow-100 hover:text-yellow-400'
-                }`}
-                onClick={() => setIsMobileMenuOpen(false)}
+            <div className="hidden md:block">
+              <div className="ml-10 flex items-center space-x-4">
+                <Link href="/services/web-development" className="text-yellow-100 hover:text-yellow-400 px-3 py-2 rounded-md text-sm font-medium">
+                  Web Development
+                </Link>
+                <Link href="/services/app-development" className="text-yellow-100 hover:text-yellow-400 px-3 py-2 rounded-md text-sm font-medium">
+                  App Development
+                </Link>
+                <Link href="/services/it-support" className="text-yellow-100 hover:text-yellow-400 px-3 py-2 rounded-md text-sm font-medium">
+                  IT Support
+                </Link>
+                <Link href="/services/workstation-setup" className="text-yellow-400 bg-yellow-400/10 px-3 py-2 rounded-md text-sm font-medium">
+                  Workstation Setup
+                </Link>
+                <Link href="/services/cybersecurity" className="text-yellow-100 hover:text-yellow-400 px-3 py-2 rounded-md text-sm font-medium">
+                  Cybersecurity
+                </Link>
+              </div>
+            </div>
+            <div className="md:hidden">
+              <button
+                onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
+                className="text-yellow-400 hover:text-yellow-300"
               >
-                {section.label}
-              </a>
-            ))}
-            <Link
-              href="/contact"
-              className="block px-4 py-2 rounded-full bg-yellow-400 text-black font-semibold text-sm hover:bg-yellow-300 transition-colors duration-200 text-center"
-              onClick={() => setIsMobileMenuOpen(false)}
-            >
-              Contact Us
-            </Link>
+                {isMobileMenuOpen ? <FaTimes size={24} /> : <FaBars size={24} />}
+              </button>
+            </div>
           </div>
         </div>
       </nav>
 
-      {/* Back to Top Button */}
-      {isVisible && (
-        <button
-          onClick={scrollToTop}
-          className="fixed bottom-8 right-8 z-50 p-3 rounded-full bg-yellow-400 text-black hover:bg-yellow-300 transition-all duration-200 shadow-lg hover:shadow-xl hover:scale-110"
-          aria-label="Back to top"
+      {/* Service-specific Sidebar */}
+      <div className={`fixed left-0 top-16 h-[calc(100vh-4rem)] bg-black/80 backdrop-blur-lg border-r border-yellow-400/20 z-40 hidden md:block transition-all duration-300 ${isSidebarCollapsed ? 'w-16' : 'w-48'}`}>
+        <div className="p-4">
+          <div className="flex items-center justify-between mb-4">
+            {!isSidebarCollapsed && (
+              <h3 className="text-yellow-400 font-semibold">Workstation Setup</h3>
+            )}
+            <button
+              onClick={() => setIsSidebarCollapsed(!isSidebarCollapsed)}
+              className="text-yellow-400 hover:text-yellow-300 transition-colors duration-200"
+            >
+              {isSidebarCollapsed ? <FaChevronRight size={16} /> : <FaChevronLeft size={16} />}
+            </button>
+          </div>
+          <nav className="space-y-2">
+            {sections.map((section) => (
+              <a
+                key={section.id}
+                href={`#${section.id}`}
+                className={`flex items-center px-3 py-2 rounded-md text-sm font-medium transition-colors duration-200 ${
+                  activeSection === section.id
+                    ? 'text-yellow-400 bg-yellow-400/10'
+                    : 'text-yellow-100 hover:text-yellow-400 hover:bg-yellow-400/5'
+                }`}
+                title={isSidebarCollapsed ? section.label : ''}
+              >
+                {section.id === 'hero' && <FaHome className="flex-shrink-0" size={16} />}
+                {section.id === 'services' && <FaTools className="flex-shrink-0" size={16} />}
+                {section.id === 'process' && <FaCogs className="flex-shrink-0" size={16} />}
+                {section.id === 'technologies' && <FaLaptopCode className="flex-shrink-0" size={16} />}
+                {section.id === 'case-studies' && <FaChartLine className="flex-shrink-0" size={16} />}
+                {section.id === 'pricing' && <FaMoneyBillWave className="flex-shrink-0" size={16} />}
+                {section.id === 'faq' && <FaQuestionCircle className="flex-shrink-0" size={16} />}
+                {!isSidebarCollapsed && (
+                  <span className="ml-3">{section.label}</span>
+                )}
+              </a>
+            ))}
+          </nav>
+        </div>
+      </div>
+
+      {/* Mobile Menu */}
+      {isMobileMenuOpen && (
+        <div
+          ref={mobileMenuRef}
+          className="md:hidden fixed top-16 left-0 right-0 bg-black/95 backdrop-blur-lg border-b border-yellow-400/20 z-50"
         >
-          <FaArrowUp className="text-xl" />
-        </button>
+          <div className="px-2 pt-2 pb-3 space-y-1">
+            <Link href="/services/web-development" className="block px-3 py-2 rounded-md text-base font-medium text-yellow-100 hover:text-yellow-400 hover:bg-yellow-400/5">
+              Web Development
+            </Link>
+            <Link href="/services/app-development" className="block px-3 py-2 rounded-md text-base font-medium text-yellow-100 hover:text-yellow-400 hover:bg-yellow-400/5">
+              App Development
+            </Link>
+            <Link href="/services/it-support" className="block px-3 py-2 rounded-md text-base font-medium text-yellow-100 hover:text-yellow-400 hover:bg-yellow-400/5">
+              IT Support
+            </Link>
+            <Link href="/services/workstation-setup" className="block px-3 py-2 rounded-md text-base font-medium text-yellow-400 bg-yellow-400/10">
+              Workstation Setup
+            </Link>
+            <Link href="/services/cybersecurity" className="block px-3 py-2 rounded-md text-base font-medium text-yellow-100 hover:text-yellow-400 hover:bg-yellow-400/5">
+              Cybersecurity
+            </Link>
+            <div className="border-t border-yellow-400/20 my-2"></div>
+            {sections.map((section) => (
+              <a
+                key={section.id}
+                href={`#${section.id}`}
+                onClick={() => setIsMobileMenuOpen(false)}
+                className={`block px-3 py-2 rounded-md text-base font-medium ${
+                  activeSection === section.id
+                    ? 'text-yellow-400 bg-yellow-400/10'
+                    : 'text-yellow-100 hover:text-yellow-400 hover:bg-yellow-400/5'
+                }`}
+              >
+                {section.label}
+              </a>
+            ))}
+          </div>
+        </div>
       )}
 
-      {/* Hero Section with enhanced animation */}
-      <section id="hero" ref={setSectionRef} className="w-full pt-32 pb-16 md:pt-40 md:pb-24 bg-black text-center visible parallax-section relative overflow-hidden">
-        <div className="absolute inset-0 bg-gradient-to-b from-yellow-400/10 to-transparent animate-pulse"></div>
-        <div className="absolute inset-0 bg-[radial-gradient(circle_at_center,_var(--tw-gradient-stops))] from-yellow-400/5 via-transparent to-transparent animate-pulse-slow"></div>
-        <div className="absolute inset-0 bg-grid-pattern opacity-10"></div>
-        
-        {/* Tech Gears Background */}
-        <div className="absolute inset-0 overflow-hidden">
-          <div className="tech-gear tech-gear-1">
-            <FaCog className="text-yellow-400/20" size={60} />
-          </div>
-          <div className="tech-gear tech-gear-2">
-            <FaCog className="text-yellow-400/20" size={40} />
-          </div>
-          <div className="tech-gear tech-gear-3">
-            <FaCog className="text-yellow-400/20" size={80} />
-          </div>
-          <div className="tech-gear tech-gear-4">
-            <FaCog className="text-yellow-400/20" size={50} />
-          </div>
-          <div className="tech-gear tech-gear-5">
-            <FaCog className="text-yellow-400/20" size={70} />
-          </div>
-        </div>
+      {/* Main Content with Sidebar Offset */}
+      <div className={`w-full transition-all duration-300 ${isSidebarCollapsed ? 'md:ml-16' : 'md:ml-48'}`}>
+        {/* Scroll Progress Indicator */}
+        <div 
+          className="fixed top-0 left-0 h-1 bg-yellow-400 z-50 transition-all duration-300"
+          style={{ width: `${scrollProgress}%` }}
+        />
 
-        <div className="relative z-10">
-          <h1 className="text-4xl sm:text-5xl font-extrabold text-yellow-400 mb-4 animate-fade-in relative">
-            <span className="inline-block transform hover:scale-105 transition-transform duration-300 relative">
-              Workstation Setup Services
-              <div className="absolute -inset-1 bg-yellow-400/20 rounded-lg blur-lg -z-10 animate-pulse-slow"></div>
-            </span>
-          </h1>
-          <p className="mx-auto max-w-2xl text-lg sm:text-xl text-yellow-100 mb-6 animate-fade-in-delay relative">
-            Professional workstation setup and network configuration services. From individual workstations to complete office setups, we've got you covered.
-            <div className="absolute -inset-1 bg-yellow-400/5 rounded-lg blur-lg -z-10 animate-pulse-slow"></div>
-          </p>
-          <div className="flex flex-col sm:flex-row gap-4 justify-center items-center animate-fade-in-delay-2">
-            <Link 
-              href="/contact" 
-              className="px-8 py-3 rounded-full bg-yellow-400 text-black font-semibold text-lg hover:bg-yellow-300 transition-all duration-200 transform hover:scale-105 hover:shadow-lg hover:shadow-yellow-400/20 relative group"
-            >
-              <span className="relative z-10">Get Started</span>
-              <div className="absolute inset-0 bg-yellow-400/20 rounded-full blur-lg -z-10 group-hover:scale-150 transition-transform duration-300"></div>
-              <div className="absolute inset-0 rounded-full border-2 border-yellow-400/20 group-hover:border-yellow-400/40 transition-colors duration-300"></div>
-            </Link>
-            <a 
-              href="#services" 
-              className="px-8 py-3 rounded-full border-2 border-yellow-400 text-yellow-400 font-semibold text-lg hover:bg-yellow-400/10 transition-all duration-200 transform hover:scale-105 relative group"
-            >
-              <span className="relative z-10">Learn More</span>
-              <div className="absolute inset-0 bg-yellow-400/5 rounded-full blur-lg -z-10 group-hover:scale-150 transition-transform duration-300"></div>
-              <div className="absolute inset-0 rounded-full border-2 border-yellow-400/20 group-hover:border-yellow-400/40 transition-colors duration-300"></div>
-            </a>
-          </div>
-          <div className="mt-12 flex justify-center items-center space-x-4 animate-fade-in-delay-3">
-            <div className="feature-highlight group">
-              <div className="feature-icon-wrapper">
-                <FaDesktop className="text-2xl animate-float" />
-                <div className="feature-glow"></div>
-              </div>
-              <span className="text-sm">Workstation Setup</span>
-            </div>
-            <div className="w-1 h-1 bg-yellow-400/40 rounded-full"></div>
-            <div className="feature-highlight group">
-              <div className="feature-icon-wrapper">
-                <FaNetworkWired className="text-2xl animate-float-delay-1" />
-                <div className="feature-glow"></div>
-              </div>
-              <span className="text-sm">Network Configuration</span>
-            </div>
-            <div className="w-1 h-1 bg-yellow-400/40 rounded-full"></div>
-            <div className="feature-highlight group">
-              <div className="feature-icon-wrapper">
-                <FaShieldAlt className="text-2xl animate-float-delay-2" />
-                <div className="feature-glow"></div>
-              </div>
-              <span className="text-sm">Security Setup</span>
-            </div>
-          </div>
-        </div>
-      </section>
-
-      {/* Services Section with enhanced cards */}
-      <section id="services" ref={setSectionRef} className="w-full py-16 md:py-24 bg-black">
-        <div className="mx-auto max-w-4xl px-4 sm:px-6 lg:px-8">
-          <h2 className="text-3xl font-bold text-yellow-400 mb-12 text-center">Our Services</h2>
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-            {services.map((service, index) => (
-              <div 
-                key={index} 
-                className={`workstation-card bg-gradient-to-br ${service.color} p-6 rounded-lg border border-yellow-400/20 hover:border-yellow-400/40 transition-all duration-300 transform hover:scale-105 hover:shadow-lg hover:shadow-yellow-400/10 group cursor-pointer`}
-                onClick={() => {
-                  // Add click animation
-                  const element = document.getElementById(`service-${index}`);
-                  if (element) {
-                    element.classList.add('animate-click');
-                    setTimeout(() => element.classList.remove('animate-click'), 300);
-                  }
-                }}
-                id={`service-${index}`}
-              >
-                <div className="text-yellow-400 mb-4 transform group-hover:rotate-12 transition-transform duration-300 relative">
-                  {service.icon}
-                  <div className="absolute inset-0 bg-yellow-400/20 rounded-full scale-0 group-hover:scale-150 transition-transform duration-500"></div>
-                </div>
-                <h3 className="text-xl font-semibold text-yellow-400 mb-2 group-hover:text-yellow-300 transition-colors duration-300">{service.label}</h3>
-                <p className="text-yellow-100 group-hover:text-yellow-50 transition-colors duration-300">{service.desc}</p>
-                <div className="mt-4 opacity-0 group-hover:opacity-100 transition-opacity duration-300">
-                  <div className="h-1 w-0 group-hover:w-full bg-yellow-400/50 transition-all duration-500"></div>
-                </div>
-              </div>
-            ))}
-          </div>
-        </div>
-      </section>
-
-      {/* Process Section with enhanced steps */}
-      <section id="process" ref={setSectionRef} className="w-full py-16 md:py-24 bg-black">
-        <div className="mx-auto max-w-4xl px-4 sm:px-6 lg:px-8">
-          <h2 className="text-3xl font-bold text-yellow-400 mb-12 text-center">Our Process</h2>
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
-            {process.map((step, index) => (
-              <div 
-                key={index} 
-                className={`text-center bg-gradient-to-br ${step.color} p-6 rounded-lg border border-yellow-400/20 hover:border-yellow-400/40 transition-all duration-300 transform hover:scale-105 hover:shadow-lg hover:shadow-yellow-400/10 group`}
-              >
-                <div className="text-yellow-400 mb-4 transform group-hover:rotate-12 transition-transform duration-300">{step.icon}</div>
-                <h3 className="text-xl font-semibold text-yellow-400 mb-2 group-hover:text-yellow-300 transition-colors duration-300">{step.label}</h3>
-                <p className="text-yellow-100 group-hover:text-yellow-50 transition-colors duration-300">{step.desc}</p>
-              </div>
-            ))}
-          </div>
-        </div>
-      </section>
-
-      {/* Technologies Section with enhanced cards */}
-      <section id="technologies" ref={setSectionRef} className="w-full py-16 md:py-24 bg-black">
-        <div className="mx-auto max-w-4xl px-4 sm:px-6 lg:px-8">
-          <h2 className="text-3xl font-bold text-yellow-400 mb-12 text-center">Technologies We Use</h2>
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
-            {technologies.map((tech, index) => (
-              <div 
-                key={index} 
-                className={`workstation-card bg-gradient-to-br ${tech.color} p-6 rounded-lg border border-yellow-400/20 hover:border-yellow-400/40 transition-all duration-300 transform hover:scale-105 hover:shadow-lg hover:shadow-yellow-400/10 group cursor-pointer relative overflow-hidden`}
-                onMouseEnter={(e) => {
-                  const card = e.currentTarget;
-                  const rect = card.getBoundingClientRect();
-                  const x = e.clientX - rect.left;
-                  const y = e.clientY - rect.top;
-                  
-                  card.style.setProperty('--mouse-x', `${x}px`);
-                  card.style.setProperty('--mouse-y', `${y}px`);
-                }}
-                onMouseMove={(e) => {
-                  const card = e.currentTarget;
-                  const rect = card.getBoundingClientRect();
-                  const x = e.clientX - rect.left;
-                  const y = e.clientY - rect.top;
-                  
-                  card.style.setProperty('--mouse-x', `${x}px`);
-                  card.style.setProperty('--mouse-y', `${y}px`);
-                }}
-              >
-                <div className="absolute inset-0 bg-gradient-to-r from-yellow-400/0 via-yellow-400/10 to-yellow-400/0 opacity-0 group-hover:opacity-100 transition-opacity duration-300"
-                     style={{
-                       backgroundPosition: 'var(--mouse-x) var(--mouse-y)',
-                       backgroundSize: '200% 200%',
-                     }}
-                />
-                <div className="text-yellow-400 mb-4 transform group-hover:rotate-12 transition-transform duration-300 relative">
-                  {tech.icon}
-                  <div className="absolute inset-0 bg-yellow-400/20 rounded-full scale-0 group-hover:scale-150 transition-transform duration-500"></div>
-                </div>
-                <h3 className="text-xl font-semibold text-yellow-400 mb-2 group-hover:text-yellow-300 transition-colors duration-300">{tech.label}</h3>
-                <p className="text-yellow-100 group-hover:text-yellow-50 transition-colors duration-300">{tech.desc}</p>
-                <div className="mt-4 opacity-0 group-hover:opacity-100 transition-opacity duration-300">
-                  <div className="h-1 w-0 group-hover:w-full bg-yellow-400/50 transition-all duration-500"></div>
-                </div>
-              </div>
-            ))}
-          </div>
-        </div>
-      </section>
-
-      {/* Case Studies Section with enhanced interactivity */}
-      <section id="case-studies" ref={setSectionRef} className="w-full py-16 md:py-24 bg-black">
-        <div className="mx-auto max-w-4xl px-4 sm:px-6 lg:px-8">
-          <h2 className="text-3xl font-bold text-yellow-400 mb-12 text-center">Case Studies</h2>
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-            {caseStudies.map((study, index) => (
-              <div 
-                key={index} 
-                className="case-study-card bg-black/50 p-6 rounded-lg border border-yellow-400/20 hover:border-yellow-400/40 transition-all duration-300 transform hover:scale-105 hover:shadow-lg hover:shadow-yellow-400/10 group cursor-pointer relative overflow-hidden"
-                onMouseEnter={(e) => {
-                  const card = e.currentTarget;
-                  const rect = card.getBoundingClientRect();
-                  const x = e.clientX - rect.left;
-                  const y = e.clientY - rect.top;
-                  
-                  card.style.setProperty('--mouse-x', `${x}px`);
-                  card.style.setProperty('--mouse-y', `${y}px`);
-                }}
-                onMouseMove={(e) => {
-                  const card = e.currentTarget;
-                  const rect = card.getBoundingClientRect();
-                  const x = e.clientX - rect.left;
-                  const y = e.clientY - rect.top;
-                  
-                  card.style.setProperty('--mouse-x', `${x}px`);
-                  card.style.setProperty('--mouse-y', `${y}px`);
-                }}
-              >
-                <div className="absolute inset-0 bg-gradient-to-r from-yellow-400/0 via-yellow-400/10 to-yellow-400/0 opacity-0 group-hover:opacity-100 transition-opacity duration-300"
-                     style={{
-                       backgroundPosition: 'var(--mouse-x) var(--mouse-y)',
-                       backgroundSize: '200% 200%',
-                     }}
-                />
-                <h3 className="text-xl font-semibold text-yellow-400 mb-2 group-hover:text-yellow-300 transition-colors duration-300">{study.title}</h3>
-                <p className="text-yellow-100 mb-4 group-hover:text-yellow-50 transition-colors duration-300">{study.description}</p>
-                <ul className="space-y-2">
-                  {study.results.map((result, i) => (
-                    <li 
-                      key={i} 
-                      className="flex items-center text-yellow-100 group-hover:text-yellow-50 transition-colors duration-300 transform hover:translate-x-2"
-                    >
-                      <FaCheckCircle className="text-yellow-400 mr-2 transform group-hover:scale-110 transition-transform duration-300" />
-                      {result}
-                    </li>
-                  ))}
-                </ul>
-                <div className="mt-4 opacity-0 group-hover:opacity-100 transition-opacity duration-300">
-                  <div className="h-1 w-0 group-hover:w-full bg-yellow-400/50 transition-all duration-500"></div>
-                </div>
-              </div>
-            ))}
-          </div>
-        </div>
-      </section>
-
-      {/* Pricing Section with enhanced animations */}
-      <section id="pricing" ref={setSectionRef} className="w-full py-16 md:py-24 bg-black">
-        <div className="mx-auto max-w-4xl px-4 sm:px-6 lg:px-8">
-          <h2 className="text-3xl font-bold text-yellow-400 mb-12 text-center">Pricing Structure</h2>
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-            {pricingStructure.map((plan, index) => (
-              <div 
-                key={index} 
-                className="pricing-card bg-black/50 p-6 rounded-lg border border-yellow-400/20 hover:border-yellow-400/40 transition-all duration-300 transform hover:scale-105 hover:shadow-lg hover:shadow-yellow-400/10 group cursor-pointer relative overflow-hidden"
-                onMouseEnter={(e) => {
-                  const card = e.currentTarget;
-                  const rect = card.getBoundingClientRect();
-                  const x = e.clientX - rect.left;
-                  const y = e.clientY - rect.top;
-                  
-                  card.style.setProperty('--mouse-x', `${x}px`);
-                  card.style.setProperty('--mouse-y', `${y}px`);
-                }}
-                onMouseMove={(e) => {
-                  const card = e.currentTarget;
-                  const rect = card.getBoundingClientRect();
-                  const x = e.clientX - rect.left;
-                  const y = e.clientY - rect.top;
-                  
-                  card.style.setProperty('--mouse-x', `${x}px`);
-                  card.style.setProperty('--mouse-y', `${y}px`);
-                }}
-              >
-                <div className="absolute inset-0 bg-gradient-to-r from-yellow-400/0 via-yellow-400/10 to-yellow-400/0 opacity-0 group-hover:opacity-100 transition-opacity duration-300"
-                     style={{
-                       backgroundPosition: 'var(--mouse-x) var(--mouse-y)',
-                       backgroundSize: '200% 200%',
-                     }}
-                />
-                <h3 className="text-xl font-semibold text-yellow-400 mb-2 group-hover:text-yellow-300 transition-colors duration-300">{plan.title}</h3>
-                <p className="text-3xl font-bold text-yellow-400 mb-4 group-hover:scale-110 transition-transform duration-300">{plan.price}</p>
-                <ul className="space-y-2">
-                  {plan.features.map((feature, i) => (
-                    <li 
-                      key={i} 
-                      className="flex items-center text-yellow-100 group-hover:text-yellow-50 transition-colors duration-300 transform hover:translate-x-2"
-                    >
-                      <FaCheckCircle className="text-yellow-400 mr-2 transform group-hover:scale-110 transition-transform duration-300" />
-                      {feature}
-                    </li>
-                  ))}
-                </ul>
-                <div className="mt-6 opacity-0 group-hover:opacity-100 transition-opacity duration-300">
-                  <Link 
-                    href="/contact" 
-                    className="block w-full px-6 py-3 bg-yellow-400 text-black font-semibold rounded-full hover:bg-yellow-300 transition-colors duration-200 text-center transform hover:scale-105"
+        {/* Sticky Navigation */}
+        <nav className="fixed top-0 left-0 right-0 z-40 bg-black/90 backdrop-blur-sm border-b border-yellow-400/20">
+          <div className="mx-auto max-w-4xl px-4 sm:px-6 lg:px-8">
+            <div className="flex items-center justify-between h-16">
+              <Link href="/" className="text-yellow-400 font-bold text-xl">TeaMo</Link>
+              
+              {/* Desktop Navigation */}
+              <div className="hidden md:flex space-x-8">
+                {sections.map((section) => (
+                  <a
+                    key={section.id}
+                    href={`#${section.id}`}
+                    className={`text-sm font-medium transition-colors duration-200 ${
+                      activeSection === section.id
+                        ? 'text-yellow-400'
+                        : 'text-yellow-100 hover:text-yellow-400'
+                    }`}
                   >
-                    Get Started
-                  </Link>
+                    {section.label}
+                  </a>
+                ))}
+              </div>
+
+              {/* Mobile Menu Button */}
+              <button
+                className="md:hidden text-yellow-400"
+                onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
+              >
+                {isMobileMenuOpen ? <FaTimes size={24} /> : <FaBars size={24} />}
+              </button>
+
+              <Link
+                href="/contact"
+                className="hidden md:inline-block px-4 py-2 rounded-full bg-yellow-400 text-black font-semibold text-sm hover:bg-yellow-300 transition-colors duration-200"
+              >
+                Contact Us
+              </Link>
+            </div>
+          </div>
+        </nav>
+
+        {/* Back to Top Button */}
+        {isVisible && (
+          <button
+            onClick={scrollToTop}
+            className="fixed bottom-8 right-8 z-50 p-3 rounded-full bg-yellow-400 text-black hover:bg-yellow-300 transition-all duration-200 shadow-lg hover:shadow-xl hover:scale-110"
+            aria-label="Back to top"
+          >
+            <FaArrowUp className="text-xl" />
+          </button>
+        )}
+
+        {/* Hero Section with enhanced animation */}
+        <section id="hero" ref={setSectionRef} className="w-full pt-32 pb-16 md:pt-40 md:pb-24 bg-black text-center visible parallax-section relative overflow-hidden">
+          <div className="absolute inset-0 bg-gradient-to-b from-yellow-400/10 to-transparent animate-pulse"></div>
+          <div className="absolute inset-0 bg-[radial-gradient(circle_at_center,_var(--tw-gradient-stops))] from-yellow-400/5 via-transparent to-transparent animate-pulse-slow"></div>
+          <div className="absolute inset-0 bg-grid-pattern opacity-10"></div>
+          
+          {/* Tech Gears Background */}
+          <div className="absolute inset-0 overflow-hidden">
+            <div className="tech-gear tech-gear-1">
+              <FaCog className="text-yellow-400/20" size={60} />
+            </div>
+            <div className="tech-gear tech-gear-2">
+              <FaCog className="text-yellow-400/20" size={40} />
+            </div>
+            <div className="tech-gear tech-gear-3">
+              <FaCog className="text-yellow-400/20" size={80} />
+            </div>
+            <div className="tech-gear tech-gear-4">
+              <FaCog className="text-yellow-400/20" size={50} />
+            </div>
+            <div className="tech-gear tech-gear-5">
+              <FaCog className="text-yellow-400/20" size={70} />
+            </div>
+          </div>
+
+          <div className="relative z-10">
+            <h1 className="text-4xl sm:text-5xl font-extrabold text-yellow-400 mb-4 animate-fade-in relative">
+              <span className="inline-block transform hover:scale-105 transition-transform duration-300 relative">
+                Workstation Setup Services
+                <div className="absolute -inset-1 bg-yellow-400/20 rounded-lg blur-lg -z-10 animate-pulse-slow"></div>
+              </span>
+            </h1>
+            <p className="mx-auto max-w-2xl text-lg sm:text-xl text-yellow-100 mb-6 animate-fade-in-delay relative">
+              Professional workstation setup and network configuration services. From individual workstations to complete office setups, we've got you covered.
+              <div className="absolute -inset-1 bg-yellow-400/5 rounded-lg blur-lg -z-10 animate-pulse-slow"></div>
+            </p>
+            <div className="flex flex-col sm:flex-row gap-4 justify-center items-center animate-fade-in-delay-2">
+              <Link 
+                href="/contact" 
+                className="px-8 py-3 rounded-full bg-yellow-400 text-black font-semibold text-lg hover:bg-yellow-300 transition-all duration-200 transform hover:scale-105 hover:shadow-lg hover:shadow-yellow-400/20 relative group"
+              >
+                <span className="relative z-10">Get Started</span>
+                <div className="absolute inset-0 bg-yellow-400/20 rounded-full blur-lg -z-10 group-hover:scale-150 transition-transform duration-300"></div>
+                <div className="absolute inset-0 rounded-full border-2 border-yellow-400/20 group-hover:border-yellow-400/40 transition-colors duration-300"></div>
+              </Link>
+              <a 
+                href="#services" 
+                className="px-8 py-3 rounded-full border-2 border-yellow-400 text-yellow-400 font-semibold text-lg hover:bg-yellow-400/10 transition-all duration-200 transform hover:scale-105 relative group"
+              >
+                <span className="relative z-10">Learn More</span>
+                <div className="absolute inset-0 bg-yellow-400/5 rounded-full blur-lg -z-10 group-hover:scale-150 transition-transform duration-300"></div>
+                <div className="absolute inset-0 rounded-full border-2 border-yellow-400/20 group-hover:border-yellow-400/40 transition-colors duration-300"></div>
+              </a>
+            </div>
+            <div className="mt-12 flex justify-center items-center space-x-4 animate-fade-in-delay-3">
+              <div className="feature-highlight group">
+                <div className="feature-icon-wrapper">
+                  <FaDesktop className="text-2xl animate-float" />
+                  <div className="feature-glow"></div>
                 </div>
+                <span className="text-sm">Workstation Setup</span>
               </div>
-            ))}
-          </div>
-        </div>
-      </section>
-
-      {/* FAQ Section */}
-      <section id="faq" ref={setSectionRef} className="w-full py-16 md:py-24 bg-black">
-        <div className="mx-auto max-w-4xl px-4 sm:px-6 lg:px-8">
-          <h2 className="text-3xl font-bold text-yellow-400 mb-12 text-center">Frequently Asked Questions</h2>
-          <div className="space-y-8">
-            {faqs.map((faq, index) => (
-              <div key={index} className="bg-black/50 p-6 rounded-lg border border-yellow-400/20">
-                <h3 className="text-xl font-semibold text-yellow-400 mb-2">{faq.question}</h3>
-                <p className="text-yellow-100">{faq.answer}</p>
+              <div className="w-1 h-1 bg-yellow-400/40 rounded-full"></div>
+              <div className="feature-highlight group">
+                <div className="feature-icon-wrapper">
+                  <FaNetworkWired className="text-2xl animate-float-delay-1" />
+                  <div className="feature-glow"></div>
+                </div>
+                <span className="text-sm">Network Configuration</span>
               </div>
-            ))}
+              <div className="w-1 h-1 bg-yellow-400/40 rounded-full"></div>
+              <div className="feature-highlight group">
+                <div className="feature-icon-wrapper">
+                  <FaShieldAlt className="text-2xl animate-float-delay-2" />
+                  <div className="feature-glow"></div>
+                </div>
+                <span className="text-sm">Security Setup</span>
+              </div>
+            </div>
           </div>
-        </div>
-      </section>
+        </section>
 
-      {/* Final CTA Section */}
-      <section ref={setSectionRef} className="w-full py-16 md:py-24 bg-black text-center">
-        <div className="mx-auto max-w-4xl px-4 sm:px-6 lg:px-8">
-          <h2 className="text-3xl font-bold text-yellow-400 mb-6">Ready to Set Up Your Workstations?</h2>
-          <p className="text-lg text-yellow-100 mb-8">Contact us today to discuss your workstation setup needs.</p>
-          <Link href="/contact" className="inline-block px-8 py-3 rounded-full bg-yellow-400 text-black font-semibold text-lg hover:bg-yellow-300 transition-colors duration-200">
-            Get Started
-          </Link>
-        </div>
-      </section>
+        {/* Services Section with enhanced cards */}
+        <section id="services" ref={setSectionRef} className="w-full py-16 md:py-24 bg-black">
+          <div className="mx-auto max-w-4xl px-4 sm:px-6 lg:px-8">
+            <h2 className="text-3xl font-bold text-yellow-400 mb-12 text-center">Our Services</h2>
+            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+              {services.map((service, index) => (
+                <div 
+                  key={index} 
+                  className={`workstation-card bg-gradient-to-br ${service.color} p-6 rounded-lg border border-yellow-400/20 hover:border-yellow-400/40 transition-all duration-300 transform hover:scale-105 hover:shadow-lg hover:shadow-yellow-400/10 group cursor-pointer`}
+                  onClick={() => {
+                    // Add click animation
+                    const element = document.getElementById(`service-${index}`);
+                    if (element) {
+                      element.classList.add('animate-click');
+                      setTimeout(() => element.classList.remove('animate-click'), 300);
+                    }
+                  }}
+                  id={`service-${index}`}
+                >
+                  <div className="text-yellow-400 mb-4 transform group-hover:rotate-12 transition-transform duration-300 relative">
+                    {service.icon}
+                    <div className="absolute inset-0 bg-yellow-400/20 rounded-full scale-0 group-hover:scale-150 transition-transform duration-500"></div>
+                  </div>
+                  <h3 className="text-xl font-semibold text-yellow-400 mb-2 group-hover:text-yellow-300 transition-colors duration-300">{service.label}</h3>
+                  <p className="text-yellow-100 group-hover:text-yellow-50 transition-colors duration-300">{service.desc}</p>
+                  <div className="mt-4 opacity-0 group-hover:opacity-100 transition-opacity duration-300">
+                    <div className="h-1 w-0 group-hover:w-full bg-yellow-400/50 transition-all duration-500"></div>
+                  </div>
+                </div>
+              ))}
+            </div>
+          </div>
+        </section>
+
+        {/* Process Section with enhanced steps */}
+        <section id="process" ref={setSectionRef} className="w-full py-16 md:py-24 bg-black">
+          <div className="mx-auto max-w-4xl px-4 sm:px-6 lg:px-8">
+            <h2 className="text-3xl font-bold text-yellow-400 mb-12 text-center">Our Process</h2>
+            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
+              {process.map((step, index) => (
+                <div 
+                  key={index} 
+                  className={`text-center bg-gradient-to-br ${step.color} p-6 rounded-lg border border-yellow-400/20 hover:border-yellow-400/40 transition-all duration-300 transform hover:scale-105 hover:shadow-lg hover:shadow-yellow-400/10 group`}
+                >
+                  <div className="text-yellow-400 mb-4 transform group-hover:rotate-12 transition-transform duration-300">{step.icon}</div>
+                  <h3 className="text-xl font-semibold text-yellow-400 mb-2 group-hover:text-yellow-300 transition-colors duration-300">{step.label}</h3>
+                  <p className="text-yellow-100 group-hover:text-yellow-50 transition-colors duration-300">{step.desc}</p>
+                </div>
+              ))}
+            </div>
+          </div>
+        </section>
+
+        {/* Technologies Section with enhanced cards */}
+        <section id="technologies" ref={setSectionRef} className="w-full py-16 md:py-24 bg-black">
+          <div className="mx-auto max-w-4xl px-4 sm:px-6 lg:px-8">
+            <h2 className="text-3xl font-bold text-yellow-400 mb-12 text-center">Technologies We Use</h2>
+            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
+              {technologies.map((tech, index) => (
+                <div 
+                  key={index} 
+                  className={`workstation-card bg-gradient-to-br ${tech.color} p-6 rounded-lg border border-yellow-400/20 hover:border-yellow-400/40 transition-all duration-300 transform hover:scale-105 hover:shadow-lg hover:shadow-yellow-400/10 group cursor-pointer relative overflow-hidden`}
+                  onMouseEnter={(e) => {
+                    const card = e.currentTarget;
+                    const rect = card.getBoundingClientRect();
+                    const x = e.clientX - rect.left;
+                    const y = e.clientY - rect.top;
+                    
+                    card.style.setProperty('--mouse-x', `${x}px`);
+                    card.style.setProperty('--mouse-y', `${y}px`);
+                  }}
+                  onMouseMove={(e) => {
+                    const card = e.currentTarget;
+                    const rect = card.getBoundingClientRect();
+                    const x = e.clientX - rect.left;
+                    const y = e.clientY - rect.top;
+                    
+                    card.style.setProperty('--mouse-x', `${x}px`);
+                    card.style.setProperty('--mouse-y', `${y}px`);
+                  }}
+                >
+                  <div className="absolute inset-0 bg-gradient-to-r from-yellow-400/0 via-yellow-400/10 to-yellow-400/0 opacity-0 group-hover:opacity-100 transition-opacity duration-300"
+                       style={{
+                         backgroundPosition: 'var(--mouse-x) var(--mouse-y)',
+                         backgroundSize: '200% 200%',
+                       }}
+                  />
+                  <div className="text-yellow-400 mb-4 transform group-hover:rotate-12 transition-transform duration-300 relative">
+                    {tech.icon}
+                    <div className="absolute inset-0 bg-yellow-400/20 rounded-full scale-0 group-hover:scale-150 transition-transform duration-500"></div>
+                  </div>
+                  <h3 className="text-xl font-semibold text-yellow-400 mb-2 group-hover:text-yellow-300 transition-colors duration-300">{tech.label}</h3>
+                  <p className="text-yellow-100 group-hover:text-yellow-50 transition-colors duration-300">{tech.desc}</p>
+                  <div className="mt-4 opacity-0 group-hover:opacity-100 transition-opacity duration-300">
+                    <div className="h-1 w-0 group-hover:w-full bg-yellow-400/50 transition-all duration-500"></div>
+                  </div>
+                </div>
+              ))}
+            </div>
+          </div>
+        </section>
+
+        {/* Case Studies Section with enhanced interactivity */}
+        <section id="case-studies" ref={setSectionRef} className="w-full py-16 md:py-24 bg-black">
+          <div className="mx-auto max-w-4xl px-4 sm:px-6 lg:px-8">
+            <h2 className="text-3xl font-bold text-yellow-400 mb-12 text-center">Case Studies</h2>
+            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+              {caseStudies.map((study, index) => (
+                <div 
+                  key={index} 
+                  className="case-study-card bg-black/50 p-6 rounded-lg border border-yellow-400/20 hover:border-yellow-400/40 transition-all duration-300 transform hover:scale-105 hover:shadow-lg hover:shadow-yellow-400/10 group cursor-pointer relative overflow-hidden"
+                  onMouseEnter={(e) => {
+                    const card = e.currentTarget;
+                    const rect = card.getBoundingClientRect();
+                    const x = e.clientX - rect.left;
+                    const y = e.clientY - rect.top;
+                    
+                    card.style.setProperty('--mouse-x', `${x}px`);
+                    card.style.setProperty('--mouse-y', `${y}px`);
+                  }}
+                  onMouseMove={(e) => {
+                    const card = e.currentTarget;
+                    const rect = card.getBoundingClientRect();
+                    const x = e.clientX - rect.left;
+                    const y = e.clientY - rect.top;
+                    
+                    card.style.setProperty('--mouse-x', `${x}px`);
+                    card.style.setProperty('--mouse-y', `${y}px`);
+                  }}
+                >
+                  <div className="absolute inset-0 bg-gradient-to-r from-yellow-400/0 via-yellow-400/10 to-yellow-400/0 opacity-0 group-hover:opacity-100 transition-opacity duration-300"
+                       style={{
+                         backgroundPosition: 'var(--mouse-x) var(--mouse-y)',
+                         backgroundSize: '200% 200%',
+                       }}
+                  />
+                  <h3 className="text-xl font-semibold text-yellow-400 mb-2 group-hover:text-yellow-300 transition-colors duration-300">{study.title}</h3>
+                  <p className="text-yellow-100 mb-4 group-hover:text-yellow-50 transition-colors duration-300">{study.description}</p>
+                  <ul className="space-y-2">
+                    {study.results.map((result, i) => (
+                      <li 
+                        key={i} 
+                        className="flex items-center text-yellow-100 group-hover:text-yellow-50 transition-colors duration-300 transform hover:translate-x-2"
+                      >
+                        <FaCheckCircle className="text-yellow-400 mr-2 transform group-hover:scale-110 transition-transform duration-300" />
+                        {result}
+                      </li>
+                    ))}
+                  </ul>
+                  <div className="mt-4 opacity-0 group-hover:opacity-100 transition-opacity duration-300">
+                    <div className="h-1 w-0 group-hover:w-full bg-yellow-400/50 transition-all duration-500"></div>
+                  </div>
+                </div>
+              ))}
+            </div>
+          </div>
+        </section>
+
+        {/* Pricing Section with enhanced animations */}
+        <section id="pricing" ref={setSectionRef} className="w-full py-16 md:py-24 bg-black">
+          <div className="mx-auto max-w-4xl px-4 sm:px-6 lg:px-8">
+            <h2 className="text-3xl font-bold text-yellow-400 mb-12 text-center">Pricing Structure</h2>
+            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+              {pricingStructure.map((plan, index) => (
+                <div 
+                  key={index} 
+                  className="pricing-card bg-black/50 p-6 rounded-lg border border-yellow-400/20 hover:border-yellow-400/40 transition-all duration-300 transform hover:scale-105 hover:shadow-lg hover:shadow-yellow-400/10 group cursor-pointer relative overflow-hidden"
+                  onMouseEnter={(e) => {
+                    const card = e.currentTarget;
+                    const rect = card.getBoundingClientRect();
+                    const x = e.clientX - rect.left;
+                    const y = e.clientY - rect.top;
+                    
+                    card.style.setProperty('--mouse-x', `${x}px`);
+                    card.style.setProperty('--mouse-y', `${y}px`);
+                  }}
+                  onMouseMove={(e) => {
+                    const card = e.currentTarget;
+                    const rect = card.getBoundingClientRect();
+                    const x = e.clientX - rect.left;
+                    const y = e.clientY - rect.top;
+                    
+                    card.style.setProperty('--mouse-x', `${x}px`);
+                    card.style.setProperty('--mouse-y', `${y}px`);
+                  }}
+                >
+                  <div className="absolute inset-0 bg-gradient-to-r from-yellow-400/0 via-yellow-400/10 to-yellow-400/0 opacity-0 group-hover:opacity-100 transition-opacity duration-300"
+                       style={{
+                         backgroundPosition: 'var(--mouse-x) var(--mouse-y)',
+                         backgroundSize: '200% 200%',
+                       }}
+                  />
+                  <h3 className="text-xl font-semibold text-yellow-400 mb-2 group-hover:text-yellow-300 transition-colors duration-300">{plan.title}</h3>
+                  <p className="text-3xl font-bold text-yellow-400 mb-4 group-hover:scale-110 transition-transform duration-300">{plan.price}</p>
+                  <ul className="space-y-2">
+                    {plan.features.map((feature, i) => (
+                      <li 
+                        key={i} 
+                        className="flex items-center text-yellow-100 group-hover:text-yellow-50 transition-colors duration-300 transform hover:translate-x-2"
+                      >
+                        <FaCheckCircle className="text-yellow-400 mr-2 transform group-hover:scale-110 transition-transform duration-300" />
+                        {feature}
+                      </li>
+                    ))}
+                  </ul>
+                  <div className="mt-6 opacity-0 group-hover:opacity-100 transition-opacity duration-300">
+                    <Link 
+                      href="/contact" 
+                      className="block w-full px-6 py-3 bg-yellow-400 text-black font-semibold rounded-full hover:bg-yellow-300 transition-colors duration-200 text-center transform hover:scale-105"
+                    >
+                      Get Started
+                    </Link>
+                  </div>
+                </div>
+              ))}
+            </div>
+          </div>
+        </section>
+
+        {/* FAQ Section */}
+        <section id="faq" ref={setSectionRef} className="w-full py-16 md:py-24 bg-black">
+          <div className="mx-auto max-w-4xl px-4 sm:px-6 lg:px-8">
+            <h2 className="text-3xl font-bold text-yellow-400 mb-12 text-center">Frequently Asked Questions</h2>
+            <div className="space-y-8">
+              {faqs.map((faq, index) => (
+                <div key={index} className="bg-black/50 p-6 rounded-lg border border-yellow-400/20">
+                  <h3 className="text-xl font-semibold text-yellow-400 mb-2">{faq.question}</h3>
+                  <p className="text-yellow-100">{faq.answer}</p>
+                </div>
+              ))}
+            </div>
+          </div>
+        </section>
+
+        {/* Final CTA Section */}
+        <section ref={setSectionRef} className="w-full py-16 md:py-24 bg-black text-center">
+          <div className="mx-auto max-w-4xl px-4 sm:px-6 lg:px-8">
+            <h2 className="text-3xl font-bold text-yellow-400 mb-6">Ready to Set Up Your Workstations?</h2>
+            <p className="text-lg text-yellow-100 mb-8">Contact us today to discuss your workstation setup needs.</p>
+            <Link href="/contact" className="inline-block px-8 py-3 rounded-full bg-yellow-400 text-black font-semibold text-lg hover:bg-yellow-300 transition-colors duration-200">
+              Get Started
+            </Link>
+          </div>
+        </section>
+      </div>
 
       <style jsx global>{`
         @keyframes fadeIn {

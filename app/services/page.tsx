@@ -1,6 +1,6 @@
 import React from 'react';
 import { Metadata } from 'next';
-import { FaServer, FaShieldAlt, FaMobileAlt, FaLaptopCode, FaUsers, FaAward, FaBolt, FaMoneyBillWave, FaCheckCircle, FaChartLine, FaCogs, FaHandshake } from 'react-icons/fa';
+import { FaServer, FaShieldAlt, FaMobileAlt, FaLaptopCode, FaUsers, FaAward, FaBolt, FaMoneyBillWave, FaCheckCircle, FaChartLine, FaCogs, FaHandshake, FaGamepad } from 'react-icons/fa';
 import Link from 'next/link';
 
 export const metadata: Metadata = {
@@ -31,7 +31,7 @@ const services = [
     icon: <FaLaptopCode className="text-yellow-400 text-3xl mb-3" />, 
     title: 'IT Support & Consulting',
     desc: 'On-demand tech support, troubleshooting, and strategic IT consulting for all business sizes.',
-    link: '/services/it-support-consulting',
+    link: '/services/it-support',
   },
   {
     icon: <FaUsers className="text-yellow-400 text-3xl mb-3" />, 
@@ -40,10 +40,22 @@ const services = [
     link: '/services/workstation-setup',
   },
   {
+    icon: <FaGamepad className="text-yellow-400 text-3xl mb-3" />, 
+    title: 'Workstation & Studio Setup',
+    desc: 'Custom gaming, streaming, and professional studio setups. From high-performance gaming rigs to complete streaming and content creation studios with professional audio/video equipment.',
+    link: '/services/workstation-studio-setup',
+  },
+  {
     icon: <FaCogs className="text-yellow-400 text-3xl mb-3" />, 
     title: 'Gadget Repairs & Sales',
     desc: 'Expert diagnostics and repairs for laptops, desktops, and gadgets. Free pickup & delivery for diagnostics/repair. Sourcing and supply of quality computers, accessories, and tech equipment at competitive prices.',
     link: 'services/gadget-sales-repair',
+  },
+  {
+    icon: <FaChartLine className="text-yellow-400 text-3xl mb-3" />, 
+    title: 'Digital Marketing',
+    desc: 'Comprehensive digital marketing solutions including SEO, social media management, content marketing, and PPC campaigns to grow your online presence and drive business growth.',
+    link: '/services/digital-marketing',
   },
 ];
 
