@@ -19,31 +19,31 @@ const services = [
     icon: <FaMobileAlt className="text-yellow-400 text-3xl mb-3" />, 
     title: 'Mobile App Development',
     desc: 'iOS & Android apps tailored to your business goals, with seamless UX and robust code.',
-    link: 'services/app-development',
+    link: '/services/app-development',
   },
   {
     icon: <FaShieldAlt className="text-yellow-400 text-3xl mb-3" />, 
     title: 'Cybersecurity',
     desc: 'Protect your business with advanced security solutions, audits, and 24/7 monitoring.',
-    link: '#contact',
+    link: '/services/cybersecurity',
   },
   {
     icon: <FaLaptopCode className="text-yellow-400 text-3xl mb-3" />, 
     title: 'IT Support & Consulting',
     desc: 'On-demand tech support, troubleshooting, and strategic IT consulting for all business sizes.',
-    link: '#contact',
+    link: '/services/it-support-consulting',
   },
   {
     icon: <FaUsers className="text-yellow-400 text-3xl mb-3" />, 
     title: 'Workstation & Network Setup',
     desc: 'Custom workstation design, ergonomic setup, office network installation, and optimization for productivity. Includes hardware procurement, configuration, and staff onboarding.',
-    link: '#contact',
+    link: '/services/workstation-setup',
   },
   {
     icon: <FaCogs className="text-yellow-400 text-3xl mb-3" />, 
     title: 'Gadget Repairs & Sales',
     desc: 'Expert diagnostics and repairs for laptops, desktops, and gadgets. Free pickup & delivery for diagnostics/repair. Sourcing and supply of quality computers, accessories, and tech equipment at competitive prices.',
-    link: '#contact',
+    link: 'services/gadget-sales-repair',
   },
 ];
 

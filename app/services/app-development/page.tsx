@@ -1,7 +1,7 @@
 "use client";
 
 import React, { useEffect, useState, useRef } from 'react';
-import { FaCode, FaCheckCircle, FaClock, FaTools, FaShoppingCart, FaServer, FaDatabase, FaMobile, FaShieldAlt, FaQuestionCircle, FaReact, FaNodeJs, FaPython, FaPhp, FaWordpress, FaLaravel, FaAws, FaDocker, FaGitAlt, FaVuejs, FaAngular, FaSass, FaBootstrap, FaJenkins, FaGithub, FaJira, FaTrello, FaSlack, FaConfluence, FaBitbucket, FaCircle, FaArrowUp } from 'react-icons/fa';
+import { FaCode, FaCheckCircle, FaClock, FaTools, FaShoppingCart, FaServer, FaDatabase, FaMobile, FaShieldAlt, FaQuestionCircle, FaReact, FaNodeJs, FaPython, FaPhp, FaWordpress, FaLaravel, FaAws, FaDocker, FaGitAlt, FaVuejs, FaAngular, FaSass, FaBootstrap, FaJenkins, FaGithub, FaJira, FaTrello, FaSlack, FaConfluence, FaBitbucket, FaCircle, FaArrowUp, FaAndroid, FaApple, FaFilter, FaFire, FaGooglePlay, FaAppStore, FaBars, FaTimes } from 'react-icons/fa';
 import Link from 'next/link';
 
 const process = [
@@ -9,320 +9,184 @@ const process = [
   { step: 'Design & Prototype', desc: 'We create wireframes and design mockups for your approval.' },
   { step: 'Development', desc: 'Our expert developers build your solution using modern technologies.' },
   { step: 'Testing & QA', desc: 'We thoroughly test all features and ensure quality standards.' },
-  { step: 'Deployment & Support', desc: 'We launch your project and provide ongoing maintenance.' },
-];
-
-const techStack = [
-  { icon: <FaReact className="text-yellow-400 text-2xl" />, label: 'Frontend' },
-  { icon: <FaNodeJs className="text-yellow-400 text-2xl" />, label: 'Backend' },
-  { icon: <FaDatabase className="text-yellow-400 text-2xl" />, label: 'Databases' },
-  { icon: <FaMobile className="text-yellow-400 text-2xl" />, label: 'Mobile Apps' },
-  { icon: <FaWordpress className="text-yellow-400 text-2xl" />, label: 'CMS' },
-  { icon: <FaServer className="text-yellow-400 text-2xl" />, label: 'DevOps' },
-  { icon: <FaShieldAlt className="text-yellow-400 text-2xl" />, label: 'Security' },
-  { icon: <FaTools className="text-yellow-400 text-2xl" />, label: 'Maintenance' },
-  { icon: <FaShoppingCart className="text-yellow-400 text-2xl" />, label: 'E-commerce' },
+  { step: 'Deployment & Support', desc: 'We launch your app and provide ongoing maintenance.' },
 ];
 
 const services = [
-  { icon: <FaCode className="text-yellow-400 text-2xl" />, label: 'Custom Web Development', desc: 'Tailored web applications built with modern frameworks and best practices' },
-  { icon: <FaShoppingCart className="text-yellow-400 text-2xl" />, label: 'E-commerce Solutions', desc: 'Online stores with secure payment gateways and inventory management' },
-  { icon: <FaMobile className="text-yellow-400 text-2xl" />, label: 'Responsive Design', desc: 'Mobile-first websites that work perfectly on all devices' },
-  { icon: <FaDatabase className="text-yellow-400 text-2xl" />, label: 'API Development', desc: 'RESTful APIs and backend services for your applications' },
-  { icon: <FaWordpress className="text-yellow-400 text-2xl" />, label: 'CMS Development', desc: 'Custom WordPress and other CMS solutions' },
-  { icon: <FaServer className="text-yellow-400 text-2xl" />, label: 'Cloud Solutions', desc: 'AWS, Azure, and Google Cloud deployment and management' },
+  { icon: <FaMobile className="text-yellow-400 text-2xl" />, label: 'Native iOS Development', desc: 'High-performance iOS apps built with Swift and SwiftUI' },
+  { icon: <FaAndroid className="text-yellow-400 text-2xl" />, label: 'Native Android Development', desc: 'Robust Android apps using Kotlin and Jetpack Compose' },
+  { icon: <FaFilter className="text-yellow-400 text-2xl" />, label: 'Cross-Platform Development', desc: 'Flutter and React Native apps for multiple platforms' },
+  { icon: <FaTools className="text-yellow-400 text-2xl" />, label: 'App Maintenance', desc: 'Regular updates, bug fixes, and performance optimization' },
+  { icon: <FaServer className="text-yellow-400 text-2xl" />, label: 'Backend Development', desc: 'Scalable backend services and APIs for your app' },
+  { icon: <FaShieldAlt className="text-yellow-400 text-2xl" />, label: 'App Security', desc: 'Security audits and implementation of best practices' },
 ];
 
 const technologies = [
-  { icon: <FaReact className="text-yellow-400 text-2xl" />, label: 'React/Next.js', desc: 'Modern frontend development with server-side rendering' },
-  { icon: <FaVuejs className="text-yellow-400 text-2xl" />, label: 'Vue.js/Nuxt', desc: 'Progressive framework for building user interfaces' },
-  { icon: <FaAngular className="text-yellow-400 text-2xl" />, label: 'Angular', desc: 'Platform for building mobile & desktop web apps' },
-  { icon: <FaNodeJs className="text-yellow-400 text-2xl" />, label: 'Node.js/Express', desc: 'Scalable backend solutions and APIs' },
-  { icon: <FaPython className="text-yellow-400 text-2xl" />, label: 'Python/Django', desc: 'Rapid development and clean design' },
-  { icon: <FaPhp className="text-yellow-400 text-2xl" />, label: 'PHP/Laravel', desc: 'Enterprise-grade solutions' },
-  { icon: <FaDatabase className="text-yellow-400 text-2xl" />, label: 'MongoDB', desc: 'NoSQL database for modern applications' },
-  { icon: <FaDatabase className="text-yellow-400 text-2xl" />, label: 'PostgreSQL', desc: 'Advanced open-source database' },
+  { icon: <FaApple className="text-yellow-400 text-2xl" />, label: 'iOS/Swift', desc: 'Native iOS development with Swift and SwiftUI' },
+  { icon: <FaAndroid className="text-yellow-400 text-2xl" />, label: 'Android/Kotlin', desc: 'Modern Android development with Kotlin' },
+  { icon: <FaFilter className="text-yellow-400 text-2xl" />, label: 'Flutter', desc: 'Cross-platform development framework' },
+  { icon: <FaReact className="text-yellow-400 text-2xl" />, label: 'React Native', desc: 'JavaScript-based mobile development' },
+  { icon: <FaCode className="text-yellow-400 text-2xl" />, label: 'Unity', desc: 'Game development and 3D applications' },
+  { icon: <FaFire className="text-yellow-400 text-2xl" />, label: 'Firebase', desc: 'Backend services and real-time database' },
   { icon: <FaAws className="text-yellow-400 text-2xl" />, label: 'AWS', desc: 'Cloud infrastructure and services' },
   { icon: <FaDocker className="text-yellow-400 text-2xl" />, label: 'Docker', desc: 'Containerization and deployment' },
-  { icon: <FaSass className="text-yellow-400 text-2xl" />, label: 'Sass/SCSS', desc: 'Advanced CSS preprocessing' },
-  { icon: <FaBootstrap className="text-yellow-400 text-2xl" />, label: 'Bootstrap/Tailwind', desc: 'Modern CSS frameworks' },
 ];
 
 const caseStudies = [
   {
-    title: 'E-commerce Platform',
-    description: 'Built a scalable e-commerce platform for a retail chain with real-time inventory management and payment integration.',
-    tech: ['React', 'Node.js', 'MongoDB', 'AWS'],
-    results: 'Increased online sales by 200% in 6 months'
+    title: 'E-commerce Mobile App',
+    description: 'Developed a cross-platform e-commerce app with real-time inventory and payment integration.',
+    tech: ['Flutter', 'Firebase', 'Node.js', 'AWS'],
+    results: 'Increased mobile sales by 150% in 3 months'
   },
   {
-    title: 'Healthcare Management System',
-    description: 'Developed a comprehensive healthcare management system with patient records and appointment scheduling.',
-    tech: ['Vue.js', 'Laravel', 'PostgreSQL', 'Docker'],
-    results: 'Reduced administrative time by 40%'
+    title: 'Healthcare Management App',
+    description: 'Built a comprehensive healthcare app with patient records and appointment scheduling.',
+    tech: ['React Native', 'Node.js', 'MongoDB', 'AWS'],
+    results: 'Reduced appointment no-shows by 40%'
   },
   {
-    title: 'Educational Platform',
-    description: 'Created an online learning platform with video streaming and interactive assessments.',
-    tech: ['Next.js', 'Python', 'MongoDB', 'AWS'],
-    results: 'Served 10,000+ active users'
+    title: 'Fitness Tracking App',
+    description: 'Created a fitness app with real-time tracking and social features.',
+    tech: ['Swift', 'Kotlin', 'Firebase', 'Google Cloud'],
+    results: 'Reached 50,000+ active users'
   },
   {
-    title: 'Real Estate Portal',
-    description: 'Developed a property listing platform with virtual tours and mortgage calculator.',
-    tech: ['React', 'Node.js', 'PostgreSQL', 'AWS'],
-    results: 'Increased property inquiries by 150%'
-  },
-  {
-    title: 'Banking Application',
-    description: 'Built a secure banking application with real-time transaction processing and fraud detection.',
-    tech: ['Angular', 'Java Spring', 'Oracle', 'Azure'],
-    results: 'Processed ₦1B+ in transactions'
-  },
-  {
-    title: 'Food Delivery Platform',
-    description: 'Created a food delivery platform with real-time tracking and automated dispatch.',
-    tech: ['Vue.js', 'Node.js', 'MongoDB', 'Google Cloud'],
+    title: 'Food Delivery App',
+    description: 'Developed a food delivery app with real-time tracking and payment integration.',
+    tech: ['Flutter', 'Node.js', 'MongoDB', 'AWS'],
     results: 'Reduced delivery time by 30%'
+  },
+  {
+    title: 'Banking App',
+    description: 'Built a secure banking app with biometric authentication and real-time transactions.',
+    tech: ['Swift', 'Kotlin', 'Java Spring', 'Azure'],
+    results: 'Processed ₦500M+ in transactions'
+  },
+  {
+    title: 'Educational App',
+    description: 'Created an educational app with video streaming and interactive quizzes.',
+    tech: ['React Native', 'Node.js', 'MongoDB', 'AWS'],
+    results: 'Served 20,000+ students'
   }
 ];
 
 const pricingStructure = [
   { 
-    type: 'Basic Website',
-    price: '₦150,000 - ₦300,000',
-    desc: 'Simple business website with basic features',
+    type: 'Basic App',
+    price: '₦300,000 - ₦600,000',
+    desc: 'Simple mobile app with basic features',
     features: [
-      '5-10 pages',
-      'Contact form',
-      'Basic SEO',
-      'Mobile responsive',
+      'Single platform (iOS or Android)',
+      'Basic UI/UX',
+      'Core functionality',
+      'Basic backend',
       '1 month support'
     ]
   },
   { 
-    type: 'E-commerce Site',
-    price: '₦300,000 - ₦600,000',
-    desc: 'Online store with payment integration',
+    type: 'Cross-Platform App',
+    price: '₦600,000 - ₦1,200,000',
+    desc: 'App that works on both iOS and Android',
     features: [
-      'Product catalog',
-      'Payment gateway',
-      'Inventory management',
-      'Order tracking',
+      'iOS and Android support',
+      'Advanced UI/UX',
+      'Backend integration',
+      'Push notifications',
       '3 months support'
     ]
   },
   { 
-    type: 'Custom Web App',
-    price: '₦600,000+',
-    desc: 'Complex web applications with custom features',
+    type: 'Enterprise App',
+    price: '₦1,200,000+',
+    desc: 'Complex applications with advanced features',
     features: [
       'Custom features',
-      'API integration',
-      'User authentication',
-      'Advanced analytics',
+      'Advanced security',
+      'Analytics integration',
+      '24/7 support',
       '6 months support'
     ]
   },
   { 
-    type: 'Enterprise Solution',
+    type: 'Game Development',
     price: 'Custom Quote',
-    desc: 'Large-scale applications with advanced features',
+    desc: 'Mobile games and interactive applications',
     features: [
-      'Custom architecture',
-      'High scalability',
-      'Advanced security',
-      '24/7 support',
-      'Dedicated team'
+      '2D/3D graphics',
+      'Game mechanics',
+      'Multiplayer support',
+      'In-app purchases',
+      'Ongoing updates'
     ]
   },
   { 
     type: 'Maintenance',
-    price: '₦30,000/month',
-    desc: 'Regular updates, security patches, and support',
+    price: '₦50,000/month',
+    desc: 'Regular updates and support',
     features: [
+      'Bug fixes',
+      'Performance optimization',
       'Security updates',
-      'Performance monitoring',
-      'Backup management',
       'Technical support',
       'Monthly reports'
     ]
   }
 ];
 
-const methodologies = [
-  {
-    name: 'Agile Development',
-    desc: 'Iterative development with regular feedback and adjustments',
-    practices: ['Sprint planning', 'Daily standups', 'Sprint reviews', 'Retrospectives']
-  },
-  {
-    name: 'DevOps',
-    desc: 'Continuous integration and deployment for faster delivery',
-    practices: ['CI/CD pipelines', 'Automated testing', 'Infrastructure as code', 'Monitoring']
-  },
-  {
-    name: 'Test-Driven Development',
-    desc: 'Writing tests before code for better quality',
-    practices: ['Unit testing', 'Integration testing', 'End-to-end testing', 'Code coverage']
-  }
-];
-
-const techStackCombinations = [
-  {
-    name: 'Modern E-commerce',
-    stack: ['Next.js', 'Node.js', 'MongoDB', 'Redis', 'AWS'],
-    useCase: 'High-performance online stores with real-time inventory'
-  },
-  {
-    name: 'Enterprise CMS',
-    stack: ['React', 'Laravel', 'MySQL', 'Elasticsearch', 'Docker'],
-    useCase: 'Large-scale content management systems'
-  },
-  {
-    name: 'Real-time Platform',
-    stack: ['Vue.js', 'Node.js', 'Socket.io', 'MongoDB', 'Redis'],
-    useCase: 'Chat applications and live tracking systems'
-  },
-  {
-    name: 'Data Analytics',
-    stack: ['React', 'Python', 'PostgreSQL', 'TensorFlow', 'AWS'],
-    useCase: 'Business intelligence and data visualization'
-  },
-  {
-    name: 'Mobile-First App',
-    stack: ['React Native', 'Node.js', 'MongoDB', 'Firebase', 'AWS'],
-    useCase: 'Cross-platform mobile applications'
-  }
-];
-
-const projectManagementTools = [
-  {
-    name: 'Jira',
-    icon: <FaJira className="text-yellow-400 text-2xl" />,
-    features: ['Agile boards', 'Sprint planning', 'Issue tracking', 'Custom workflows']
-  },
-  {
-    name: 'Trello',
-    icon: <FaTrello className="text-yellow-400 text-2xl" />,
-    features: ['Kanban boards', 'Task management', 'Team collaboration', 'Power-ups']
-  },
-  {
-    name: 'GitHub',
-    icon: <FaGithub className="text-yellow-400 text-2xl" />,
-    features: ['Version control', 'Code review', 'CI/CD', 'Project management']
-  },
-  {
-    name: 'Confluence',
-    icon: <FaConfluence className="text-yellow-400 text-2xl" />,
-    features: ['Documentation', 'Knowledge base', 'Team collaboration', 'Templates']
-  },
-  {
-    name: 'Slack',
-    icon: <FaSlack className="text-yellow-400 text-2xl" />,
-    features: ['Team communication', 'File sharing', 'Integration', 'Channels']
-  }
-];
-
-const qaProcedures = [
-  {
-    name: 'Unit Testing',
-    tools: ['Jest', 'Mocha', 'PyTest'],
-    practices: ['Test-driven development', 'Code coverage', 'Automated testing']
-  },
-  {
-    name: 'Integration Testing',
-    tools: ['Cypress', 'Selenium', 'Postman'],
-    practices: ['API testing', 'End-to-end testing', 'Performance testing']
-  },
-  {
-    name: 'Security Testing',
-    tools: ['OWASP ZAP', 'SonarQube', 'Burp Suite'],
-    practices: ['Vulnerability scanning', 'Penetration testing', 'Code analysis']
-  },
-  {
-    name: 'Performance Testing',
-    tools: ['JMeter', 'Lighthouse', 'WebPageTest'],
-    practices: ['Load testing', 'Stress testing', 'Performance monitoring']
-  }
-];
-
-const faqs = [
-  {
-    q: 'How long does it take to build a website?',
-    a: 'Basic websites take 2-4 weeks, while complex applications may take 2-3 months. We\'ll provide a detailed timeline during planning.'
-  },
-  {
-    q: 'Do you provide hosting services?',
-    a: 'Yes, we offer reliable hosting solutions and can manage your server infrastructure for optimal performance.'
-  },
-  {
-    q: 'What about ongoing support?',
-    a: 'We provide maintenance packages that include regular updates, security patches, and technical support.'
-  },
-  {
-    q: 'Can you help with existing websites?',
-    a: 'Yes, we can improve, update, or completely revamp your existing website to meet modern standards.'
-  },
-  {
-    q: 'Do you offer SEO services?',
-    a: 'Yes, we implement SEO best practices during development and can provide ongoing optimization services.'
-  },
-];
-
 const techStackPricing = [
   {
-    name: 'Modern E-commerce',
-    stack: ['Next.js', 'Node.js', 'MongoDB', 'Redis', 'AWS'],
+    name: 'Native iOS App',
+    stack: ['Swift', 'SwiftUI', 'Firebase', 'AWS'],
     basePrice: '₦800,000',
     features: [
-      'Real-time inventory management',
-      'Payment gateway integration',
-      'Order tracking system',
-      'Customer dashboard',
-      'Admin panel',
-      'Analytics integration'
-    ],
-    addons: [
-      { name: 'Multi-vendor support', price: '₦200,000' },
-      { name: 'Mobile app integration', price: '₦300,000' },
-      { name: 'Advanced analytics', price: '₦150,000' }
-    ]
-  },
-  {
-    name: 'Enterprise CMS',
-    stack: ['React', 'Laravel', 'MySQL', 'Elasticsearch', 'Docker'],
-    basePrice: '₦1,200,000',
-    features: [
-      'Custom content types',
-      'Role-based access control',
-      'Media management',
-      'SEO optimization',
-      'API endpoints',
-      'Multi-language support'
-    ],
-    addons: [
-      { name: 'Advanced search', price: '₦250,000' },
-      { name: 'Workflow automation', price: '₦300,000' },
-      { name: 'Custom plugins', price: '₦200,000' }
-    ]
-  },
-  {
-    name: 'Real-time Platform',
-    stack: ['Vue.js', 'Node.js', 'Socket.io', 'MongoDB', 'Redis'],
-    basePrice: '₦900,000',
-    features: [
-      'Real-time messaging',
-      'Live updates',
+      'Custom UI/UX design',
       'Push notifications',
-      'User presence',
-      'Chat history',
-      'File sharing'
+      'In-app purchases',
+      'Analytics integration',
+      'Offline support',
+      'App Store deployment'
     ],
     addons: [
-      { name: 'Video/audio calls', price: '₦400,000' },
-      { name: 'End-to-end encryption', price: '₦250,000' },
-      { name: 'Group chat features', price: '₦200,000' }
+      { name: 'Apple Watch support', price: '₦200,000' },
+      { name: 'iPad optimization', price: '₦150,000' },
+      { name: 'Advanced animations', price: '₦100,000' }
+    ]
+  },
+  {
+    name: 'Native Android App',
+    stack: ['Kotlin', 'Jetpack Compose', 'Firebase', 'AWS'],
+    basePrice: '₦700,000',
+    features: [
+      'Material Design UI',
+      'Push notifications',
+      'In-app purchases',
+      'Analytics integration',
+      'Offline support',
+      'Play Store deployment'
+    ],
+    addons: [
+      { name: 'Wear OS support', price: '₦200,000' },
+      { name: 'Tablet optimization', price: '₦150,000' },
+      { name: 'Advanced animations', price: '₦100,000' }
+    ]
+  },
+  {
+    name: 'Cross-Platform App',
+    stack: ['Flutter', 'Firebase', 'Node.js', 'AWS'],
+    basePrice: '₦1,000,000',
+    features: [
+      'iOS and Android support',
+      'Custom UI/UX',
+      'Push notifications',
+      'In-app purchases',
+      'Analytics integration',
+      'Offline support'
+    ],
+    addons: [
+      { name: 'Web version', price: '₦300,000' },
+      { name: 'Desktop version', price: '₦400,000' },
+      { name: 'Advanced animations', price: '₦150,000' }
     ]
   }
 ];
@@ -367,11 +231,11 @@ const developmentMethodologies = [
     practices: [
       'Continuous Integration',
       'Continuous Deployment',
-      'Infrastructure as Code',
       'Automated testing',
-      'Monitoring and logging'
+      'Monitoring and logging',
+      'App store deployment'
     ],
-    tools: ['Jenkins', 'Docker', 'Kubernetes', 'AWS'],
+    tools: ['Jenkins', 'Fastlane', 'Firebase', 'AWS'],
     benefits: [
       'Faster deployment cycles',
       'Improved reliability',
@@ -383,13 +247,13 @@ const developmentMethodologies = [
 
 const devOpsPractices = [
   {
-    name: 'Continuous Integration/Deployment',
-    tools: ['Jenkins', 'GitHub Actions', 'CircleCI'],
+    name: 'CI/CD Pipeline',
+    tools: ['Jenkins', 'GitHub Actions', 'Fastlane'],
     practices: [
       'Automated build process',
       'Automated testing',
       'Automated deployment',
-      'Version control integration'
+      'App store submission'
     ],
     benefits: [
       'Faster delivery cycles',
@@ -399,37 +263,111 @@ const devOpsPractices = [
     ]
   },
   {
-    name: 'Infrastructure as Code',
-    tools: ['Terraform', 'AWS CloudFormation', 'Ansible'],
-    practices: [
-      'Automated infrastructure provisioning',
-      'Version-controlled infrastructure',
-      'Consistent environments',
-      'Scalable architecture'
-    ],
-    benefits: [
-      'Faster infrastructure setup',
-      'Reduced configuration errors',
-      'Better scalability',
-      'Cost optimization'
-    ]
-  },
-  {
-    name: 'Monitoring & Logging',
-    tools: ['Prometheus', 'Grafana', 'ELK Stack'],
+    name: 'Monitoring & Analytics',
+    tools: ['Firebase Analytics', 'Crashlytics', 'New Relic'],
     practices: [
       'Real-time performance monitoring',
-      'Log aggregation and analysis',
-      'Alert management',
-      'Resource utilization tracking'
+      'Crash reporting',
+      'User behavior tracking',
+      'Performance optimization'
     ],
     benefits: [
       'Proactive issue detection',
-      'Better system reliability',
+      'Better app reliability',
       'Improved performance',
       'Data-driven decisions'
     ]
+  },
+  {
+    name: 'Security & Compliance',
+    tools: ['OWASP Mobile', 'App Security', 'Compliance Tools'],
+    practices: [
+      'Security testing',
+      'Compliance checking',
+      'Vulnerability scanning',
+      'Data protection'
+    ],
+    benefits: [
+      'Enhanced security',
+      'Regulatory compliance',
+      'User data protection',
+      'Trust building'
+    ]
   }
+];
+
+const qaProcedures = [
+  {
+    name: 'Unit Testing',
+    tools: ['Jest', 'XCTest', 'JUnit'],
+    practices: ['Test-driven development', 'Code coverage', 'Automated testing']
+  },
+  {
+    name: 'UI Testing',
+    tools: ['XCUITest', 'Espresso', 'Flutter Driver'],
+    practices: ['UI automation', 'Cross-device testing', 'Accessibility testing']
+  },
+  {
+    name: 'Security Testing',
+    tools: ['OWASP Mobile', 'MobSF', 'Burp Suite'],
+    practices: ['Vulnerability scanning', 'Penetration testing', 'Code analysis']
+  },
+  {
+    name: 'Performance Testing',
+    tools: ['Firebase Performance', 'New Relic', 'JMeter'],
+    practices: ['Load testing', 'Battery testing', 'Memory profiling']
+  }
+];
+
+const projectManagementTools = [
+  {
+    name: 'Jira',
+    icon: <FaJira className="text-yellow-400 text-2xl" />,
+    features: ['Agile boards', 'Sprint planning', 'Issue tracking', 'Custom workflows']
+  },
+  {
+    name: 'Trello',
+    icon: <FaTrello className="text-yellow-400 text-2xl" />,
+    features: ['Kanban boards', 'Task management', 'Team collaboration', 'Power-ups']
+  },
+  {
+    name: 'GitHub',
+    icon: <FaGithub className="text-yellow-400 text-2xl" />,
+    features: ['Version control', 'Code review', 'CI/CD', 'Project management']
+  },
+  {
+    name: 'Confluence',
+    icon: <FaConfluence className="text-yellow-400 text-2xl" />,
+    features: ['Documentation', 'Knowledge base', 'Team collaboration', 'Templates']
+  },
+  {
+    name: 'Slack',
+    icon: <FaSlack className="text-yellow-400 text-2xl" />,
+    features: ['Team communication', 'File sharing', 'Integration', 'Channels']
+  }
+];
+
+const faqs = [
+  {
+    q: 'How long does it take to develop a mobile app?',
+    a: 'Basic apps take 2-3 months, while complex applications may take 4-6 months. We\'ll provide a detailed timeline during planning.'
+  },
+  {
+    q: 'Do you develop for both iOS and Android?',
+    a: 'Yes, we develop native apps for both platforms and also offer cross-platform solutions using Flutter or React Native.'
+  },
+  {
+    q: 'What about app store submission?',
+    a: 'We handle the entire app store submission process, including preparing store listings, screenshots, and compliance requirements.'
+  },
+  {
+    q: 'Do you provide ongoing support?',
+    a: 'Yes, we offer maintenance packages that include regular updates, bug fixes, and technical support.'
+  },
+  {
+    q: 'How do you handle app security?',
+    a: 'We implement industry best practices for app security, including encryption, secure authentication, and regular security audits.'
+  },
 ];
 
 const sections = [
@@ -441,10 +379,13 @@ const sections = [
   { id: 'faq', label: 'FAQ' },
 ];
 
-export default function WebDevelopmentPage() {
+export default function AppDevelopmentPage() {
   const [isVisible, setIsVisible] = useState(false);
   const [activeSection, setActiveSection] = useState('');
+  const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
+  const [scrollProgress, setScrollProgress] = useState(0);
   const sectionsRef = useRef<HTMLElement[]>([]);
+  const mobileMenuRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
     // Smooth scroll behavior
@@ -457,6 +398,14 @@ export default function WebDevelopmentPage() {
       } else {
         setIsVisible(false);
       }
+    };
+
+    // Scroll progress
+    const updateScrollProgress = () => {
+      const scrollTop = window.scrollY;
+      const docHeight = document.body.offsetHeight - window.innerHeight;
+      const scrollPercent = (scrollTop / docHeight) * 100;
+      setScrollProgress(scrollPercent);
     };
 
     // Active section tracking
@@ -497,14 +446,25 @@ export default function WebDevelopmentPage() {
       }
     });
 
+    // Close mobile menu when clicking outside
+    const handleClickOutside = (event: MouseEvent) => {
+      if (mobileMenuRef.current && !mobileMenuRef.current.contains(event.target as Node)) {
+        setIsMobileMenuOpen(false);
+      }
+    };
+
     window.addEventListener('scroll', () => {
       toggleVisibility();
       handleScroll();
+      updateScrollProgress();
     });
+    document.addEventListener('mousedown', handleClickOutside);
 
     return () => {
       window.removeEventListener('scroll', toggleVisibility);
       window.removeEventListener('scroll', handleScroll);
+      window.removeEventListener('scroll', updateScrollProgress);
+      document.removeEventListener('mousedown', handleClickOutside);
       observer.disconnect();
     };
   }, []);
@@ -516,7 +476,6 @@ export default function WebDevelopmentPage() {
     });
   };
 
-  // Function to set section refs
   const setSectionRef = (element: HTMLElement | null) => {
     if (element) {
       sectionsRef.current.push(element);
@@ -525,11 +484,19 @@ export default function WebDevelopmentPage() {
 
   return (
     <main className="flex min-h-screen flex-col items-center justify-between bg-black">
+      {/* Scroll Progress Indicator */}
+      <div 
+        className="fixed top-0 left-0 h-1 bg-yellow-400 z-50 transition-all duration-300"
+        style={{ width: `${scrollProgress}%` }}
+      />
+
       {/* Sticky Navigation */}
-      <nav className="fixed top-0 left-0 right-0 z-50 bg-black/90 backdrop-blur-sm border-b border-yellow-400/20">
+      <nav className="fixed top-0 left-0 right-0 z-40 bg-black/90 backdrop-blur-sm border-b border-yellow-400/20">
         <div className="mx-auto max-w-4xl px-4 sm:px-6 lg:px-8">
           <div className="flex items-center justify-between h-16">
             <Link href="/" className="text-yellow-400 font-bold text-xl">TeaMo</Link>
+            
+            {/* Desktop Navigation */}
             <div className="hidden md:flex space-x-8">
               {sections.map((section) => (
                 <a
@@ -545,9 +512,50 @@ export default function WebDevelopmentPage() {
                 </a>
               ))}
             </div>
+
+            {/* Mobile Menu Button */}
+            <button
+              className="md:hidden text-yellow-400"
+              onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
+            >
+              {isMobileMenuOpen ? <FaTimes size={24} /> : <FaBars size={24} />}
+            </button>
+
             <Link
               href="/contact"
-              className="inline-block px-4 py-2 rounded-full bg-yellow-400 text-black font-semibold text-sm hover:bg-yellow-300 transition-colors duration-200"
+              className="hidden md:inline-block px-4 py-2 rounded-full bg-yellow-400 text-black font-semibold text-sm hover:bg-yellow-300 transition-colors duration-200"
+            >
+              Contact Us
+            </Link>
+          </div>
+        </div>
+
+        {/* Mobile Menu */}
+        <div
+          ref={mobileMenuRef}
+          className={`md:hidden absolute top-16 left-0 right-0 bg-black/95 backdrop-blur-sm border-b border-yellow-400/20 transition-all duration-300 ${
+            isMobileMenuOpen ? 'opacity-100 translate-y-0' : 'opacity-0 -translate-y-full pointer-events-none'
+          }`}
+        >
+          <div className="px-4 py-4 space-y-4">
+            {sections.map((section) => (
+              <a
+                key={section.id}
+                href={`#${section.id}`}
+                className={`block text-sm font-medium transition-colors duration-200 ${
+                  activeSection === section.id
+                    ? 'text-yellow-400'
+                    : 'text-yellow-100 hover:text-yellow-400'
+                }`}
+                onClick={() => setIsMobileMenuOpen(false)}
+              >
+                {section.label}
+              </a>
+            ))}
+            <Link
+              href="/contact"
+              className="block px-4 py-2 rounded-full bg-yellow-400 text-black font-semibold text-sm hover:bg-yellow-300 transition-colors duration-200 text-center"
+              onClick={() => setIsMobileMenuOpen(false)}
             >
               Contact Us
             </Link>
@@ -559,7 +567,7 @@ export default function WebDevelopmentPage() {
       {isVisible && (
         <button
           onClick={scrollToTop}
-          className="fixed bottom-8 right-8 z-50 p-3 rounded-full bg-yellow-400 text-black hover:bg-yellow-300 transition-all duration-200 shadow-lg hover:shadow-xl"
+          className="fixed bottom-8 right-8 z-50 p-3 rounded-full bg-yellow-400 text-black hover:bg-yellow-300 transition-all duration-200 shadow-lg hover:shadow-xl hover:scale-110"
           aria-label="Back to top"
         >
           <FaArrowUp className="text-xl" />
@@ -567,9 +575,9 @@ export default function WebDevelopmentPage() {
       )}
 
       {/* Hero Section */}
-      <section className="w-full pt-32 pb-16 md:pt-40 md:pb-24 bg-black text-center visible">
-        <h1 className="text-4xl sm:text-5xl font-extrabold text-yellow-400 mb-4 animate-fade-in">Web Development Services</h1>
-        <p className="mx-auto max-w-2xl text-lg sm:text-xl text-yellow-100 mb-6 animate-fade-in-delay">Expert web development services in Lagos. Custom websites, e-commerce solutions, and web applications. Modern tech stack, responsive design, and ongoing support.</p>
+      <section className="w-full pt-32 pb-16 md:pt-40 md:pb-24 bg-black text-center visible parallax-section">
+        <h1 className="text-4xl sm:text-5xl font-extrabold text-yellow-400 mb-4 animate-fade-in">Mobile App Development Services</h1>
+        <p className="mx-auto max-w-2xl text-lg sm:text-xl text-yellow-100 mb-6 animate-fade-in-delay">Expert mobile app development services in Lagos. Native and cross-platform solutions for iOS and Android. Modern tech stack, intuitive design, and ongoing support.</p>
         <Link href="/contact" className="inline-block px-8 py-3 rounded-full bg-yellow-400 text-black font-semibold text-lg hover:bg-yellow-300 transition-all duration-200 hover:scale-105 animate-fade-in-delay-2">Start Your Project</Link>
       </section>
 
@@ -606,7 +614,7 @@ export default function WebDevelopmentPage() {
           </ol>
           <div className="flex items-center gap-3 text-yellow-200 mb-4">
             <FaClock className="text-yellow-400 text-2xl" />
-            <span className="font-bold">Project Timeline:</span> 2-12 weeks (depending on complexity)
+            <span className="font-bold">Project Timeline:</span> 2-6 months (depending on complexity)
           </div>
         </div>
       </section>
@@ -623,28 +631,6 @@ export default function WebDevelopmentPage() {
                   <h3 className="text-yellow-300 font-semibold">{item.label}</h3>
                   <p className="text-yellow-100 text-sm">{item.desc}</p>
                 </div>
-              </div>
-            ))}
-          </div>
-        </div>
-      </section>
-
-      {/* Tech Stack Combinations */}
-      <section ref={setSectionRef} className="w-full py-8 md:py-12 bg-black">
-        <div className="mx-auto max-w-4xl px-4 sm:px-6 lg:px-8">
-          <h2 className="text-2xl font-bold text-yellow-400 mb-4">Technology Stack Combinations</h2>
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-            {techStackCombinations.map((stack) => (
-              <div key={stack.name} className="bg-black rounded-xl border border-yellow-400/20 p-6">
-                <h3 className="text-yellow-300 font-semibold text-xl mb-2">{stack.name}</h3>
-                <div className="flex flex-wrap gap-2 mb-4">
-                  {stack.stack.map((tech) => (
-                    <span key={tech} className="px-3 py-1 bg-yellow-400/10 text-yellow-400 rounded-full text-sm">
-                      {tech}
-                    </span>
-                  ))}
-                </div>
-                <p className="text-yellow-100">{stack.useCase}</p>
               </div>
             ))}
           </div>
@@ -922,7 +908,7 @@ export default function WebDevelopmentPage() {
       <section ref={setSectionRef} className="w-full py-8 md:py-12 bg-black">
         <div className="mx-auto max-w-4xl px-4 sm:px-6 lg:px-8 text-center">
           <h2 className="text-2xl font-bold text-yellow-400 mb-4">Ready to Start Your Project?</h2>
-          <p className="text-yellow-100 mb-6">Let's discuss how we can help bring your vision to life.</p>
+          <p className="text-yellow-100 mb-6">Let's discuss how we can help bring your app idea to life.</p>
           <Link href="/contact" className="inline-block px-8 py-3 rounded-full bg-yellow-400 text-black font-semibold text-lg hover:bg-yellow-300 transition-colors duration-200">Get Started</Link>
         </div>
       </section>
@@ -936,6 +922,26 @@ export default function WebDevelopmentPage() {
           to {
             opacity: 1;
             transform: translateY(0);
+          }
+        }
+
+        @keyframes slideIn {
+          from {
+            transform: translateX(-100%);
+          }
+          to {
+            transform: translateX(0);
+          }
+        }
+
+        @keyframes scaleIn {
+          from {
+            transform: scale(0.9);
+            opacity: 0;
+          }
+          to {
+            transform: scale(1);
+            opacity: 1;
           }
         }
 
@@ -953,6 +959,14 @@ export default function WebDevelopmentPage() {
           opacity: 0;
         }
 
+        .animate-slide-in {
+          animation: slideIn 0.6s ease-out forwards;
+        }
+
+        .animate-scale-in {
+          animation: scaleIn 0.6s ease-out forwards;
+        }
+
         section {
           opacity: 0;
           transform: translateY(20px);
@@ -962,6 +976,29 @@ export default function WebDevelopmentPage() {
         section.visible {
           opacity: 1;
           transform: translateY(0);
+        }
+
+        .parallax-section {
+          background-attachment: fixed;
+          background-position: center;
+          background-repeat: no-repeat;
+          background-size: cover;
+        }
+
+        @media (max-width: 768px) {
+          .parallax-section {
+            background-attachment: scroll;
+          }
+        }
+
+        /* Progressive loading styles */
+        .lazy-load {
+          opacity: 0;
+          transition: opacity 0.3s ease-in;
+        }
+
+        .lazy-load.loaded {
+          opacity: 1;
         }
       `}</style>
     </main>
