@@ -633,11 +633,11 @@ export default function AppDevelopmentPage() {
           <h1 className="text-4xl sm:text-5xl font-extrabold text-yellow-400 mb-4 animate-fade-in">Mobile App Development Services</h1>
           <p className="mx-auto max-w-2xl text-lg sm:text-xl text-yellow-100 mb-6 animate-fade-in-delay">Expert mobile app development services in Lagos. Native and cross-platform solutions for iOS and Android. Modern tech stack, intuitive design, and ongoing support.</p>
           <Link href="/contact" className="inline-block px-8 py-3 rounded-full bg-yellow-400 text-black font-semibold text-lg hover:bg-yellow-300 transition-all duration-200 hover:scale-105 animate-fade-in-delay-2">Start Your Project</Link>
-        </section>
+      </section>
 
         {/* Services Overview */}
         <section ref={setSectionRef} id="services" className="w-full py-8 md:py-12 bg-black scroll-mt-16">
-          <div className="mx-auto max-w-4xl px-4 sm:px-6 lg:px-8">
+        <div className="mx-auto max-w-4xl px-4 sm:px-6 lg:px-8">
             <h2 className="text-2xl font-bold text-yellow-400 mb-4">Our Services</h2>
             <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 mb-6">
               {services.map((item, index) => (

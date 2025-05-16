@@ -1,7 +1,7 @@
 "use client";
 
 import React, { useEffect, useState, useRef } from 'react';
-import { FaChartLine, FaSearch, FaHashtag, FaPenFancy, FaBullhorn, FaChartBar, FaUsers, FaMobile, FaGlobe, FaCheckCircle, FaClock, FaQuestionCircle, FaHome, FaChevronLeft, FaChevronRight, FaBars, FaTimes, FaArrowUp, FaMoneyBillWave, FaStar, FaQuoteLeft, FaComments } from 'react-icons/fa';
+import { FaPalette, FaPencilRuler, FaLayerGroup, FaBrush, FaCamera, FaVideo, FaPrint, FaMobile, FaGlobe, FaCheckCircle, FaClock, FaQuestionCircle, FaHome, FaChevronLeft, FaChevronRight, FaBars, FaTimes, FaArrowUp, FaMoneyBillWave, FaStar, FaQuoteLeft, FaComments } from 'react-icons/fa';
 import Link from 'next/link';
 
 const sections = [
@@ -17,122 +17,98 @@ const sections = [
 
 const services = [
   { 
-    icon: <FaSearch className="text-yellow-400 text-3xl transform hover:scale-110 transition-transform duration-300" />, 
-    label: 'Search Engine Optimization (SEO)', 
-    desc: 'Comprehensive SEO strategies including technical optimization, on-page content enhancement, and off-page link building. We implement data-driven approaches to improve your search rankings and organic visibility.',
+    icon: <FaPencilRuler className="text-yellow-400 text-3xl transform hover:scale-110 transition-transform duration-300" />, 
+    label: 'Brand Identity Design', 
+    desc: 'Comprehensive brand identity development including logo design, color palette, typography, and brand guidelines. We create cohesive visual identities that resonate with your target audience.',
     color: 'from-yellow-400/20 to-yellow-400/5'
   },
   { 
-    icon: <FaHashtag className="text-yellow-400 text-3xl transform hover:scale-110 transition-transform duration-300" />, 
-    label: 'Social Media Marketing', 
-    desc: 'Strategic social media management across all major platforms. We create engaging content calendars, manage community interactions, and implement growth strategies to build your brand presence and audience engagement.',
+    icon: <FaLayerGroup className="text-yellow-400 text-3xl transform hover:scale-110 transition-transform duration-300" />, 
+    label: 'Print Design', 
+    desc: 'Professional print design services for business cards, brochures, flyers, banners, and packaging. We ensure high-quality designs that maintain brand consistency across all materials.',
     color: 'from-yellow-400/20 to-yellow-400/5'
   },
   { 
-    icon: <FaPenFancy className="text-yellow-400 text-3xl transform hover:scale-110 transition-transform duration-300" />, 
-    label: 'Content Marketing', 
-    desc: 'Professional content creation including blog posts, articles, whitepapers, and multimedia content. Our content strategies are designed to attract, engage, and convert your target audience while establishing thought leadership.',
+    icon: <FaBrush className="text-yellow-400 text-3xl transform hover:scale-110 transition-transform duration-300" />, 
+    label: 'Digital Design', 
+    desc: 'Engaging digital designs for websites, social media, email marketing, and digital advertisements. We create visually appealing content that drives engagement and conversions.',
     color: 'from-yellow-400/20 to-yellow-400/5'
   },
   { 
-    icon: <FaBullhorn className="text-yellow-400 text-3xl transform hover:scale-110 transition-transform duration-300" />, 
-    label: 'Google Ads Management', 
-    desc: 'Expert management of Google Search, Display, and Shopping campaigns. We optimize for maximum ROI through strategic keyword targeting, ad copy optimization, and continuous performance monitoring.',
+    icon: <FaCamera className="text-yellow-400 text-3xl transform hover:scale-110 transition-transform duration-300" />, 
+    label: 'Photography & Image Editing', 
+    desc: 'Professional photography services and expert image editing. We capture and enhance visuals that tell your brand story and showcase your products or services.',
     color: 'from-yellow-400/20 to-yellow-400/5'
   },
   { 
-    icon: <FaBullhorn className="text-yellow-400 text-3xl transform hover:scale-110 transition-transform duration-300" />, 
-    label: 'Social Media Advertising', 
-    desc: 'Comprehensive social media advertising across Facebook, Instagram, LinkedIn, and Twitter. We create targeted campaigns that reach your ideal audience and drive meaningful engagement and conversions.',
+    icon: <FaVideo className="text-yellow-400 text-3xl transform hover:scale-110 transition-transform duration-300" />, 
+    label: 'Motion Graphics & Animation', 
+    desc: 'Dynamic motion graphics and animations for social media, websites, and presentations. We create engaging visual content that captures attention and communicates your message effectively.',
     color: 'from-yellow-400/20 to-yellow-400/5'
   },
   { 
-    icon: <FaBullhorn className="text-yellow-400 text-3xl transform hover:scale-110 transition-transform duration-300" />, 
-    label: 'Snapchat & TikTok Advertising', 
-    desc: 'Engaging video-first advertising campaigns for younger demographics. We create authentic, platform-specific content that resonates with Gen Z and Millennial audiences.',
-    color: 'from-yellow-400/20 to-yellow-400/5'
-  },
-  { 
-    icon: <FaBullhorn className="text-yellow-400 text-3xl transform hover:scale-110 transition-transform duration-300" />, 
-    label: 'Out-of-Home Advertising', 
-    desc: 'Strategic placement of billboard, transit, and digital out-of-home advertisements. We combine traditional OOH with digital tracking to maximize reach and measure campaign effectiveness.',
-    color: 'from-yellow-400/20 to-yellow-400/5'
-  },
-  { 
-    icon: <FaChartBar className="text-yellow-400 text-3xl transform hover:scale-110 transition-transform duration-300" />, 
-    label: 'Analytics & Performance Tracking', 
-    desc: 'Comprehensive tracking and analysis of all marketing channels. We provide detailed reports and actionable insights to optimize campaign performance and maximize ROI.',
-    color: 'from-yellow-400/20 to-yellow-400/5'
-  },
-  { 
-    icon: <FaUsers className="text-yellow-400 text-3xl transform hover:scale-110 transition-transform duration-300" />, 
-    label: 'Email Marketing & Automation', 
-    desc: 'Strategic email marketing campaigns and automated sequences. We design engaging email content and implement sophisticated automation workflows to nurture leads and drive conversions.',
+    icon: <FaPrint className="text-yellow-400 text-3xl transform hover:scale-110 transition-transform duration-300" />, 
+    label: 'Packaging Design', 
+    desc: 'Innovative packaging design that enhances product appeal and brand recognition. We create packaging solutions that stand out on shelves and provide excellent user experience.',
     color: 'from-yellow-400/20 to-yellow-400/5'
   },
   { 
     icon: <FaMobile className="text-yellow-400 text-3xl transform hover:scale-110 transition-transform duration-300" />, 
-    label: 'Mobile Marketing', 
-    desc: 'Mobile-first marketing strategies including SMS marketing, mobile app advertising, and location-based targeting. We ensure your brand effectively reaches users on their mobile devices.',
+    label: 'UI/UX Design', 
+    desc: 'User-centered interface and experience design for websites and applications. We create intuitive, engaging, and accessible digital experiences that delight users.',
     color: 'from-yellow-400/20 to-yellow-400/5'
   },
   { 
     icon: <FaGlobe className="text-yellow-400 text-3xl transform hover:scale-110 transition-transform duration-300" />, 
-    label: 'Programmatic Advertising', 
-    desc: 'Automated ad buying across multiple platforms and channels. We leverage real-time bidding and audience targeting to deliver your message to the right people at the right time.',
-    color: 'from-yellow-400/20 to-yellow-400/5'
-  },
-  { 
-    icon: <FaChartLine className="text-yellow-400 text-3xl transform hover:scale-110 transition-transform duration-300" />, 
-    label: 'Retargeting & Remarketing', 
-    desc: 'Strategic retargeting campaigns to re-engage website visitors and past customers. We implement sophisticated tracking and segmentation to deliver personalized messages that drive conversions.',
+    label: 'Environmental Design', 
+    desc: 'Comprehensive environmental design for retail spaces, offices, and exhibitions. We create immersive brand experiences through thoughtful spatial design.',
     color: 'from-yellow-400/20 to-yellow-400/5'
   }
 ];
 
 const process = [
-  { step: 'Strategy Development', desc: 'We analyze your business, competitors, and target audience to create a custom digital marketing strategy.' },
-  { step: 'Implementation', desc: 'Our team executes the strategy across all chosen channels with best practices and optimization.' },
-  { step: 'Monitoring & Analysis', desc: 'We track performance metrics and analyze data to measure campaign effectiveness.' },
-  { step: 'Optimization', desc: 'Based on data insights, we continuously improve campaigns for better results.' },
-  { step: 'Reporting & Communication', desc: 'Regular reports and updates keep you informed of progress and ROI.' },
+  { step: 'Discovery & Research', desc: 'We analyze your brand, market, and competitors to understand your unique positioning and design needs.' },
+  { step: 'Concept Development', desc: 'Our team creates initial design concepts and presents multiple options for your review and feedback.' },
+  { step: 'Design Refinement', desc: 'We refine the chosen concept based on your feedback, ensuring it perfectly aligns with your vision.' },
+  { step: 'Finalization', desc: 'Final designs are polished and prepared for implementation across all required platforms and materials.' },
+  { step: 'Implementation', desc: 'We provide all necessary files and guidelines for consistent brand application across all touchpoints.' },
 ];
 
 const technologies = [
   { 
-    icon: <FaSearch className="text-yellow-400 text-3xl transform hover:scale-110 transition-transform duration-300" />, 
-    label: 'SEO Tools', 
-    desc: 'SEMrush, Ahrefs, Moz, Google Search Console',
+    icon: <FaPalette className="text-yellow-400 text-3xl transform hover:scale-110 transition-transform duration-300" />, 
+    label: 'Design Software', 
+    desc: 'Adobe Creative Suite, Figma, Sketch, Procreate',
     color: 'from-yellow-400/20 to-yellow-400/5'
   },
   { 
-    icon: <FaChartBar className="text-yellow-400 text-3xl transform hover:scale-110 transition-transform duration-300" />, 
-    label: 'Analytics Platforms', 
-    desc: 'Google Analytics, Facebook Analytics, Custom Dashboards',
+    icon: <FaCamera className="text-yellow-400 text-3xl transform hover:scale-110 transition-transform duration-300" />, 
+    label: 'Photo & Video', 
+    desc: 'Adobe Lightroom, Photoshop, Premiere Pro, After Effects',
     color: 'from-yellow-400/20 to-yellow-400/5'
   },
   { 
-    icon: <FaBullhorn className="text-yellow-400 text-3xl transform hover:scale-110 transition-transform duration-300" />, 
-    label: 'Advertising Platforms', 
-    desc: 'Google Ads, Facebook Ads, LinkedIn Ads',
+    icon: <FaPrint className="text-yellow-400 text-3xl transform hover:scale-110 transition-transform duration-300" />, 
+    label: 'Print Production', 
+    desc: 'Adobe InDesign, Illustrator, Print Production Tools',
     color: 'from-yellow-400/20 to-yellow-400/5'
   },
   { 
-    icon: <FaUsers className="text-yellow-400 text-3xl transform hover:scale-110 transition-transform duration-300" />, 
-    label: 'Email Marketing', 
-    desc: 'Mailchimp, SendGrid, HubSpot',
+    icon: <FaMobile className="text-yellow-400 text-3xl transform hover:scale-110 transition-transform duration-300" />, 
+    label: 'UI/UX Tools', 
+    desc: 'Figma, Adobe XD, Sketch, InVision',
     color: 'from-yellow-400/20 to-yellow-400/5'
   },
   { 
-    icon: <FaHashtag className="text-yellow-400 text-3xl transform hover:scale-110 transition-transform duration-300" />, 
-    label: 'Social Media Tools', 
-    desc: 'Buffer, Hootsuite, Later',
+    icon: <FaVideo className="text-yellow-400 text-3xl transform hover:scale-110 transition-transform duration-300" />, 
+    label: 'Animation Tools', 
+    desc: 'After Effects, Premiere Pro, Cinema 4D',
     color: 'from-yellow-400/20 to-yellow-400/5'
   },
   { 
-    icon: <FaPenFancy className="text-yellow-400 text-3xl transform hover:scale-110 transition-transform duration-300" />, 
-    label: 'Content Creation', 
-    desc: 'Canva, Adobe Creative Suite, WordPress',
+    icon: <FaGlobe className="text-yellow-400 text-3xl transform hover:scale-110 transition-transform duration-300" />, 
+    label: '3D & Rendering', 
+    desc: 'Blender, Maya, V-Ray, Corona',
     color: 'from-yellow-400/20 to-yellow-400/5'
   },
 ];
@@ -142,125 +118,125 @@ const pricingStructure = [
     title: 'Basic Package',
     price: '₦150,000',
     features: [
-      'Basic SEO Optimization',
-      'Social Media Management (2 platforms)',
-      'Monthly Content Creation',
-      'Basic Analytics Reporting',
-      'Email Support',
+      'Logo Design',
+      'Basic Brand Guidelines',
+      'Business Card Design',
+      'Social Media Templates',
+      'Basic Image Editing',
     ],
   },
   {
     title: 'Growth Package',
     price: '₦300,000',
     features: [
-      'Advanced SEO Strategy',
-      'Social Media Management (4 platforms)',
-      'Weekly Content Creation',
-      'PPC Campaign Management',
-      'Email Marketing',
-      'Detailed Analytics & Reporting',
+      'Complete Brand Identity',
+      'Comprehensive Brand Guidelines',
+      'Marketing Materials Design',
+      'Social Media Kit',
+      'Website Design',
+      'Photo Editing & Retouching',
     ],
   },
   {
     title: 'Enterprise Package',
     price: '₦500,000',
     features: [
-      'Full-Service Digital Marketing',
-      'All Social Media Platforms',
-      'Daily Content Creation',
-      'Advanced PPC & Retargeting',
-      'Custom Email Marketing',
-      'Advanced Analytics & Strategy',
-      'Dedicated Account Manager',
+      'Full Brand Strategy',
+      'Complete Brand Identity System',
+      'All Marketing Materials',
+      'Motion Graphics & Animation',
+      'UI/UX Design',
+      'Photography & Videography',
+      'Dedicated Designer',
     ],
   },
 ];
 
 const faqs = [
   {
-    q: 'How long does it take to see results from digital marketing?',
-    a: 'Results vary by strategy, but typically: SEO takes 3-6 months for significant results, PPC can show immediate results, and social media marketing usually shows engagement within 1-2 months. We provide regular reports to track progress.'
+    q: 'How long does it take to complete a branding project?',
+    a: 'Timeline varies by project scope. A basic logo design typically takes 1-2 weeks, while a complete brand identity project may take 4-6 weeks. We provide detailed timelines during consultation.'
   },
   {
-    q: 'Do you offer content creation services?',
-    a: 'Yes, we provide comprehensive content creation including blog posts, social media content, email newsletters, and video content. All content is optimized for SEO and engagement.'
+    q: 'Do you offer revisions on designs?',
+    a: 'Yes, we include multiple revision rounds in our packages to ensure you\'re completely satisfied with the final design. The number of revisions depends on your chosen package.'
   },
   {
-    q: 'How do you measure ROI for digital marketing?',
-    a: 'We track key metrics like website traffic, conversion rates, lead generation, and revenue. We provide detailed analytics reports and can set up custom tracking for your specific business goals.'
+    q: 'What file formats do you provide?',
+    a: 'We provide all necessary file formats including vector files (AI, EPS), raster files (PNG, JPG), and source files. We also include guidelines for proper usage across different platforms.'
   },
   {
-    q: 'Which social media platforms do you manage?',
-    a: "We manage all major platforms including Facebook, Instagram, Twitter, LinkedIn, and TikTok. We'll help you choose the right platforms based on your target audience and business goals."
+    q: 'Can you help with printing services?',
+    a: 'Yes, we work with trusted printing partners and can manage the entire print production process, ensuring high-quality results for all your printed materials.'
   },
   {
-    q: 'Do you offer local SEO services?',
-    a: 'Yes, we specialize in local SEO to help businesses improve their visibility in local search results, including Google My Business optimization and local content strategy.'
+    q: 'Do you offer photography services?',
+    a: 'Yes, we provide professional photography services for products, corporate events, and brand photography. This can be included in our comprehensive packages.'
   },
   {
-    q: 'How often will I receive reports?',
-    a: "We provide monthly detailed reports, but you'll also have access to real-time dashboards to monitor performance. For enterprise clients, we offer weekly reports and strategy calls."
+    q: 'How do you ensure brand consistency?',
+    a: 'We create detailed brand guidelines that cover logo usage, color palettes, typography, and design elements. These guidelines ensure consistent brand application across all platforms.'
   }
 ];
 
 const caseStudies = [
   {
-    title: 'E-commerce Growth Strategy',
-    client: 'Fashion Retailer',
+    title: 'Brand Transformation',
+    client: 'Tech Startup',
     results: [
-      '300% increase in online sales',
-      '50% reduction in customer acquisition cost',
-      '200% growth in social media engagement'
+      '200% increase in brand recognition',
+      '150% growth in social media engagement',
+      '40% improvement in customer perception'
     ],
-    description: 'Implemented a comprehensive digital marketing strategy combining SEO, social media, and PPC campaigns.'
+    description: 'Complete brand overhaul including new identity, website design, and marketing materials.'
   },
   {
-    title: 'Local Business Expansion',
-    client: 'Restaurant Chain',
+    title: 'Product Packaging Design',
+    client: 'Fashion Brand',
     results: [
-      '150% increase in foot traffic',
-      '80% growth in online orders',
-      'Top 3 ranking in local search results'
+      '300% increase in shelf appeal',
+      '80% improvement in customer feedback',
+      '50% growth in retail sales'
     ],
-    description: 'Developed and executed a local SEO and social media strategy to increase visibility and customer engagement.'
+    description: 'Innovative packaging design that enhanced product visibility and customer experience.'
   },
   {
-    title: 'B2B Lead Generation',
-    client: 'Software Company',
+    title: 'Digital Brand Presence',
+    client: 'E-commerce Platform',
     results: [
-      '200% increase in qualified leads',
-      '40% improvement in conversion rate',
-      '300% growth in LinkedIn engagement'
+      '250% increase in website engagement',
+      '120% growth in social media following',
+      '90% improvement in conversion rate'
     ],
-    description: 'Created a targeted content marketing and LinkedIn advertising campaign to generate high-quality B2B leads.'
+    description: 'Comprehensive digital design strategy including website, social media, and marketing materials.'
   }
 ];
 
 const testimonials = [
   {
-    name: 'Sarah Johnson',
+    name: 'David Okafor',
     role: 'Marketing Director',
-    company: 'Tech Solutions Ltd',
-    content: 'TeaMo\'s digital marketing team transformed our online presence. Their strategic approach and data-driven decisions helped us achieve remarkable growth in just 6 months.',
+    company: 'Tech Innovations Ltd',
+    content: 'TeaMo\'s design team transformed our brand identity. Their creative approach and attention to detail helped us stand out in a competitive market.',
+    rating: 5
+  },
+  {
+    name: 'Sarah Williams',
+    role: 'Founder',
+    company: 'Eco Fashion',
+    content: 'The packaging design created by TeaMo has significantly improved our product presentation and customer experience. Their team is incredibly talented and professional.',
     rating: 5
   },
   {
     name: 'Michael Chen',
     role: 'CEO',
-    company: 'Eco Products',
-    content: 'The ROI from our digital marketing campaigns has been outstanding. TeaMo\'s team is professional, responsive, and truly understands our business goals.',
-    rating: 5
-  },
-  {
-    name: 'Aisha Okafor',
-    role: 'Founder',
-    company: 'Fashion Forward',
-    content: 'Working with TeaMo has been a game-changer for our brand. Their social media strategy and content creation have helped us connect with our audience in meaningful ways.',
+    company: 'Digital Solutions',
+    content: 'Working with TeaMo on our brand refresh was a game-changer. Their strategic approach to design helped us connect better with our target audience.',
     rating: 5
   }
 ];
 
-export default function DigitalMarketingPage() {
+export default function GraphicsDesignPage() {
   const [isVisible, setIsVisible] = useState(false);
   const [activeSection, setActiveSection] = useState('');
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
@@ -348,7 +324,7 @@ export default function DigitalMarketingPage() {
           >
             <FaBars size={24} />
           </button>
-          <h1 className="text-yellow-400 font-bold">Digital Marketing</h1>
+          <h1 className="text-yellow-400 font-bold">Graphics Design</h1>
           <div className="w-6" />
         </div>
       </header>
@@ -358,7 +334,7 @@ export default function DigitalMarketingPage() {
         <div className="p-4">
           <div className="flex items-center justify-between mb-4">
             {!isSidebarCollapsed && (
-              <h3 className="text-yellow-400 font-semibold">Digital Marketing</h3>
+              <h3 className="text-yellow-400 font-semibold">Graphics Design</h3>
             )}
             <button
               onClick={() => setIsSidebarCollapsed(!isSidebarCollapsed)}
@@ -379,12 +355,12 @@ export default function DigitalMarketingPage() {
                     : 'text-yellow-100 hover:bg-yellow-400/10 hover:text-yellow-400'
                 }`}
               >
-                {section.id === 'hero' && <FaHome size={isSidebarCollapsed ? 20 : 16} />}
-                {section.id === 'services' && <FaChartLine size={isSidebarCollapsed ? 20 : 16} />}
-                {section.id === 'process' && <FaClock size={isSidebarCollapsed ? 20 : 16} />}
-                {section.id === 'technologies' && <FaGlobe size={isSidebarCollapsed ? 20 : 16} />}
-                {section.id === 'pricing' && <FaMoneyBillWave size={isSidebarCollapsed ? 20 : 16} />}
-                {section.id === 'faq' && <FaQuestionCircle size={isSidebarCollapsed ? 20 : 16} />}
+                {section.id === 'hero' && <FaHome size={16} />}
+                {section.id === 'services' && <FaPalette size={16} />}
+                {section.id === 'process' && <FaClock size={16} />}
+                {section.id === 'technologies' && <FaGlobe size={16} />}
+                {section.id === 'pricing' && <FaMoneyBillWave size={16} />}
+                {section.id === 'faq' && <FaQuestionCircle size={16} />}
                 {!isSidebarCollapsed && <span>{section.label}</span>}
               </a>
             ))}
@@ -393,15 +369,15 @@ export default function DigitalMarketingPage() {
       </div>
 
       {/* Main Content */}
-      <div className={`pt-16 md:pt-0 transition-all duration-300 ${isSidebarCollapsed ? 'md:pl-16' : 'md:pl-48'}`}>
+      <div className={`pt-16 md:pt-0 md:pl-${isSidebarCollapsed ? '16' : '48'} transition-all duration-300`}>
         {/* Hero Section */}
         <section id="hero" ref={setSectionRef} className="w-full py-16 md:py-24 bg-black text-center px-4">
           <div className="max-w-4xl mx-auto">
             <h1 className="text-3xl sm:text-4xl md:text-5xl font-extrabold text-yellow-400 mb-4 leading-tight">
-              Digital Marketing Solutions
+              Graphics Design & Branding
             </h1>
             <p className="text-base sm:text-lg md:text-xl text-yellow-100 mb-6 max-w-2xl mx-auto">
-              Drive growth and engagement with our comprehensive digital marketing services. From SEO to social media, we help businesses thrive in the digital landscape.
+              Transform your brand with our professional graphic design and branding services. From logo design to complete brand identity, we create visual solutions that make your business stand out.
             </p>
           </div>
         </section>
@@ -572,8 +548,8 @@ export default function DigitalMarketingPage() {
         {/* CTA Section */}
         <section className="w-full py-16 md:py-24 bg-black text-center">
           <div className="max-w-4xl mx-auto px-4">
-            <h2 className="text-3xl font-bold text-yellow-400 mb-4">Ready to Grow Your Business?</h2>
-            <p className="text-yellow-100 mb-8">Let's discuss how our digital marketing services can help you achieve your goals.</p>
+            <h2 className="text-3xl font-bold text-yellow-400 mb-4">Ready to Transform Your Brand?</h2>
+            <p className="text-yellow-100 mb-8">Let's discuss how our design services can help you create a powerful brand identity.</p>
             <Link
               href="/contact"
               className="inline-block px-8 py-3 rounded-full bg-yellow-400 text-black font-semibold hover:bg-yellow-300 transition-colors duration-200"

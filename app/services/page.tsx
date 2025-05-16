@@ -1,6 +1,6 @@
 import React from 'react';
 import { Metadata } from 'next';
-import { FaServer, FaShieldAlt, FaMobileAlt, FaLaptopCode, FaUsers, FaAward, FaBolt, FaMoneyBillWave, FaCheckCircle, FaChartLine, FaCogs, FaHandshake, FaGamepad } from 'react-icons/fa';
+import { FaServer, FaShieldAlt, FaMobileAlt, FaLaptopCode, FaUsers, FaAward, FaBolt, FaMoneyBillWave, FaCheckCircle, FaChartLine, FaCogs, FaHandshake, FaGamepad, FaDesktop, FaTools, FaPalette } from 'react-icons/fa';
 import Link from 'next/link';
 
 export const metadata: Metadata = {
@@ -52,11 +52,17 @@ const services = [
     link: 'services/gadget-sales-repair',
   },
   {
-    icon: <FaChartLine className="text-yellow-400 text-3xl mb-3" />, 
+    icon: <FaChartLine className="text-yellow-400 text-3xl mb-3" />,
     title: 'Digital Marketing',
-    desc: 'Comprehensive digital marketing solutions including SEO, social media management, content marketing, and PPC campaigns to grow your online presence and drive business growth.',
-    link: '/services/digital-marketing',
+    desc: 'Comprehensive digital marketing solutions including SEO, social media management, content marketing, and PPC campaigns. Drive growth and engagement with our expert team.',
+    link: '/services/digital-marketing'
   },
+  {
+    icon: <FaPalette className="text-yellow-400 text-3xl mb-3" />,
+    title: 'Graphics Design & Branding',
+    desc: 'Professional graphic design and branding services including logo design, brand identity, marketing materials, and visual content creation. Transform your brand with our creative expertise.',
+    link: '/services/graphics-design'
+  }
 ];
 
 const extended = [
