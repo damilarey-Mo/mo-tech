@@ -2,6 +2,7 @@
 
 import { useState } from "react";
 import Link from "next/link";
+import Image from "next/image";
 import { 
   Facebook, 
   Twitter, 
@@ -86,7 +87,14 @@ export default function Footer() {
         <div className="mb-12 grid grid-cols-1 gap-8 lg:grid-cols-2">
           <div>
             <Link href="/" className="inline-block">
-              <span className="text-2xl font-bold text-primary-600 dark:text-yellow-400">Teamo</span>
+              <Image
+                src="/images/logo/ITEAM360UPDATED.JPG"
+                alt="TeaMo Logo"
+                width={150}
+                height={50}
+                className="h-12 w-auto object-contain"
+                priority
+              />
             </Link>
             <p className="mt-4 text-sm text-gray-600 dark:text-yellow-400/80 max-w-md">
             Your trusted tech partner, offering 24/7 IT support, free diagnostics, flexible pickup & delivery, and affordable high-quality gadgets—all with reliable, customer-first service..

@@ -2,6 +2,7 @@
 
 import React from 'react';
 import Link from 'next/link';
+import Image from 'next/image';
 import { Menu } from 'lucide-react';
 import { usePathname } from "next/navigation";
 import { Button } from "./ui/button";
@@ -48,10 +49,17 @@ export default function Navbar() {
       <header className="fixed w-full z-50 bg-black/90 border-b border-gray-800 dark:bg-black dark:border-gray-800">
         <nav className="mx-auto flex max-w-7xl items-center justify-between p-6 lg:px-8" aria-label="Global">
           <div className="flex lg:flex-1">
-            <Link href="/" className="-m-1.5 p-1.5 flex items-center">
-              <span className="sr-only">TeaMo</span>
-              <span className="text-xl font-bold text-primary-600 dark:text-yellow-400">TeaMo</span>
-            </Link>
+          <Link href="/" className="-m-1.5 p-1.5 flex items-center">
+            <span className="sr-only">TeaMo</span>
+            <Image
+              src="/images/logo/ITEAM360UPDATED.JPG"
+              alt="TeaMo Logo"
+              width={120}
+              height={40}
+              className="h-8 w-auto object-contain"
+              priority
+            />
+          </Link>
           </div>
         </nav>
       </header>
@@ -81,7 +89,14 @@ export default function Navbar() {
               whileHover={{ scale: 1.05 }}
               whileTap={{ scale: 0.95 }}
             >
-              <span className="text-xl font-bold text-primary-600 dark:text-yellow-400">TeaMo</span>
+              <Image
+                src="/images/logo/ITEAM360UPDATED.JPG"
+                alt="TeaMo Logo"
+                width={120}
+                height={40}
+                className="h-8 w-auto object-contain"
+                priority
+              />
             </motion.div>
           </Link>
         </motion.div>
@@ -174,7 +189,14 @@ export default function Navbar() {
               <div className="flex items-center justify-between">
                 <Link href="/" className="-m-1.5 p-1.5" onClick={toggleMenu}>
                   <span className="sr-only">TeaMo</span>
-                  <span className="text-xl font-bold text-primary-600 dark:text-yellow-400">TeaMo</span>
+                  <Image
+                    src="/images/logo/ITEAM360UPDATED.JPG"
+                    alt="TeaMo Logo"
+                    width={120}
+                    height={40}
+                    className="h-8 w-auto object-contain"
+                    priority
+                  />
                 </Link>
                 <button
                   type="button"
